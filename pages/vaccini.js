@@ -335,6 +335,6 @@ export async function getStaticProps() {
 	  	props: {
 			cleanedDailyVaxData
 	  	},
-    	revalidate: 10800,
+    	revalidate: 7200,
 	};
   }
