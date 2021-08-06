@@ -339,7 +339,7 @@ class Home extends React.Component {
 
 			</div>
 
-			{ this.props.cleanedDailyNotes ? 
+			{ this.props.cleanedDailyNotes && this.props.cleanedDailyNotes[0].note ? 
 			
 			<>
 				<div className="bg-pink-500 mt-3 rounded-md p-6">
