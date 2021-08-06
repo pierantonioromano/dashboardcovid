@@ -25,9 +25,9 @@ class News extends React.Component {
 
 		return (
 					<>
-						<div className="bg-white hover:bg-gray-50 col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 rounded-md relative pb-12">
+						<div className="bg-white hover:bg-gray-50 col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 rounded-md relative p-4 pb-12">
 							
-								<div className="h-16 w-16 float-right my-4 mx-4 overflow-hidden w-full rounded-md relative"
+								<div className="h-16 w-16 float-right my-2 mx-2 overflow-hidden w-full rounded-md relative"
 										style={{  
 											backgroundColor: '#999',
 											backgroundImage: "url(" + newsImageUrl.uri + ")",
@@ -40,7 +40,7 @@ class News extends React.Component {
 								</div>
 							
 								<a target="_blank" rel="noopener" className="block" href={item.l}>
-									<h3 className="text-md font-bold text-black p-4 pb-2">{newsTitle}</h3>
+									<h3 className="text-base font-bold text-black pb-2">{newsTitle}</h3>
 								</a>
 								<span className="absolute bottom-0 left-0 w-full text-xs text-gray-400 px-4 pb-4 pt-0">{newsSource} { item.d? ' - ' + formatDistanceToNow(toDate(item.d*1000), { locale: it, addSuffix: true, includeSeconds: true}) : ''}
 								</span>

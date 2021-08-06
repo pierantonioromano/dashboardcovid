@@ -202,25 +202,21 @@ class Vaccini extends React.Component {
 						<h2 className="text-5xl mb-2 font-black text-blue-600">{totale_vaccinati.toLocaleString('it')}</h2>
 						<p className="text-base md:text-base text-black">
 							persone hanno completato il ciclo vaccinale, pari al <strong className="text-blue-600"> {Number(totale_vaccinati / totale_platea * 100).toLocaleString('it', { maximumFractionDigits: 1 })}%</strong> della popolazione italiana over 12
-							{/* <br/>
-							<strong>{Number(totale_vaccinati_prima_dose / popolazione_italiana * 100).toLocaleString('it', { maximumFractionDigits: 1 })}%</strong> vaccinati con una sola dose */}
-							
-							{/* <br/><CalculatePressure actual_value={Math.round(totale_vaccinati)} total_value={popolazione_italiana} pressure_type="vax" /> */}
 						</p>
 					</div>
 					<div className="bg-pink-500 p-3 mt-3 rounded-md">
 						<table className="table-auto w-full text-white">
 							<tbody>
 								<tr>
-									<td className="p-1 text-right font-black text-md md:text-xl">{totale_vaccinati_prima_dose.toLocaleString('it')}</td>
+									<td className="p-1 text-right font-black text-xl">{totale_vaccinati_prima_dose.toLocaleString('it')}</td>
 									<td className="p-1 px-3"><p className="text-base">con prima dose</p></td>
 								</tr>
 								<tr>
-									<td className="p-1 text-right font-black text-md md:text-xl">{totale_vaccinati_monodose.toLocaleString('it')}</td>
+									<td className="p-1 text-right font-black text-xl">{totale_vaccinati_monodose.toLocaleString('it')}</td>
 									<td className="p-1 px-3"><p className="text-base">monodose</p></td>
 								</tr>
 								<tr>
-									<td className="p-1 text-right font-black text-md md:text-xl">{totale_vaccinati_pregressa_infezione.toLocaleString('it')}</td>
+									<td className="p-1 text-right font-black text-xl">{totale_vaccinati_pregressa_infezione.toLocaleString('it')}</td>
 									<td className="p-1 px-3"><p className="text-base">pregressa infezione</p></td>
 								</tr>
 							</tbody>
@@ -230,11 +226,11 @@ class Vaccini extends React.Component {
 						<table className="table-auto w-full text-white">
 							<tbody>
 								<tr>
-									<td className="p-1 text-right font-black text-md md:text-xl">{ totale_dosi_somministrate.toLocaleString('it') }</td>
+									<td className="p-1 text-right font-black text-xl">{ totale_dosi_somministrate.toLocaleString('it') }</td>
 									<td className="p-1 px-3"><p className="md:text-base">dosi somministrate</p></td>
 								</tr>
 								<tr>
-									<td className="p-1 text-right font-black text-md md:text-xl">{ totale_dosi_consegnate.toLocaleString('it') }</td>
+									<td className="p-1 text-right font-black text-xl">{ totale_dosi_consegnate.toLocaleString('it') }</td>
 									<td className="p-1 px-3"><p className="md:text-base">dosi consegnate</p></td>
 								</tr>
 							</tbody>
