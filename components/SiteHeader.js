@@ -76,7 +76,7 @@ export default function SiteHeader() {
 
                 </div>
 
-				<div className="-mr-2 flex hidden md:block">
+				{/* <div className="-mr-2 flex hidden md:block">
 					<FacebookShareButton url={share_url} quote={share_text} className="mr-2 mt-1" >
 						<FacebookIcon size={32} round />
 					</FacebookShareButton>
@@ -86,7 +86,7 @@ export default function SiteHeader() {
 					<WhatsappShareButton url={share_url} title={share_text} separator={share_separator} className="mt-1">
 						<WhatsappIcon size={32} round />
 					</WhatsappShareButton>
-				</div>
+				</div> */}
 
                 {/* <div className="-mr-2 flex md:hidden">
                   
