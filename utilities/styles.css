@@ -1,0 +1,49 @@
+@media only screen and (max-width: 1023px) {
+  
+	#chart-timeline .apexcharts-legend { right: auto !important; top: 30px !important; }
+	
+}
+
+@media only screen and (max-width: 640px) {
+
+	table.responsive-table, .responsive-table thead, .responsive-table tbody, .responsive-table th, .responsive-table td, .responsive-table tr { display: block; }
+	.responsive-table thead tr { position: absolute; top: -9999px; left: -9999px; }
+	.responsive-table tr { border-bottom: 1px solid #ddd; background: #F9FAFB; }
+	.responsive-table td { border: none; border-bottom: 1px solid #eee; position: relative; /*padding-left: 200px;*/ margin-left: 150px; text-align: center; background: #fff; min-height: 41px; }
+	.responsive-table tr td:first-child { font-weight: 700; }
+	.responsive-table tr td:last-child { border: none; }
+	.responsive-table td:before {
+
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 150px;
+		padding-right: 0;
+		white-space: nowrap;
+		margin-left: -150px;
+		text-align: center;
+		color: rgba(107, 114, 128, 1);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		font-weight: 600;
+		font-size: 0.75rem;
+		line-height: 1rem;
+		display: block;
+		height: 40px;
+		padding-top: 12px;
+	
+	}
+	
+	.covid-regions-trend-table td:nth-of-type(1):before { content: "Regione"; }
+	.covid-regions-trend-table td:nth-of-type(2):before { content: "Nuovi casi"; }
+	.covid-regions-trend-table td:nth-of-type(3):before { content: "Ricoveri"; }
+	.covid-regions-trend-table td:nth-of-type(4):before { content: "T.I.";}
+	.covid-regions-trend-table td:nth-of-type(5):before { content: "Carico Rep.";}
+	.covid-regions-trend-table td:nth-of-type(6):before { content: "Carico T.I.";}
+
+	.covid-regions-vax-table td:nth-of-type(1):before { content: "Regione"; }
+	.covid-regions-vax-table td:nth-of-type(2):before { content: "Consegnate"; }
+	.covid-regions-vax-table td:nth-of-type(3):before { content: "Somministrate"; }
+	.covid-regions-vax-table td:nth-of-type(4):before { content: "Avanzamento"; }
+
+}
