@@ -246,7 +246,7 @@ class Home extends React.Component {
 				<div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-5 xl:col-span-4">
 					<div className="bg-blue-200 p-6 rounded-md">
 						<h2 className="text-5xl mb-2 font-black text-blue-600">{nuovi_positivi_oggi.toLocaleString('it')}</h2>
-						<p className="text-sm md:text-base text-black">nuovi positivi su <strong>{tamponi_oggi.toLocaleString('it')}</strong> tamponi
+						<p className="text-base text-black">nuovi positivi su <strong>{tamponi_oggi.toLocaleString('it')}</strong> tamponi
 						<br/>
 						7 giorni fa erano <strong>{nuovi_positivi_7gg.toLocaleString('it')}</strong> su <strong>{tamponi_7gg.toLocaleString('it')}</strong>
 						<br/>
