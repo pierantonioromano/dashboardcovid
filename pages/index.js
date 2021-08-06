@@ -237,7 +237,7 @@ class Home extends React.Component {
  		<div className="container max-w-screen-xl px-4 mx-auto">
 
 		 	<div className="relative my-4">
-				<h1 className="text-xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento nazionale</h1>
+				<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento nazionale</h1>
 				<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
 			</div>
 
@@ -257,44 +257,44 @@ class Home extends React.Component {
 							<tbody>
 								<tr>
 									<td className="p-1 text-right font-black text-md md:text-xl">{morti_oggi.toLocaleString('it')}</td>
-									<td className="p-1 px-3"><p className="text-sm md:text-base">morti</p></td>
+									<td className="p-1 px-3"><p className="text-base">morti</p></td>
 									<td className="p-1 p-r-0 text-right">
-										<CalculateIncrements new_value={morti_oggi} previous_value={morti_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon />
+										<CalculateIncrements new_value={morti_oggi} previous_value={morti_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />
 									</td>
 								</tr>
 								<tr>
 									<td className="p-1 text-right font-black text-md md:text-xl">{ricoverati_oggi.toLocaleString('it')}</td>
-									<td className="p-1 px-3"><p className="text-sm md:text-base">ricoverati oggi</p></td>
+									<td className="p-1 px-3"><p className="text-base">ricoverati oggi</p></td>
 									<td className="p-1 p-r-0 text-right">
-										<CalculateIncrements new_value={totale_ricoverati_attuali} previous_value={totale_ricoverati_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon />	
+										<CalculateIncrements new_value={totale_ricoverati_attuali} previous_value={totale_ricoverati_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />	
 									</td>
 								</tr>
 								<tr>
 									<td className="p-1 text-right font-black text-md md:text-xl">{intensive_oggi.toLocaleString('it')}</td>
-									<td className="border-bo border-gray-100 p-1 px-3"><p className="text-sm md:text-base">saldo intensive</p></td>
+									<td className="border-bo border-gray-100 p-1 px-3"><p className="text-base">saldo intensive</p></td>
 									<td className="border-bo border-gray-100 p-1 p-r-0 text-right">
-										<CalculateIncrements new_value={totale_intensive_attuali} previous_value={totale_intensive_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon />
+										<CalculateIncrements new_value={totale_intensive_attuali} previous_value={totale_intensive_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />
 									</td>
 								</tr>
 								<tr>
 									<td className="p-1 text-right font-black text-md md:text-xl">{ingressi_intensive_oggi.toLocaleString('it')}</td>
-									<td className="p-1 px-3"><p className="text-sm md:text-base">ingressi intensive</p></td>
+									<td className="p-1 px-3"><p className="text-base">ingressi intensive</p></td>
 									<td className="p-1 p-r-0 text-right">
-										<CalculateIncrements new_value={ingressi_intensive_oggi} previous_value={ingressi_intensive_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon />
+										<CalculateIncrements new_value={ingressi_intensive_oggi} previous_value={ingressi_intensive_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />
 									</td>
 								</tr>
 								<tr>
 									<td className="p-1 text-right font-black text-md md:text-xl">{guariti_oggi.toLocaleString('it')}</td>
-									<td className="p-1 px-3"><p className="text-sm md:text-base">guariti</p></td>
+									<td className="p-1 px-3"><p className="text-base">guariti</p></td>
 									<td className="p-1 p-r-0 text-right">
-									<CalculateIncrements new_value={guariti_oggi} previous_value={guariti_7gg} notice_type="better_higher" display_type="percentage" show_trending_icon />
+									<CalculateIncrements new_value={guariti_oggi} previous_value={guariti_7gg} notice_type="better_higher" display_type="percentage" show_trending_icon hide_text />
 									</td>
 								</tr>
 								<tr>
 									<td className="p-1 text-right font-black text-md md:text-xl">{attualmente_positivi_oggi.toLocaleString('it')}</td>
-									<td className="p-1 px-3"><p className="text-sm md:text-base">att.positivi</p></td>
+									<td className="p-1 px-3"><p className="text-base">att.positivi</p></td>
 									<td className="p-1 p-r-0 text-right">
-									<CalculateIncrements new_value={totale_attualmente_positivi_oggi} previous_value={totale_attualmente_positivi_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon />
+									<CalculateIncrements new_value={totale_attualmente_positivi_oggi} previous_value={totale_attualmente_positivi_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />
 									</td>
 								</tr>
 							</tbody>
@@ -325,15 +325,15 @@ class Home extends React.Component {
 			
 				<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
 					<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">CARICHI OSPEDALIERI</span>
-					<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ Math.round(totale_intensive_attuali * 100 / totale_posti_ti) }% <span className="text-sm font-semibold text-black">occupazione T.I. <span className="text-pink-500">({totale_intensive_attuali.toLocaleString('it')})</span></span></h3>
-					<h3 className="text-xl lg:text-3xl mt-2 mb-2 font-black text-blue-600">{ Math.round(totale_ricoverati_attuali * 100 / totale_posti_anc) }% <span className="text-sm font-semibold text-black">occupazione reparti <span className="text-pink-500">({totale_ricoverati_attuali.toLocaleString('it')})</span></span></h3>
+					<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ Math.round(totale_intensive_attuali * 100 / totale_posti_ti) }% <span className="text-base font-semibold text-black">occupazione T.I. <span className="text-pink-500">({totale_intensive_attuali.toLocaleString('it')})</span></span></h3>
+					<h3 className="text-xl lg:text-3xl mt-2 mb-2 font-black text-blue-600">{ Math.round(totale_ricoverati_attuali * 100 / totale_posti_anc) }% <span className="text-base font-semibold text-black">occupazione reparti <span className="text-pink-500">({totale_ricoverati_attuali.toLocaleString('it')})</span></span></h3>
 					<p className="mt-6 text-sm text-black"><strong>{totale_posti_ti.toLocaleString('it')}</strong> posti in T.I. disponibili + <strong>{totale_posti_ti_extra.toLocaleString('it')}</strong> attivabili<br/><strong>{totale_posti_anc.toLocaleString('it')}</strong> posti in area non critica disponibili</p>
 				</div>
 
 				<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
 					<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">ALTRE STATISTICHE</span>
-					<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{totale_casi.toLocaleString('it')} <span className="text-sm font-semibold text-black">casi totali</span></h3>
-					<h3 className="text-xl lg:text-3xl mt-2 mb-2 font-black text-blue-600">{totale_morti.toLocaleString('it')} <span className="text-sm font-semibold text-black">morti totali <span className="text-pink-500">({Number(totale_morti * 100 / totale_casi).toFixed(2)}%)</span></span></h3>
+					<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{totale_casi.toLocaleString('it')} <span className="text-base font-semibold text-black">casi totali</span></h3>
+					<h3 className="text-xl lg:text-3xl mt-2 mb-2 font-black text-blue-600">{totale_morti.toLocaleString('it')} <span className="text-base font-semibold text-black">morti totali <span className="text-pink-500">({Number(totale_morti * 100 / totale_casi).toFixed(2)}%)</span></span></h3>
 					<p className="mt-6 text-sm text-black"><strong>{totale_attualmente_positivi_oggi.toLocaleString('it')}</strong> casi attualmente positivi<br/><strong>{totale_isolamento_domiciliare.toLocaleString('it')}</strong> persone in isolamento domiciliare</p>
 				</div>
 
@@ -352,7 +352,7 @@ class Home extends React.Component {
 			: null }
 
 			<div className="relative my-4 mt-12">
-				<h1 className="text-xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento regionale</h1>
+				<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento regionale</h1>
 				<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento_regioni), 'd MMMM kk:mm', {locale:it})}</strong></span>
 			</div>
 

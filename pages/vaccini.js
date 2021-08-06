@@ -190,7 +190,7 @@ class Vaccini extends React.Component {
  		<div className="container max-w-screen-xl px-4 mx-auto">
 
 		 	<div className="relative my-4">
-				<h1 className="text-xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento nazionale</h1>
+				<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento nazionale</h1>
 				<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
 			</div>
 
@@ -199,7 +199,7 @@ class Vaccini extends React.Component {
 				<div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-5 xl:col-span-4">
 					<div className="bg-blue-200 p-6 rounded-md">
 						<h2 className="text-5xl mb-2 font-black text-blue-600">{totale_vaccinati.toLocaleString('it')}</h2>
-						<p className="text-sm md:text-base text-black">
+						<p className="text-base md:text-base text-black">
 							persone hanno completato il ciclo vaccinale, pari al <strong className="text-blue-600"> {Number(totale_vaccinati / totale_platea * 100).toLocaleString('it', { maximumFractionDigits: 1 })}%</strong> della popolazione italiana over 12
 							{/* <br/>
 							<strong>{Number(totale_vaccinati_prima_dose / popolazione_italiana * 100).toLocaleString('it', { maximumFractionDigits: 1 })}%</strong> vaccinati con una sola dose */}
@@ -212,15 +212,15 @@ class Vaccini extends React.Component {
 							<tbody>
 								<tr>
 									<td className="p-1 text-right font-black text-md md:text-xl">{totale_vaccinati_prima_dose.toLocaleString('it')}</td>
-									<td className="p-1 px-3"><p className="text-sm md:text-base">con prima dose</p></td>
+									<td className="p-1 px-3"><p className="text-base">con prima dose</p></td>
 								</tr>
 								<tr>
 									<td className="p-1 text-right font-black text-md md:text-xl">{totale_vaccinati_monodose.toLocaleString('it')}</td>
-									<td className="p-1 px-3"><p className="text-sm md:text-base">monodose</p></td>
+									<td className="p-1 px-3"><p className="text-base">monodose</p></td>
 								</tr>
 								<tr>
 									<td className="p-1 text-right font-black text-md md:text-xl">{totale_vaccinati_pregressa_infezione.toLocaleString('it')}</td>
-									<td className="p-1 px-3"><p className="text-sm md:text-base">pregressa infezione</p></td>
+									<td className="p-1 px-3"><p className="text-base">pregressa infezione</p></td>
 								</tr>
 							</tbody>
 						</table>
@@ -230,11 +230,11 @@ class Vaccini extends React.Component {
 							<tbody>
 								<tr>
 									<td className="p-1 text-right font-black text-md md:text-xl">{ totale_dosi_somministrate.toLocaleString('it') }</td>
-									<td className="p-1 px-3"><p className="text-sm md:text-base">dosi somministrate</p></td>
+									<td className="p-1 px-3"><p className="md:text-base">dosi somministrate</p></td>
 								</tr>
 								<tr>
 									<td className="p-1 text-right font-black text-md md:text-xl">{ totale_dosi_consegnate.toLocaleString('it') }</td>
-									<td className="p-1 px-3"><p className="text-sm md:text-base">dosi consegnate</p></td>
+									<td className="p-1 px-3"><p className="md:text-base">dosi consegnate</p></td>
 								</tr>
 							</tbody>
 						</table>
@@ -258,21 +258,21 @@ class Vaccini extends React.Component {
 				</div>
 				<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
 					<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">ANDAMENTO CAMPAGNA VACCINALE</span>
-					<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ totale_vaccinati_24h.toLocaleString('it') } <span className="text-sm font-semibold text-black">vaccinati il {format(new Date(ultimo_giorno_series), 'd MMMM', {locale:it})}</span></h3>		
-					<h3 className="text-xl lg:text-3xl mb-2 font-black text-blue-600">{ Math.round(totale_vaccinati_7gg / 7).toLocaleString('it') } <span className="text-sm font-semibold text-black">media giornaliera 7gg</span></h3>				
-					<p className="mt-6 text-sm text-black">con la media attuale sono necessari circa <strong>{Math.round(stima_dosi_future / (totale_vaccinati_7gg / 7))}</strong> giorni per vaccinare l'80% degli over 12</p>
+					<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ totale_vaccinati_24h.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati il {format(new Date(ultimo_giorno_series), 'd MMMM', {locale:it})}</span></h3>		
+					<h3 className="text-xl lg:text-3xl mb-2 font-black text-blue-600">{ Math.round(totale_vaccinati_7gg / 7).toLocaleString('it') } <span className="text-base font-semibold text-black">media giornaliera 7gg</span></h3>				
+					<p className="mt-6 text-base text-black">con la media attuale sono necessari circa <strong>{Math.round(stima_dosi_future / (totale_vaccinati_7gg / 7))}</strong> giorni per vaccinare l'80% degli over 12</p>
 				</div>
 				<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
 					<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">PLATEA CAMPAGNA VACCINALE</span>
-					<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ totale_platea.toLocaleString('it') } <span className="text-sm font-semibold text-black"> italiani vaccinabili</span></h3>		
-					<h3 className="text-xl lg:text-3xl mb-2 font-black text-blue-600">{ non_vaccinati_totali.toLocaleString('it') } <span className="text-sm font-semibold text-black">con nessuna dose</span></h3>				
-					<p className="mt-6 text-sm text-black">la campagna vaccinale italiana è iniziata il 27 dicembre 2020 e sarà conclusa entro l'anno</p>
+					<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ totale_platea.toLocaleString('it') } <span className="text-base font-semibold text-black"> italiani vaccinabili</span></h3>		
+					<h3 className="text-xl lg:text-3xl mb-2 font-black text-blue-600">{ non_vaccinati_totali.toLocaleString('it') } <span className="text-base font-semibold text-black">con nessuna dose</span></h3>				
+					<p className="mt-6 text-base text-black">la campagna vaccinale italiana è iniziata il 27 dicembre 2020 e sarà conclusa entro l'anno</p>
 				</div>
 			</div>
 
 
 			<div className="relative my-4 mt-12">
-				<h1 className="text-xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento regionale</h1>
+				<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento regionale</h1>
 				<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
 			</div>
 

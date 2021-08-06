@@ -12,13 +12,13 @@ class CalculateIncrements extends React.Component {
 		//Styling
 		const incrementStyles = {
 			positiveNotice: 'text-sm text-green-500',
-			badNotice: 'text-sm text-yellow-500' 
+			badNotice: 'text-sm text-red-500' 
 		}
 
 		//Trending Icons
 		const trendingIconStyles = {
 			positiveNotice: 'inline h4 w-4 text-green-500',
-			badNotice: 'inline h4 w-4 text-yellow-500'
+			badNotice: 'inline h4 w-4 text-red-500'
 		}
 
 		//Calculate increment

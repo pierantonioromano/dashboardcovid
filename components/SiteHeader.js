@@ -1,5 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
 import Head from 'next/head'
+import Image from 'next/image'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { CollectionIcon, BeakerIcon, GlobeIcon, NewspaperIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
@@ -28,6 +29,7 @@ export default function SiteHeader() {
   return (
 	<>
 	<Head>
+		<html lang="it" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -47,20 +49,23 @@ export default function SiteHeader() {
               <div className="flex items-center justify-between h-14">
                 <div className="flex items-center">
                   <div className="flex-shrink-0 hidden md:block">
-                    <a href="/">
-						<img
-							className="h-10 w-10"
-							src="/mask.png"
-							alt="Covid-19 Dashboard"
-						/>
-					</a>
+                    <div className="mt-1">
+						<a href="/">
+							<Image
+								src="/mask.png"
+								alt="Covid-19 Dashboard"
+								width={36}
+								height={36}
+							/>
+						</a>
+					</div>
                   </div>
                   <div className="md:block">
                     <div className="mt-1 md:mt-0 ml-2 md:ml-10 flex items-baseline space-x-4">
                       {navigation.map((item, itemIdx) =>
                         router.pathname == item.link ? (
                           <Fragment key={item.id}>
-                            <a href={item.link} className="text-center md:text-left text-blue-600 px-3 py-4 md:py-4 text-xs  md:text-base font-normal md:border-b-2 md:border-blue-600">
+                            <a href={item.link} className="text-center md:text-left text-blue-600 px-3 py-4 md:py-4 text-sm md:text-base font-normal md:border-b-2 md:border-blue-600">
                               {item.icon} {item.label}
                             </a>
                           </Fragment>
@@ -68,7 +73,7 @@ export default function SiteHeader() {
                           <a
                             key={item.id}
                             href={item.link}
-                            className="text-center md:text-left text-black-800 hover:text-blue-600 px-3 py-4 md:py-4 text-xs md:text-base font-normal"
+                            className="text-center md:text-left text-black-800 hover:text-blue-600 px-3 py-4 md:py-4 text-sm md:text-base font-normal"
                           >
                             {item.icon} {item.label}
                           </a>

@@ -19,8 +19,7 @@ export default function SiteFooter() {
 			<div className="container max-w-screen-xl px-4 mx-auto">
 				<div className="grid grid-cols-12 gap-3">
 					<div className="col-span-12 py-8">
-
-						<h1 className="text-3xl mb-4 font-bold text-white">Fonti e precisazioni</h1>
+						<h1 className="text-2xl md:text-3xl mb-4 font-bold text-white">Fonti e precisazioni</h1>
 						<EmojiHappyIcon className="text-white h-16 w-16 float-right ml-4"/>
 						<p className="text-md text-white">I contenuti presenti su questo sito sono elaborati a partire dai dataset forniti dal Ministero della Salute, dalla Protezione Civile Italiana o da altre organizzazioni internazionali. Le informazioni qui contenute non costituiscono un documento ufficiale sull'andamento della pandemia e non sostituiscono i provvedimenti legislativi ufficiali.</p>
 					</div>
