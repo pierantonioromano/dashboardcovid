@@ -232,6 +232,7 @@ class Home extends React.Component {
 
 		<Head>
 			<title>Covid-19 Dashboard</title>
+			<meta name="description" content="Scopri l'andamento della pandemia in Italia: nuovi contagi, carichi ospedalieri, andamento della campagna vaccinale, news." />
 		</Head>
 	
  		<div className="container max-w-screen-xl px-4 mx-auto">

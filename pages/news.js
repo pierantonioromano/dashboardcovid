@@ -26,18 +26,25 @@ class News extends React.Component {
 		return (
 					<>
 						<div className="bg-white hover:bg-gray-50 col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 rounded-md relative pb-12">
-							<a target="_blank" rel="noopener" className="block w-full h-full" href={item.l}>
-								<div className="h-40 overflow-hidden w-full">
-									{ newsImageUrl != "" ?
-										<img className="object-fit w-full h-full rounded-t-md" src={newsImageUrl.uri} alt={item.t} />
-									: null }
+							
+								<div className="h-16 w-16 float-right my-4 mx-4 overflow-hidden w-full rounded-md relative"
+										style={{  
+											backgroundColor: '#999',
+											backgroundImage: "url(" + newsImageUrl.uri + ")",
+											backgroundPosition: 'center',
+											backgroundSize: 'cover',
+											backgroundRepeat: 'no-repeat'
+										  }}
+								>
+									<a target="_blank" rel="noopener" className="block absolute top-0 left-0 w-full h-full" aria-label={item.t} href={item.l}></a>
 								</div>
 							
-								<h3 className="text-md font-bold text-black p-4 pb-2">{newsTitle}</h3>
+								<a target="_blank" rel="noopener" className="block" href={item.l}>
+									<h3 className="text-md font-bold text-black p-4 pb-2">{newsTitle}</h3>
+								</a>
 								<span className="absolute bottom-0 left-0 w-full text-xs text-gray-400 px-4 pb-4 pt-0">{newsSource} { item.d? ' - ' + formatDistanceToNow(toDate(item.d*1000), { locale: it, addSuffix: true, includeSeconds: true}) : ''}
 								</span>
-							
-							</a>
+
 						</div>
 					</>
 				)
@@ -52,12 +59,13 @@ class News extends React.Component {
 
 		<Head>
 			<title>Covid-19 Dashboard - News</title>
+			<meta name="description" content="News sul Covid-19 e sulle misure di contenimento italiane." />
 		</Head>
 	
  		<div className="container max-w-screen-xl px-4 mx-auto">
 
 		 	<div className="relative my-4">
-				<h1 className="text-xl md:text-3xl mb-2 md:mb-0 font-bold">News</h1>
+				<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">News</h1>
 				{/* <span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span> */}
 			</div>
 

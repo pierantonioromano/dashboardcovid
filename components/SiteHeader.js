@@ -46,8 +46,8 @@ export default function SiteHeader() {
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex items-center justify-between h-14">
-                <div className="flex items-center">
+              <div className="flex items-center justify-items-center h-14">
+                {/* <div className="flex items-center"> */}
                   <div className="flex-shrink-0 hidden md:block">
                     <div className="mt-1">
 						<a href="/">
@@ -60,12 +60,12 @@ export default function SiteHeader() {
 						</a>
 					</div>
                   </div>
-                  <div className="md:block">
-                    <div className="mt-1 md:mt-0 ml-2 md:ml-10 flex items-baseline space-x-4">
+                  <div className="flex-grow">
+                    <div className="mt-1 md:mt-0 ml-0 md:ml-10 flex items-baseline space-x-4 justify-center md:justify-start">
                       {navigation.map((item, itemIdx) =>
                         router.pathname == item.link ? (
                           <Fragment key={item.id}>
-                            <a href={item.link} className="text-center md:text-left text-blue-600 px-3 py-4 md:py-4 text-sm md:text-base font-normal md:border-b-2 md:border-blue-600">
+                            <a href={item.link} className="text-center md:text-left text-blue-600 px-3 py-4 md:py-4 text-base font-normal md:border-b-2 md:border-blue-600">
                               {item.icon} {item.label}
                             </a>
                           </Fragment>
@@ -73,7 +73,7 @@ export default function SiteHeader() {
                           <a
                             key={item.id}
                             href={item.link}
-                            className="text-center md:text-left text-black-800 hover:text-blue-600 px-3 py-4 md:py-4 text-sm md:text-base font-normal"
+                            className="text-center md:text-left text-black-800 hover:text-blue-600 px-3 py-4 md:py-4 text-base font-normal"
                           >
                             {item.icon} {item.label}
                           </a>
@@ -82,31 +82,7 @@ export default function SiteHeader() {
                     </div>
                   </div>
 
-                </div>
-
-				{/* <div className="-mr-2 flex hidden md:block">
-					<FacebookShareButton url={share_url} quote={share_text} className="mr-2 mt-1" >
-						<FacebookIcon size={32} round />
-					</FacebookShareButton>
-					<TwitterShareButton url={share_url} quote={share_text} className="mr-2 mt-1">
-						<TwitterIcon size={32} round />
-					</TwitterShareButton>
-					<WhatsappShareButton url={share_url} title={share_text} separator={share_separator} className="mt-1">
-						<WhatsappIcon size={32} round />
-					</WhatsappShareButton>
-				</div> */}
-
-                {/* <div className="-mr-2 flex md:hidden">
-                  
-                  <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-black focus:outline-none ">
-                    <span className="sr-only">Open main menu</span>
-                    {open ? (
-                      <XIcon className="block h-6 w-6" aria-hidden="true" />
-                    ) : (
-                      <MenuIcon className="block h-6 w-6" aria-hidden="true" />
-                    )}
-                  </Disclosure.Button>
-                </div> */}
+                {/* </div> */}
 
               </div>
             </div>

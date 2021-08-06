@@ -185,6 +185,7 @@ class Vaccini extends React.Component {
 
 		<Head>
 			<title>Covid-19 Dashboard - Vaccini</title>
+			<meta name="description" content="Monitora l'andamento della campagna vaccinale." />
 		</Head>
 	
  		<div className="container max-w-screen-xl px-4 mx-auto">
