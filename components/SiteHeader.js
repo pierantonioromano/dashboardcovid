@@ -28,21 +28,8 @@ export default function SiteHeader() {
 
   return (
 	<>
-	<Head>
-		<html lang="it" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-		<link rel="manifest" href="/site.webmanifest" />
-		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-		<meta name="msapplication-TileColor" content="#ffffff" />
-		<meta name="theme-color" content="#ffffff" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
-	</Head>
     <div className="w-full fixed top-0 left-0 z-10">
-      <Disclosure as="nav" className="bg-white border-b border-indigo-50">
+      <Disclosure as="nav" className="bg-blue-500 md:bg-white border-b border-indigo-50">
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,11 +48,11 @@ export default function SiteHeader() {
 					</div>
                   </div>
                   <div className="flex-grow">
-                    <div className="mt-1 md:mt-0 ml-0 md:ml-10 flex items-baseline space-x-4 justify-center md:justify-start">
+                    <div className="mt-0 md:mt-0 ml-0 md:ml-10 flex items-baseline space-x-4 justify-center md:justify-start">
                       {navigation.map((item, itemIdx) =>
                         router.pathname == item.link ? (
                           <Fragment key={item.id}>
-                            <a href={item.link} className="text-center md:text-left text-blue-600 px-3 py-4 md:py-4 text-base font-normal md:border-b-2 md:border-blue-600">
+                            <a href={item.link} className="text-center md:text-left text-white md:text-blue-600 px-3 py-3 md:py-4 text-base font-normal md:border-b-2 md:border-blue-600">
                               {item.icon} {item.label}
                             </a>
                           </Fragment>
@@ -73,7 +60,7 @@ export default function SiteHeader() {
                           <a
                             key={item.id}
                             href={item.link}
-                            className="text-center md:text-left text-black-800 hover:text-blue-600 px-3 py-4 md:py-4 text-base font-normal"
+                            className="opacity-80  md:opacity-100 text-center md:text-left text-blue-50 md:text-black hover:text-white md:hover:text-blue-600 px-3 py-4 md:py-4 text-base font-normal"
                           >
                             {item.icon} {item.label}
                           </a>

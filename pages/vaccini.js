@@ -118,9 +118,9 @@ class Vaccini extends React.Component {
 		let stima_dosi_future = (non_vaccinati_obiettivo * 2) - (non_vaccinati_obiettivo * proporzione_monodosi_future / 100);
 		//console.log("stima dosi future: " + stima_dosi_future);
 
-
-		let totale_vaccinati_24h = Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series[13].daily : 0;
-		let ultimo_giorno_series = Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series[13].date : 0;
+		let seriesLastDayIndex = Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series.length - 1 : 12; 
+		let totale_vaccinati_24h = Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series[seriesLastDayIndex].daily : 0;
+		let ultimo_giorno_series = Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series[seriesLastDayIndex].date : 0;
 
 		let totale_vaccinati_7gg = 0;
 		for (let i = this.props.cleanedDailyVaxData.data_vax_series.length - 7; i < this.props.cleanedDailyVaxData.data_vax_series.length; i++)
@@ -189,7 +189,7 @@ class Vaccini extends React.Component {
 		</Head>
 	
  		<div className="container max-w-screen-xl px-4 mx-auto">
-
+			 
 		 	<div className="relative my-4">
 				<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento nazionale</h1>
 				<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>

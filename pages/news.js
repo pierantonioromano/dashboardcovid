@@ -2,10 +2,9 @@ import Head from 'next/head'
 import React, { Fragment } from 'react'
 import SiteHeader from '../components/SiteHeader.js'
 import SiteFooter from '../components/SiteFooter.js'
-import { TrendingUpIcon, TrendingDownIcon } from '@heroicons/react/outline'
 import format from 'date-fns/format';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import { differenceInMinutes, toDate } from 'date-fns';
+import { toDate } from 'date-fns';
 import { it } from 'date-fns/locale'
 
 
@@ -13,7 +12,6 @@ class News extends React.Component {
 
 	constructor(props) {
 		super(props);
-	
 		this.state = {};
 	}
 
@@ -52,34 +50,37 @@ class News extends React.Component {
 		
 	render() {
 
-  return (
-	
-    <div className="min-h-screen pt-16 md:pt-20 pb-0 bg-indigo-50">
-		<SiteHeader />
+		//Screen values
+		let ultimo_aggiornamento = this.props.cleanedCovidNewsData ? this.props.cleanedCovidNewsData.last_build : '-';
 
-		<Head>
-			<title>Covid-19 Dashboard - News</title>
-			<meta name="description" content="News sul Covid-19 e sulle misure di contenimento italiane." />
-		</Head>
-	
- 		<div className="container max-w-screen-xl px-4 mx-auto">
+		return (
+			
+			<div className="min-h-screen pt-16 md:pt-20 pb-0 bg-indigo-50">
+				<SiteHeader />
 
-		 	<div className="relative my-4">
-				<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">News</h1>
-				{/* <span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span> */}
+				<Head>
+					<title>Covid-19 Dashboard - News</title>
+					<meta name="description" content="News sul Covid-19 e sulle misure di contenimento italiane." />
+				</Head>
+			
+				<div className="container max-w-screen-xl px-4 mx-auto">
+
+					<div className="relative my-4">
+						<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">News</h1>
+						<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
+					</div>
+
+					<div className="grid grid-cols-12 gap-4">
+						{ this.props.cleanedCovidNewsData.items.map((item) => this.renderNewsItem(item) ) }
+					</div>
+
+				</div>
+
+				<SiteFooter />
+		
 			</div>
-
-			<div className="grid grid-cols-12 gap-4">
-				{ this.props.cleanedCovidNewsData.items.map((item) => this.renderNewsItem(item) ) }
-			</div>
-
-		</div>
-
-		<SiteFooter />
- 
-    </div>
-  )
-}
+		)
+	}
 }
 
 export default News;
