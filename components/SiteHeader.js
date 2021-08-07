@@ -36,13 +36,9 @@ export default function SiteHeader() {
 							<div className="mt-0 md:mt-0 ml-0 md:ml-10 flex items-baseline space-x-4 justify-center md:justify-start">
 								{navigation.map((item) =>
 									router.pathname == item.link ? (
-										<Link href={item.link}>
-											<a className="text-center md:text-left text-blue-600 px-3 py-3 md:py-4 text-base font-normal md:border-b-2 md:border-blue-600">{item.icon} {item.label}</a>
-										</Link>
+										<a href={item.link} className="text-center md:text-left text-blue-600 px-3 py-3 md:py-4 text-base font-normal md:border-b-2 md:border-blue-600">{item.icon} {item.label}</a>
 									) : (
-										<Link href={item.link}>
-											<a className="opacity-80  md:opacity-100 text-center md:text-left md:text-black hover:text-blue-600 px-3 py-4 md:py-4 text-base font-normal">{item.icon} {item.label}</a>
-										</Link>
+										<a href={item.link} className="opacity-80  md:opacity-100 text-center md:text-left md:text-black hover:text-blue-600 px-3 py-4 md:py-4 text-base font-normal">{item.icon} {item.label}</a>
 									)
 								)}
 							</div>
