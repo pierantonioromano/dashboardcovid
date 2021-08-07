@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { TrendingUpIcon, TrendingDownIcon } from '@heroicons/react/outline'
 
 class CalculateIncrements extends React.Component {
