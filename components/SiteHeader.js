@@ -16,7 +16,7 @@ export default function SiteHeader() {
 
 	return (
 		<>
-			<nav className="w-full h-14 fixed top-0 left-0 z-10 bg-white border-b border-indigo-50">
+			<nav className="w-full h-14 sticky top-0 left-0 z-10 bg-white border-b border-indigo-50">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="flex items-center justify-items-center h-14">
 						<div className="flex-shrink-0 hidden md:block">

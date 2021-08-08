@@ -61,19 +61,20 @@ class News extends React.Component {
 
 		return (
 
-				<div className="min-h-screen pt-16 md:pt-20 pb-0 bg-indigo-50">
+				<div className="min-h-screen pb-0 bg-indigo-50">
+
 					<SiteHeader />
-					
+
 					<Head>
 						<title>Covid-19 Dashboard - News</title>
 						<meta name="description" content="News sul Covid-19 e sulle misure di contenimento italiane." />
 					</Head>
 
-					<PullToRefresh pullingContent="" onRefresh={this.handleRefresh}>
+					<PullToRefresh pullDownThreshold={100} maxPullDownDistance={30} pullingContent="" onRefresh={this.handleRefresh}>
 						<div className="container max-w-screen-xl px-4 mx-auto">
 
 							<div className="relative my-4">
-								<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">News</h1>
+								<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 md:mt-8 font-bold">News</h1>
 								<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
 							</div>
 
@@ -87,8 +88,6 @@ class News extends React.Component {
 					<SiteFooter />
 			
 				</div>
-			
-			
 		)
 	}
 }
