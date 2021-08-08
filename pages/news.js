@@ -7,7 +7,6 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { toDate } from 'date-fns';
 import { it } from 'date-fns/locale'
 
-
 class News extends React.Component {
 
 	constructor(props) {
@@ -16,6 +15,8 @@ class News extends React.Component {
 	}
 
 	renderNewsItem = (item) => {
+
+		const placeholderImage = 'mask.png';
 		
 		let newsImageUrl = (item.i) ? { uri: this.props.cleanedCovidNewsData.sources[item.s].imgPath + item.i} : NoPostImageIcon;
 		let newsTitle = item.t;
@@ -24,15 +25,14 @@ class News extends React.Component {
 		return (
 					<>
 						<div className="bg-white hover:bg-gray-50 col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 rounded-md relative p-4 pb-12">
-							
-								<div className="h-16 w-16 float-right my-2 mx-2 overflow-hidden w-full rounded-md relative"
-										style={{  
-											backgroundColor: '#999',
-											backgroundImage: "url(" + newsImageUrl.uri + ")",
-											backgroundPosition: 'center',
-											backgroundSize: 'cover',
-											backgroundRepeat: 'no-repeat'
-										  }}
+							<div className="h-16 w-16 float-right my-2 mx-2 overflow-hidden w-full rounded-md relative"
+								 style={{  
+										backgroundColor: '#999',
+										backgroundImage: "url(" + newsImageUrl.uri + ")",
+										backgroundPosition: 'center',
+										backgroundSize: 'cover',
+										backgroundRepeat: 'no-repeat'
+									}}
 								>
 									<a target="_blank" rel="noopener" className="block absolute top-0 left-0 w-full h-full" aria-label={item.t} href={item.l}></a>
 								</div>
