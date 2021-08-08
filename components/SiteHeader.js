@@ -1,4 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
 import Image from 'next/image'
 import { CollectionIcon, BeakerIcon, NewspaperIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
@@ -17,7 +16,7 @@ export default function SiteHeader() {
 
 	return (
 		<>
-			<nav className="w-full fixed top-0 left-0 z-10 bg-white border-b border-indigo-50">
+			<nav className="w-full h-14 fixed top-0 left-0 z-10 bg-white border-b border-indigo-50">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="flex items-center justify-items-center h-14">
 						<div className="flex-shrink-0 hidden md:block">
@@ -36,9 +35,13 @@ export default function SiteHeader() {
 							<div className="mt-0 md:mt-0 ml-0 md:ml-10 flex items-baseline space-x-4 justify-center md:justify-start">
 								{navigation.map((item) =>
 									router.pathname == item.link ? (
-										<a href={item.link} className="text-center md:text-left text-blue-600 px-3 py-3 md:py-4 text-base font-normal md:border-b-2 md:border-blue-600">{item.icon} {item.label}</a>
+										<Link href={item.link} prefetch={false}>
+											<a  className="text-center md:text-left text-blue-600 px-3 py-3 md:py-3.5 text-base font-normal md:border-b-2 md:border-blue-600">{item.icon} {item.label}</a>
+										</Link>
 									) : (
-										<a href={item.link} className="opacity-80  md:opacity-100 text-center md:text-left md:text-black hover:text-blue-600 px-3 py-4 md:py-4 text-base font-normal">{item.icon} {item.label}</a>
+										<Link href={item.link} prefetch={false}>
+											<a className="opacity-80  md:opacity-100 text-center md:text-left md:text-black hover:text-blue-600 px-3 py-4 md:py-3.5 text-base font-normal">{item.icon} {item.label}</a>
+										</Link>
 									)
 								)}
 							</div>

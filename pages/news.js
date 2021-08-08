@@ -6,12 +6,18 @@ import format from 'date-fns/format';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { toDate } from 'date-fns';
 import { it } from 'date-fns/locale'
+import PullToRefresh from 'react-simple-pull-to-refresh';
+import Router from 'next/router'
 
 class News extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {};
+	}
+
+	handleRefresh = () => {
+		return Promise.resolve(Router.reload(window.location.pathname));
 	}
 
 	renderNewsItem = (item) => {
@@ -54,31 +60,35 @@ class News extends React.Component {
 		let ultimo_aggiornamento = this.props.cleanedCovidNewsData ? this.props.cleanedCovidNewsData.last_build : '-';
 
 		return (
+
+				<div className="min-h-screen pt-16 md:pt-20 pb-0 bg-indigo-50">
+					<SiteHeader />
+					
+					<Head>
+						<title>Covid-19 Dashboard - News</title>
+						<meta name="description" content="News sul Covid-19 e sulle misure di contenimento italiane." />
+					</Head>
+
+					<PullToRefresh pullingContent="" onRefresh={this.handleRefresh}>
+						<div className="container max-w-screen-xl px-4 mx-auto">
+
+							<div className="relative my-4">
+								<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">News</h1>
+								<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
+							</div>
+
+							<div className="grid grid-cols-12 gap-4">
+								{ this.props.cleanedCovidNewsData.items.map((item) => this.renderNewsItem(item) ) }
+							</div>
+
+						</div>
+					</PullToRefresh>
+					
+					<SiteFooter />
 			
-			<div className="min-h-screen pt-16 md:pt-20 pb-0 bg-indigo-50">
-				<SiteHeader />
-
-				<Head>
-					<title>Covid-19 Dashboard - News</title>
-					<meta name="description" content="News sul Covid-19 e sulle misure di contenimento italiane." />
-				</Head>
-			
-				<div className="container max-w-screen-xl px-4 mx-auto">
-
-					<div className="relative my-4">
-						<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">News</h1>
-						<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
-					</div>
-
-					<div className="grid grid-cols-12 gap-4">
-						{ this.props.cleanedCovidNewsData.items.map((item) => this.renderNewsItem(item) ) }
-					</div>
-
 				</div>
-
-				<SiteFooter />
-		
-			</div>
+			
+			
 		)
 	}
 }

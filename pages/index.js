@@ -9,14 +9,18 @@ import { getTime } from 'date-fns'
 import { it } from 'date-fns/locale'
 import dynamic from 'next/dynamic';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
-
+import PullToRefresh from 'react-simple-pull-to-refresh';
+import Router from 'next/router'
 
 class Home extends React.Component {
 
 	constructor(props) {
-		super(props);
-	
+		super(props);	
 		this.state = {};
+	}
+
+	handleRefresh = () => {
+		return Promise.resolve(Router.reload(window.location.pathname));
 	}
 
 	render() {
@@ -225,186 +229,188 @@ class Home extends React.Component {
 
 
 
-  return (
-	
-    <div className="min-h-screen pt-16 md:pt-20 pb-0 bg-indigo-50">
-		<SiteHeader />
-
-		<Head>
-			<title>Covid-19 Dashboard</title>
-			<meta name="description" content="Scopri l'andamento della pandemia in Italia: nuovi contagi, carichi ospedalieri, andamento della campagna vaccinale, news." />
-		</Head>
-	
- 		<div className="container max-w-screen-xl px-4 mx-auto">
-
-		 	<div className="relative my-4">
-				<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento nazionale</h1>
-				<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
-			</div>
-
-			<div className="grid grid-cols-12 gap-3">
-
-				<div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-5 xl:col-span-4">
-					<div className="bg-blue-200 p-6 rounded-md">
-						<h2 className="text-5xl mb-2 font-black text-blue-600">{nuovi_positivi_oggi.toLocaleString('it')}</h2>
-						<p className="text-base text-black">nuovi positivi su <strong>{tamponi_oggi.toLocaleString('it')}</strong> tamponi
-						<br/>
-						7 giorni fa erano <strong>{nuovi_positivi_7gg.toLocaleString('it')}</strong> su <strong>{tamponi_7gg.toLocaleString('it')}</strong>
-						<br/>
-						l'incidenza 7gg / 100M ab. è del <strong>{Math.round(totale_casi_7gg / popolazione_italiana * 100000)} %</strong></p>
-					</div>
-					<div className="bg-blue-100 p-3 mt-3 rounded-md">
-						<table className="table-auto w-full">
-							<tbody>
-								<tr>
-									<td className="p-1 text-right font-black text-xl">{morti_oggi.toLocaleString('it')}</td>
-									<td className="p-1 px-3"><p className="text-base">morti</p></td>
-									<td className="p-1 p-r-0 text-right">
-										<CalculateIncrements new_value={morti_oggi} previous_value={morti_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />
-									</td>
-								</tr>
-								<tr>
-									<td className="p-1 text-right font-black text-xl">{ricoverati_oggi.toLocaleString('it')}</td>
-									<td className="p-1 px-3"><p className="text-base">ricoverati oggi</p></td>
-									<td className="p-1 p-r-0 text-right">
-										<CalculateIncrements new_value={totale_ricoverati_attuali} previous_value={totale_ricoverati_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />	
-									</td>
-								</tr>
-								<tr>
-									<td className="p-1 text-right font-black text-xl">{intensive_oggi.toLocaleString('it')}</td>
-									<td className="border-bo border-gray-100 p-1 px-3"><p className="text-base">saldo intensive</p></td>
-									<td className="border-bo border-gray-100 p-1 p-r-0 text-right">
-										<CalculateIncrements new_value={totale_intensive_attuali} previous_value={totale_intensive_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />
-									</td>
-								</tr>
-								<tr>
-									<td className="p-1 text-right font-black text-xl">{ingressi_intensive_oggi.toLocaleString('it')}</td>
-									<td className="p-1 px-3"><p className="text-base">ingressi intensive</p></td>
-									<td className="p-1 p-r-0 text-right">
-										<CalculateIncrements new_value={ingressi_intensive_oggi} previous_value={ingressi_intensive_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />
-									</td>
-								</tr>
-								<tr>
-									<td className="p-1 text-right font-black text-xl">{guariti_oggi.toLocaleString('it')}</td>
-									<td className="p-1 px-3"><p className="text-base">guariti</p></td>
-									<td className="p-1 p-r-0 text-right">
-									<CalculateIncrements new_value={guariti_oggi} previous_value={guariti_7gg} notice_type="better_higher" display_type="percentage" show_trending_icon hide_text />
-									</td>
-								</tr>
-								<tr>
-									<td className="p-1 text-right font-black text-xl">{attualmente_positivi_oggi.toLocaleString('it')}</td>
-									<td className="p-1 px-3"><p className="text-base">att.positivi</p></td>
-									<td className="p-1 p-r-0 text-right">
-									<CalculateIncrements new_value={totale_attualmente_positivi_oggi} previous_value={totale_attualmente_positivi_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-
-				<div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-7 xl:col-span-8 relative bg-white rounded-md overflow-hidden">
-					<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">Dati ultime 2 settimane</span>
-					<div id="chart-timeline" className="abbsolute bottom-0 left-0 w-full">
-						<ReactApexChart options={graph_trending_options} series={graph_trending_series} type="area" height={'430'} />
-					</div>
-				</div>
-			</div>
-
-			{/* <div className="relative my-4 mt-12">
-				<h1 className="text-xl md:text-3xl mb-2 md:mb-0 font-bold">Tamponi e carichi ospedalieri</h1>
-				<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
-			</div> */}
-
-			<div className="grid grid-cols-12 gap-3 mt-3">
-				<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
-					<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">TAMPONI PROCESSATI</span>
-					<div id="chart absolute bottom-0 left-4 w-full">
-						<ReactApexChart options={graph_covid_tests_settings.options} series={graph_covid_tests_settings.series} type="donut" />
-					</div>
-				</div>
+  	return (
 			
-				<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
-					<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">CARICHI OSPEDALIERI</span>
-					<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ Math.round(totale_intensive_attuali * 100 / totale_posti_ti) }% <span className="text-base font-semibold text-black">occupazione T.I. <span className="text-pink-500">({totale_intensive_attuali.toLocaleString('it')})</span></span></h3>
-					<h3 className="text-xl lg:text-3xl mt-2 mb-2 font-black text-blue-600">{ Math.round(totale_ricoverati_attuali * 100 / totale_posti_anc) }% <span className="text-base font-semibold text-black">occupazione reparti <span className="text-pink-500">({totale_ricoverati_attuali.toLocaleString('it')})</span></span></h3>
-					<p className="mt-6 text-base text-black"><strong>{totale_posti_ti.toLocaleString('it')}</strong> tot. posti in T.I. + <strong>{totale_posti_ti_extra.toLocaleString('it')}</strong> attivabili<br/><strong>{totale_posti_anc.toLocaleString('it')}</strong> tot. posti in area non critica</p>
-				</div>
+			<div className="min-h-screen pt-16 md:pt-20 pb-0 bg-indigo-50">
+				<SiteHeader />
 
-				<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
-					<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">ALTRE STATISTICHE</span>
-					<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{totale_casi.toLocaleString('it')} <span className="text-base font-semibold text-black">casi totali</span></h3>
-					<h3 className="text-xl lg:text-3xl mt-2 mb-2 font-black text-blue-600">{totale_morti.toLocaleString('it')} <span className="text-base font-semibold text-black">morti totali <span className="text-pink-500">({Number(totale_morti * 100 / totale_casi).toFixed(2)}%)</span></span></h3>
-					<p className="mt-6 text-base text-black"><strong>{totale_attualmente_positivi_oggi.toLocaleString('it')}</strong> casi attualmente positivi<br/><strong>{totale_isolamento_domiciliare.toLocaleString('it')}</strong> in isolamento domiciliare</p>
-				</div>
-
-			</div>
-
-			{ this.props.cleanedDailyNotes && this.props.cleanedDailyNotes[0].note ? 
+				<Head>
+					<title>Covid-19 Dashboard</title>
+					<meta name="description" content="Scopri l'andamento della pandemia in Italia: nuovi contagi, carichi ospedalieri, andamento della campagna vaccinale, news." />
+				</Head>
 			
-			<>
-				<div className="bg-pink-500 mt-3 rounded-md p-6">
-					<p className="text-white text-sm">
-						{ this.props.cleanedDailyNotes[0].note }
-					</p>
-				</div>
-			</>
-			
-			: null }
+				<PullToRefresh pullingContent="" onRefresh={this.handleRefresh}>
+					<div className="container max-w-screen-xl px-4 mx-auto">
 
-			<div className="relative my-4 mt-12">
-				<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento regionale</h1>
-				<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento_regioni), 'd MMMM kk:mm', {locale:it})}</strong></span>
+						<div className="relative my-4">
+							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento nazionale</h1>
+							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
+						</div>
+
+						<div className="grid grid-cols-12 gap-3">
+
+							<div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-5 xl:col-span-4">
+								<div className="bg-blue-200 p-6 rounded-md">
+									<h2 className="text-5xl mb-2 font-black text-blue-600">{nuovi_positivi_oggi.toLocaleString('it')}</h2>
+									<p className="text-base text-black">nuovi positivi su <strong>{tamponi_oggi.toLocaleString('it')}</strong> tamponi
+									<br/>
+									7 giorni fa erano <strong>{nuovi_positivi_7gg.toLocaleString('it')}</strong> su <strong>{tamponi_7gg.toLocaleString('it')}</strong>
+									<br/>
+									l'incidenza 7gg / 100M ab. è del <strong>{Math.round(totale_casi_7gg / popolazione_italiana * 100000)} %</strong></p>
+								</div>
+								<div className="bg-blue-100 p-3 mt-3 rounded-md">
+									<table className="table-auto w-full">
+										<tbody>
+											<tr>
+												<td className="p-1 text-right font-black text-xl">{morti_oggi.toLocaleString('it')}</td>
+												<td className="p-1 px-3"><p className="text-base">morti</p></td>
+												<td className="p-1 p-r-0 text-right">
+													<CalculateIncrements new_value={morti_oggi} previous_value={morti_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />
+												</td>
+											</tr>
+											<tr>
+												<td className="p-1 text-right font-black text-xl">{ricoverati_oggi.toLocaleString('it')}</td>
+												<td className="p-1 px-3"><p className="text-base">ricoverati oggi</p></td>
+												<td className="p-1 p-r-0 text-right">
+													<CalculateIncrements new_value={totale_ricoverati_attuali} previous_value={totale_ricoverati_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />	
+												</td>
+											</tr>
+											<tr>
+												<td className="p-1 text-right font-black text-xl">{intensive_oggi.toLocaleString('it')}</td>
+												<td className="border-bo border-gray-100 p-1 px-3"><p className="text-base">saldo intensive</p></td>
+												<td className="border-bo border-gray-100 p-1 p-r-0 text-right">
+													<CalculateIncrements new_value={totale_intensive_attuali} previous_value={totale_intensive_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />
+												</td>
+											</tr>
+											<tr>
+												<td className="p-1 text-right font-black text-xl">{ingressi_intensive_oggi.toLocaleString('it')}</td>
+												<td className="p-1 px-3"><p className="text-base">ingressi intensive</p></td>
+												<td className="p-1 p-r-0 text-right">
+													<CalculateIncrements new_value={ingressi_intensive_oggi} previous_value={ingressi_intensive_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />
+												</td>
+											</tr>
+											<tr>
+												<td className="p-1 text-right font-black text-xl">{guariti_oggi.toLocaleString('it')}</td>
+												<td className="p-1 px-3"><p className="text-base">guariti</p></td>
+												<td className="p-1 p-r-0 text-right">
+												<CalculateIncrements new_value={guariti_oggi} previous_value={guariti_7gg} notice_type="better_higher" display_type="percentage" show_trending_icon hide_text />
+												</td>
+											</tr>
+											<tr>
+												<td className="p-1 text-right font-black text-xl">{attualmente_positivi_oggi.toLocaleString('it')}</td>
+												<td className="p-1 px-3"><p className="text-base">att.positivi</p></td>
+												<td className="p-1 p-r-0 text-right">
+												<CalculateIncrements new_value={totale_attualmente_positivi_oggi} previous_value={totale_attualmente_positivi_7gg} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-7 xl:col-span-8 relative bg-white rounded-md overflow-hidden">
+								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">Dati ultime 2 settimane</span>
+								<div id="chart-timeline" className="abbsolute bottom-0 left-0 w-full">
+									<ReactApexChart options={graph_trending_options} series={graph_trending_series} type="area" height={'430'} />
+								</div>
+							</div>
+						</div>
+
+						{/* <div className="relative my-4 mt-12">
+							<h1 className="text-xl md:text-3xl mb-2 md:mb-0 font-bold">Tamponi e carichi ospedalieri</h1>
+							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
+						</div> */}
+
+						<div className="grid grid-cols-12 gap-3 mt-3">
+							<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
+								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">TAMPONI PROCESSATI</span>
+								<div id="chart absolute bottom-0 left-4 w-full">
+									<ReactApexChart options={graph_covid_tests_settings.options} series={graph_covid_tests_settings.series} type="donut" />
+								</div>
+							</div>
+						
+							<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
+								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">CARICHI OSPEDALIERI</span>
+								<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ Math.round(totale_intensive_attuali * 100 / totale_posti_ti) }% <span className="text-base font-semibold text-black">occupazione T.I. <span className="text-pink-500">({totale_intensive_attuali.toLocaleString('it')})</span></span></h3>
+								<h3 className="text-xl lg:text-3xl mt-2 mb-2 font-black text-blue-600">{ Math.round(totale_ricoverati_attuali * 100 / totale_posti_anc) }% <span className="text-base font-semibold text-black">occupazione reparti <span className="text-pink-500">({totale_ricoverati_attuali.toLocaleString('it')})</span></span></h3>
+								<p className="mt-6 text-base text-black"><strong>{totale_posti_ti.toLocaleString('it')}</strong> tot. posti in T.I. + <strong>{totale_posti_ti_extra.toLocaleString('it')}</strong> attivabili<br/><strong>{totale_posti_anc.toLocaleString('it')}</strong> tot. posti in area non critica</p>
+							</div>
+
+							<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
+								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">ALTRE STATISTICHE</span>
+								<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{totale_casi.toLocaleString('it')} <span className="text-base font-semibold text-black">casi totali</span></h3>
+								<h3 className="text-xl lg:text-3xl mt-2 mb-2 font-black text-blue-600">{totale_morti.toLocaleString('it')} <span className="text-base font-semibold text-black">morti totali <span className="text-pink-500">({Number(totale_morti * 100 / totale_casi).toFixed(2)}%)</span></span></h3>
+								<p className="mt-6 text-base text-black"><strong>{totale_attualmente_positivi_oggi.toLocaleString('it')}</strong> casi attualmente positivi<br/><strong>{totale_isolamento_domiciliare.toLocaleString('it')}</strong> in isolamento domiciliare</p>
+							</div>
+
+						</div>
+
+						{ this.props.cleanedDailyNotes && this.props.cleanedDailyNotes[0].note ? 
+						
+						<>
+							<div className="bg-pink-500 mt-3 rounded-md p-6">
+								<p className="text-white text-sm">
+									{ this.props.cleanedDailyNotes[0].note }
+								</p>
+							</div>
+						</>
+						
+						: null }
+
+						<div className="relative my-4 mt-12">
+							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento regionale</h1>
+							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento_regioni), 'd MMMM kk:mm', {locale:it})}</strong></span>
+						</div>
+
+						<div className="bg-white rounded-md p-0">
+							<table className="w-full relative responsive-table covid-regions-trend-table">
+								<thead>
+									<tr>
+										<th className="w-5/12 sticky top-14 left-0 rounded-l-md px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Regione</th>
+										<th className="w-1/12 sticky top-14 left-0 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Nuovi casi</th>
+										<th className="w-1/12 sticky top-14 left-0 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Ricoverati</th>
+										<th className="w-1/12 sticky top-14 left-0 rounded-r-md px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Intensive</th>						
+										<th className="z-10 w-2/12 sticky top-14 left-0 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Carico Rep.</th>
+										<th className="z-10 w-2/12 sticky top-14 left-0 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Carico T.I.</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									{this.props.cleanedDailyRegions
+										.sort((a,b) => b.nuovi_positivi - a.nuovi_positivi)
+										.map((item) => 
+										<Fragment key={item.codice_regione}>
+											<tr id={'regionRow-' + item.codice_regione}>
+												<td className="py-2 px-4 border-b border-gray-100">
+													{item.denominazione_regione}
+													{item.note ? <p className="hidden lg-block text-gray-400 py-2 text-xs">{item.note}</p> : ''}
+												</td>
+												<td className="py-2 px-4 border-b border-gray-100 text-center">{item.nuovi_positivi}
+												<CalculateIncrements new_value={item.nuovi_positivi} previous_value={item.y_nuovi_positivi} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />
+												</td>
+												<td className="py-2 px-4 border-b border-gray-100 text-center">{item.ricoverati_con_sintomi}</td>
+												<td className="py-2 px-4 border-b border-gray-100 text-center">{item.terapia_intensiva}</td>
+												<td className="py-2 px-0 border-b border-gray-100 text-center">
+													<CalculatePressure actual_value={item.ricoverati_con_sintomi} total_value={this.props.cleanedDailyAgenas[item.codice_nuts_2].totale_posti_anc} pressure_type='anc' />
+												</td>
+												<td className="py-2 px-0 border-b border-gray-100 text-center">
+													<CalculatePressure actual_value={item.terapia_intensiva} total_value={this.props.cleanedDailyAgenas[item.codice_nuts_2].totale_posti_ti} pressure_type='ti' />
+												</td>
+											</tr>
+										</Fragment>
+									)}
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+				</PullToRefresh>
+
+				<SiteFooter />
+		
 			</div>
-
-			<div className="bg-white rounded-md p-0">
-				<table className="w-full relative responsive-table covid-regions-trend-table">
-					<thead>
-						<tr>
-							<th className="w-5/12 sticky top-14 left-0 rounded-l-md px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Regione</th>
-							<th className="w-1/12 sticky top-14 left-0 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Nuovi casi</th>
-							<th className="w-1/12 sticky top-14 left-0 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Ricoverati</th>
-							<th className="w-1/12 sticky top-14 left-0 rounded-r-md px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Intensive</th>						
-							<th className="z-10 w-2/12 sticky top-14 left-0 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Carico Rep.</th>
-							<th className="z-10 w-2/12 sticky top-14 left-0 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Carico T.I.</th>
-						</tr>
-					</thead>
-					<tbody>
-
-						{this.props.cleanedDailyRegions
-							.sort((a,b) => b.nuovi_positivi - a.nuovi_positivi)
-							.map((item) => 
-							<Fragment key={item.codice_regione}>
-								<tr id={'regionRow-' + item.codice_regione}>
-									<td className="py-2 px-4 border-b border-gray-100">
-										{item.denominazione_regione}
-										{item.note ? <p className="hidden lg-block text-gray-400 py-2 text-xs">{item.note}</p> : ''}
-									</td>
-									<td className="py-2 px-4 border-b border-gray-100 text-center">{item.nuovi_positivi}
-									<CalculateIncrements new_value={item.nuovi_positivi} previous_value={item.y_nuovi_positivi} notice_type="better_lower" display_type="percentage" show_trending_icon hide_text />
-									</td>
-									<td className="py-2 px-4 border-b border-gray-100 text-center">{item.ricoverati_con_sintomi}</td>
-									<td className="py-2 px-4 border-b border-gray-100 text-center">{item.terapia_intensiva}</td>
-									<td className="py-2 px-0 border-b border-gray-100 text-center">
-										<CalculatePressure actual_value={item.ricoverati_con_sintomi} total_value={this.props.cleanedDailyAgenas[item.codice_nuts_2].totale_posti_anc} pressure_type='anc' />
-									</td>
-									<td className="py-2 px-0 border-b border-gray-100 text-center">
-										<CalculatePressure actual_value={item.terapia_intensiva} total_value={this.props.cleanedDailyAgenas[item.codice_nuts_2].totale_posti_ti} pressure_type='ti' />
-									</td>
-								</tr>
-							</Fragment>
-  						)}
-					</tbody>
-				</table>
-			</div>
-
-		</div>
-
-		<SiteFooter />
- 
-    </div>
-  )
-}
+		)
+	}
 }
 
 export default Home;
