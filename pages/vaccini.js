@@ -29,9 +29,29 @@ class Vaccini extends React.Component {
 		//Graph data series
 		const graph_trending_series = [
 			{ 
-				name: 'Vaccinazioni giornaliere', 
+				name: 'Vaccinazioni', 
 				type: 'area',
 				data: Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series.map((item) => [item.date, item.daily] ) : null 
+			},
+			{ 
+				name: '1° dose', 
+				type: 'line',
+				data: Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series.map((item) => [item.date, item.prima_dose] ) : null 
+			},
+			{ 
+				name: '2° dose', 
+				type: 'line',
+				data: Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series.map((item) => [item.date, item.seconda_dose] ) : null 
+			},
+			{ 
+				name: 'Monodose', 
+				type: 'line',
+				data: Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series.map((item) => [item.date, item.monodose] ) : null 
+			},
+			{ 
+				name: 'Pr. infezione', 
+				type: 'line',
+				data: Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series.map((item) => [item.date, item.pregressa_infezione] ) : null 
 			}
 		];
 		
@@ -81,16 +101,21 @@ class Vaccini extends React.Component {
 			  }
 			},
 			tooltip: {
-			  x: {
-				format: 'dd MMM yyyy'
-			  }
+			  	x: {
+					format: 'dd MMM yyyy'
+			  	},
+			  	y: {
+					formatter: function(value) {
+						// use series argument to pull original string from chart data
+				  		return value ? value.toLocaleString('it') : value;
+					}
+				}
 			},
 			fill: {
 				type: 'solid',
-				opacity: 0.1,
-				//colors: ['#E1E8FF', '#c00']
+				opacity: [0.1, 0.4, 0.4, 0.4, 0.4],
 			},
-			colors: ['#2664EC', '#EC4899', '#8B5CF6'],
+			colors: ['#2664EC', '#EC4899', '#8B5CF6', '#059669', '#DC2626'],
 			legend: {
 				show: true,
 				position: 'top',
@@ -163,7 +188,7 @@ class Vaccini extends React.Component {
 						  // use series argument to pull original string from chart data
 						  return value.toLocaleString('it');
 						}
-					  }
+					}
 				},
 				dataLabels: { enabled : false },
 				colors: ['#2563EB', '#DB2777', '#059669', '#FBBF24'],
