@@ -162,7 +162,7 @@ class Home extends React.Component {
 			  labels: {
 				formatter: function(val) {
 					if(val)
-						return format(new Date(val), 'd MMM', {locale:it})
+						return format(new Date(val), 'd MMM - EEEE', {locale:it})
 					else
 						return "";
 				}
@@ -257,7 +257,7 @@ class Home extends React.Component {
 									<br/>
 									7 giorni fa erano <strong>{nuovi_positivi_7gg.toLocaleString('it')}</strong> su <strong>{tamponi_7gg.toLocaleString('it')}</strong>
 									<br/>
-									l'incidenza 7gg / 100M ab. è del <strong>{Math.round(totale_casi_7gg / popolazione_italiana * 100000)} %</strong></p>
+									l'incidenza 7gg / 100M ab. è del <strong>{Math.round(totale_casi_7gg / popolazione_italiana * 100000)}%</strong></p>
 								</div>
 								<div className="bg-blue-100 p-3 mt-3 rounded-md">
 									<table className="table-auto w-full">

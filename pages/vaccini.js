@@ -74,7 +74,7 @@ class Vaccini extends React.Component {
 			  labels: {
 				formatter: function(val) {
 					if(val)
-						return format(new Date(val), 'd MMM', {locale:it})
+						return format(new Date(val), 'd MMM - EEEE', {locale:it})
 					else
 						return "";
 				}
