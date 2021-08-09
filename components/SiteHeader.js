@@ -35,13 +35,13 @@ export default function SiteHeader() {
 							<div className="mt-0 md:mt-0 ml-0 md:ml-10 flex items-baseline space-x-4 justify-center md:justify-start">
 								{navigation.map((item) =>
 									router.pathname == item.link ? (
-										<Link href={item.link} prefetch={false}>
-											<a  className="text-center md:text-left text-blue-600 px-3 py-3 md:py-3.5 text-base font-normal md:border-b-2 md:border-blue-600">{item.icon} {item.label}</a>
-										</Link>
+										//<Link passHref href={item.link} prefetch={false}>
+											<a href="javascript:void(0)" onClick={() => router.push(item.link)} className="text-center md:text-left text-blue-600 px-3 py-3 md:py-3.5 text-base font-normal md:border-b-2 md:border-blue-600">{item.icon} {item.label}</a>
+										//</Link>
 									) : (
-										<Link href={item.link} prefetch={false}>
-											<a className="opacity-80  md:opacity-100 text-center md:text-left md:text-black hover:text-blue-600 px-3 py-4 md:py-3.5 text-base font-normal">{item.icon} {item.label}</a>
-										</Link>
+										//<Link passHref href={item.link} prefetch={false}>
+											<a href="javascript:void(0)" onClick={() => router.push(item.link)} className="opacity-80  md:opacity-100 text-center md:text-left md:text-black hover:text-blue-600 px-3 py-4 md:py-3.5 text-base font-normal">{item.icon} {item.label}</a>
+										//</Link>
 									)
 								)}
 							</div>
