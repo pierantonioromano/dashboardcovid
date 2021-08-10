@@ -107,6 +107,7 @@ export async function getStaticProps() {
 	  	props: {
 			cleanedCovidNewsData
 	  	},
-    	revalidate: 3600,
+    	//revalidate: 3600,
+		revalidate: process.env.REVALIDATE_SECRET,
 	};
   }
