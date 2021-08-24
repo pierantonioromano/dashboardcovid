@@ -6,10 +6,11 @@
     "start": "next start"
   },
   "dependencies": {
-    "@heroicons/react": "^1.0.3",
+    "@heroicons/react": "^1.0.4",
+    "@prefresh/next": "^1.4.7",
     "apexcharts": "^3.27.3",
     "date-fns": "^2.23.0",
-    "next": "^10.2.3",
+    "next": "^11.1.0",
     "next-plugin-preact": "^3.0.6",
     "node-fetch": "^2.6.1",
     "nprogress": "^0.2.0",
@@ -22,9 +23,9 @@
     "react-ssr-prepass": "npm:preact-ssr-prepass@^1.2.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.6",
-    "postcss": "^8.3.5",
-    "tailwindcss": "^2.2.4",
-    "webpack": "^5.49.0"
+    "autoprefixer": "^10.3.2",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.7",
+    "webpack": "^5.51.1"
   }
 }
