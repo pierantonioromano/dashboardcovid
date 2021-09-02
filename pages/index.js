@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 import PullToRefresh from 'react-simple-pull-to-refresh';
 import Router from 'next/router'
+import fetch from 'node-fetch'
 
 class Home extends React.Component {
 
@@ -419,7 +420,7 @@ export default Home;
 // add getStaticProps() function
 export async function getStaticProps() {
 
-	const fetch = require('node-fetch');
+	//const fetch = require('node-fetch');
 
 	//Fetch Daily Data
 	const dailyData = await fetch("https://www.pierantonioromano.com/bollettinocovid/latest_covid_daily_data.json");

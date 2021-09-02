@@ -9,6 +9,7 @@ import CalculatePressure from '../components/CalculatePressure.js'
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 import PullToRefresh from 'react-simple-pull-to-refresh';
 import Router from 'next/router'
+import fetch from 'node-fetch'
 
 class Vaccini extends React.Component {
 
@@ -355,7 +356,7 @@ export default Vaccini;
 // add getStaticProps() function
 export async function getStaticProps() {
 
-	const fetch = require('node-fetch');
+	//const fetch = require('node-fetch');
 
 	//Fetch Daily Vax Data
 	const dailyVaxData = await fetch("https://www.pierantonioromano.com/bollettinocovid/latest_vax_data.json");

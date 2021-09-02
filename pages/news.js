@@ -8,6 +8,7 @@ import { toDate } from 'date-fns';
 import { it } from 'date-fns/locale'
 import PullToRefresh from 'react-simple-pull-to-refresh';
 import Router from 'next/router'
+import fetch from 'node-fetch'
 
 class News extends React.Component {
 
@@ -97,7 +98,7 @@ export default News;
 // add getStaticProps() function
 export async function getStaticProps() {
 
-	const fetch = require('node-fetch');
+	//const fetch = require('node-fetch');
 
 	//Fetch Covid News
 	const covidNewsData = await fetch("https://www.pierantonioromano.com/bollettinocovid/latest_covid_news.json");
