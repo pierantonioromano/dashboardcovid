@@ -13,6 +13,9 @@ class CalculatePressure extends React.Component {
 		let barStyleInner = 'bg-gray-100';
 		let pressure_percentage = Math.round(this.props.actual_value * 100 / this.props.total_value);
 
+		if(!isFinite(pressure_percentage))
+			pressure_percentage = 0;
+
 		if(this.props.pressure_type == 'ti')
 		{
 			//Terapie intensive

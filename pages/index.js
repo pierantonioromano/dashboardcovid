@@ -26,7 +26,7 @@ class Home extends React.Component {
 
 	render() {
 		
-		//console.log(cleanedDailyRegions);
+		//console.log(this.props.cleanedDailyAgenas);
 
 		const todayIndex = Array.isArray(this.props.cleanedDailyData) ? (this.props.cleanedDailyData.length - 1) : 2;
 		const yesterdayIndex = Array.isArray(this.props.cleanedDailyData) ? (this.props.cleanedDailyData.length - 2) : 1;
@@ -393,10 +393,10 @@ class Home extends React.Component {
 												<td className="py-2 px-4 border-b border-gray-100 text-center">{item.ricoverati_con_sintomi}</td>
 												<td className="py-2 px-4 border-b border-gray-100 text-center">{item.terapia_intensiva}</td>
 												<td className="py-2 px-0 border-b border-gray-100 text-center">
-													<CalculatePressure actual_value={item.ricoverati_con_sintomi} total_value={this.props.cleanedDailyAgenas[item.codice_nuts_2].totale_posti_anc} pressure_type='anc' />
+													<CalculatePressure desc={item.denominazione_regione} actual_value={item.ricoverati_con_sintomi} total_value={this.props.cleanedDailyAgenas[item.codice_nuts_2] ? this.props.cleanedDailyAgenas[item.codice_nuts_2].totale_posti_anc : 0 } pressure_type='anc' />
 												</td>
 												<td className="py-2 px-0 border-b border-gray-100 text-center">
-													<CalculatePressure actual_value={item.terapia_intensiva} total_value={this.props.cleanedDailyAgenas[item.codice_nuts_2].totale_posti_ti} pressure_type='ti' />
+													<CalculatePressure desc={item.denominazione_regione} actual_value={item.terapia_intensiva} total_value={this.props.cleanedDailyAgenas[item.codice_nuts_2] ? this.props.cleanedDailyAgenas[item.codice_nuts_2].totale_posti_ti : 0 } pressure_type='ti' />
 												</td>
 											</tr>
 										</Fragment>
