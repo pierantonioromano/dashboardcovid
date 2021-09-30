@@ -23,9 +23,9 @@
     "react-ssr-prepass": "npm:preact-ssr-prepass@^1.2.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.3.4",
-    "postcss": "^8.3.6",
-    "tailwindcss": "^2.2.15",
-    "webpack": "^5.53.0"
+    "autoprefixer": "^10.3.6",
+    "postcss": "^8.3.8",
+    "tailwindcss": "^2.2.16",
+    "webpack": "^5.55.1"
   }
 }
