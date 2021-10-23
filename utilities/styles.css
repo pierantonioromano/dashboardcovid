@@ -6,6 +6,13 @@
 
 @media only screen and (max-width: 640px) {
 
+	body {
+		/* PWA utilities */
+		-webkit-user-select: none;
+		-webkit-tap-highlight-color: transparent;
+		-webkit-touch-callout: none;
+	}
+
 	table.responsive-table, .responsive-table thead, .responsive-table tbody, .responsive-table th, .responsive-table td, .responsive-table tr { display: block; }
 	.responsive-table thead tr { position: absolute; top: -9999px; left: -9999px; }
 	.responsive-table tr { border-bottom: 1px solid #ddd; background: #F9FAFB; }
@@ -47,3 +54,93 @@
 	.covid-regions-vax-table td:nth-of-type(4):before { content: "Avanzamento"; }
 
 }
+
+/*
+	Nprogress Styles 
+*/
+/* Make clicks pass-through */
+#nprogress {
+	pointer-events: none;
+  }
+  
+  #nprogress .bar {
+	background: #2563EB;
+  
+	position: fixed;
+	z-index: 1031;
+	top: 0;
+	left: 0;
+  
+	width: 100%;
+	height: 2px;
+  }
+  
+  /* Fancy blur effect */
+  #nprogress .peg {
+	display: block;
+	position: absolute;
+	right: 0px;
+	width: 100px;
+	height: 100%;
+	box-shadow: 0 0 10px #2563EB, 0 0 5px #2563EB;
+	opacity: 1.0;
+  
+	/*-webkit-transform: rotate(3deg) translate(0px, -4px);
+		-ms-transform: rotate(3deg) translate(0px, -4px);
+			transform: rotate(3deg) translate(0px, -4px);*/
+  }
+  
+  /* Remove these to get rid of the spinner 
+  #nprogress .spinner {
+	display: block;
+	position: fixed;
+	z-index: 1031;
+	top: 15px;
+	right: 15px;
+  }
+  
+  #nprogress .spinner-icon {
+	width: 18px;
+	height: 18px;
+	box-sizing: border-box;
+  
+	border: solid 2px transparent;
+	border-top-color: #2563EB;
+	border-left-color: #2563EB;
+	border-radius: 50%;
+  
+	-webkit-animation: nprogress-spinner 400ms linear infinite;
+			animation: nprogress-spinner 400ms linear infinite;
+  } */
+  
+  .nprogress-custom-parent {
+	overflow: hidden;
+	position: relative;
+  }
+  
+  .nprogress-custom-parent #nprogress .spinner,
+  .nprogress-custom-parent #nprogress .bar {
+	position: absolute;
+  }
+  
+  @-webkit-keyframes nprogress-spinner {
+	0%   { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+  }
+  @keyframes nprogress-spinner {
+	0%   { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }
+
+/* 
+	PTR fixes 
+*/
+.ptr__pull-down > div {
+    position: fixed;
+    top: 10px;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+	color: #2563EB;
+}
+.lds-ellipsis div {  background: #2563EB !important; }
