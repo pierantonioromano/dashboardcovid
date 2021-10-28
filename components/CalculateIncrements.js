@@ -49,9 +49,9 @@ class CalculateIncrements extends React.Component {
 		if(this.props.show_trending_icon)
 		{
 			if(valuesDifference <= 0)
-				trendingIcon = <TrendingDownIcon className={trendingIconStyles.[`${incrementType}`]} />
+				trendingIcon = <TrendingDownIcon className={trendingIconStyles[incrementType]} />
 			else
-				trendingIcon = <TrendingUpIcon className={trendingIconStyles.[`${incrementType}`]} />
+				trendingIcon = <TrendingUpIcon className={trendingIconStyles[incrementType]} />
 		}
 
 		if(!this.props.hide_text)
@@ -61,7 +61,7 @@ class CalculateIncrements extends React.Component {
 
 		//Return output
 		return (
-			<span className={incrementStyles.[`${incrementType}`]}>{differenceSign}{ !this.props.hide_text ? valuesDifference.toLocaleString('it', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) : ''}{!this.props.hide_text && this.props.display_type == 'percentage' ? '%' : ''} {trendingIcon}</span>
+			<span className={incrementStyles[incrementType]}>{differenceSign}{ !this.props.hide_text ? valuesDifference.toLocaleString('it', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) : ''}{!this.props.hide_text && this.props.display_type == 'percentage' ? '%' : ''} {trendingIcon}</span>
 		);
 	}
 	// {this.props.show_trending_icons != '' ? {trendingIcons.[`${incrementType}`]} : ''}
