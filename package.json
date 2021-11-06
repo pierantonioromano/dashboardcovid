@@ -10,7 +10,7 @@
     "@prefresh/next": "^1.4.7",
     "apexcharts": "^3.29.0",
     "date-fns": "^2.25.0",
-    "next": "^12.0.2",
+    "next": "^12.0.3",
     "next-plugin-preact": "^3.0.6",
     "node-fetch": "^3.0.0",
     "nprogress": "^0.2.0",
@@ -26,6 +26,6 @@
     "autoprefixer": "^10.4.0",
     "postcss": "^8.3.11",
     "tailwindcss": "^2.2.19",
-    "webpack": "^5.61.0"
+    "webpack": "^5.62.1"
   }
 }
