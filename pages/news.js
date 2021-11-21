@@ -71,11 +71,11 @@ class News extends React.Component {
 						<meta name="description" content="News sul Covid-19 e sulle misure di contenimento italiane." />
 					</Head>
 
-					<PullToRefresh pullDownThreshold={100} maxPullDownDistance={30} pullingContent="" onRefresh={this.handleRefresh}>
+					<PullToRefresh pullDownThreshold={100} maxPullDownDistance={150} pullingContent="" onRefresh={this.handleRefresh}>
 						<div className="container max-w-screen-xl px-4 mx-auto">
 
 							<div className="relative my-4">
-								<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 md:mt-8 font-bold">News</h1>
+								<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 mt-20 md:mt-24 font-bold">News</h1>
 								<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
 							</div>
 
@@ -84,9 +84,10 @@ class News extends React.Component {
 							</div>
 
 						</div>
-					</PullToRefresh>
-					
-					<SiteFooter />
+
+						<SiteFooter />
+
+					</PullToRefresh>				
 			
 				</div>
 		)

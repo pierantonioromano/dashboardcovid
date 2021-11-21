@@ -45,6 +45,11 @@ class Vaccini extends React.Component {
 				data: Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series.map((item) => [item.date, item.seconda_dose] ) : null 
 			},
 			{ 
+				name: '3° dose', 
+				type: 'line',
+				data: Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series.map((item) => [item.date, item.terza_dose] ) : null 
+			},
+			{ 
 				name: 'Monodose', 
 				type: 'line',
 				data: Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series.map((item) => [item.date, item.monodose] ) : null 
@@ -78,7 +83,7 @@ class Vaccini extends React.Component {
 					left: 0,
 					right: 0,
 					bottom: 0,
-					top: 40
+					top: 100
 				}
 			},
 			dataLabels: {
@@ -133,13 +138,16 @@ class Vaccini extends React.Component {
 		let totale_vaccinati = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_seconda_dose_con_janssen : 0;
 		let totale_vaccinati_prima_dose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_prima_dose_senza_janssen : 0;
 		let totale_vaccinati_seconda_dose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_seconda_dose : 0;
+		let totale_vaccinati_terza_dose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_terza_dose : 0;
+		let totale_vaccinati_terza_dose_aggiuntiva = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_dose_aggiuntiva : 0;
+		let totale_vaccinati_terza_dose_booster = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_dose_booster : 0;
 		let totale_vaccinati_monodose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_monodose : 0;
 		let totale_vaccinati_pregressa_infezione = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_pregressa_infezione : 0;
 		let obiettivo_vaccinabili = totale_platea * 90 / 100;
 		//console.log("obiettivo vaccinabili: " + obiettivo_vaccinabili);
-		let non_vaccinati_totali = totale_platea - totale_vaccinati_prima_dose;
+		let non_vaccinati_totali = totale_platea - totale_vaccinati_prima_dose - totale_vaccinati_pregressa_infezione - totale_vaccinati_monodose;
 		//console.log("non vaccinati totali: " + non_vaccinati_totali);
-		let non_vaccinati_obiettivo = obiettivo_vaccinabili - totale_vaccinati_prima_dose;
+		let non_vaccinati_obiettivo = obiettivo_vaccinabili - totale_vaccinati_prima_dose - totale_vaccinati_pregressa_infezione - totale_vaccinati_monodose;
 		//console.log("non vaccinati obiettivo: " + non_vaccinati_obiettivo);
 		let proporzione_monodose = (totale_vaccinati_monodose + totale_vaccinati_pregressa_infezione) * 100 / totale_vaccinati_prima_dose;
 		//console.log("proporzione monodose: " + proporzione_monodose);
@@ -154,16 +162,41 @@ class Vaccini extends React.Component {
 		let ultimo_giorno_series = Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series[seriesLastDayIndex].date : 0;
 
 		let totale_vaccinati_7gg = 0;
+		let totale_vaccinati_7gg_senza_terza_dose = 0;
 		for (let i = this.props.cleanedDailyVaxData.data_vax_series.length - 7; i < this.props.cleanedDailyVaxData.data_vax_series.length; i++)
 		{
 			//console.log(this.props.cleanedDailyVaxData.data_vax_series[i].date + " - " + this.props.cleanedDailyVaxData.data_vax_series[i].daily)
 			totale_vaccinati_7gg += this.props.cleanedDailyVaxData.data_vax_series[i].daily;
+			totale_vaccinati_7gg_senza_terza_dose += this.props.cleanedDailyVaxData.data_vax_series[i].daily - this.props.cleanedDailyVaxData.data_vax_series[i].terza_dose;
 		}
+
+		//Report ISS
+		let ultimo_aggiornamento_iss = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].data : 0;
+
+		let iss_casi_non_vaccinati = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].casi_non_vaccinati : 0;
+		let iss_casi_vaccinati_1_dose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].casi_vaccinati_1_dose : 0;
+		let iss_casi_vaccinati = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].casi_vaccinati : 0;
+		let iss_casi_booster = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].casi_booster : 0;
+
+		let iss_ospedalizzati_non_vaccinati = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].ospedalizzati_non_vaccinati : 0;
+		let iss_ospedalizzati_vaccinati_1_dose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].ospedalizzati_vaccinati_1_dose : 0;
+		let iss_ospedalizzati_vaccinati = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].ospedalizzati_vaccinati : 0;
+		let iss_ospedalizzati_booster = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].ospedalizzati_booster : 0;
+
+		let iss_terapia_intensiva_non_vaccinati = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].terapia_intensiva_non_vaccinati : 0;
+		let iss_terapia_intensiva_vaccinati_1_dose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].terapia_intensiva_vaccinati_1_dose : 0;
+		let iss_terapia_intensiva_vaccinati = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].terapia_intensiva_vaccinati : 0;
+		let iss_terapia_intensiva_booster = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].terapia_intensiva_booster : 0;
+
+		let iss_decessi_non_vaccinati = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].decessi_non_vaccinati : 0;
+		let iss_decessi_vaccinati_1_dose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].decessi_vaccinati_1_dose : 0;
+		let iss_decessi_vaccinati = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].decessi_vaccinati : 0;
+		let iss_decessi_booster = Array.isArray(this.props.cleanedDailyVaxData.data_vax_iss) ? this.props.cleanedDailyVaxData.data_vax_iss[0].decessi_booster : 0;
 
 		//Graph settings - Cycle
 		const graph_covid_vax_cycle_settings = {
 	
-			series: [ totale_vaccinati_seconda_dose, totale_vaccinati_monodose, totale_vaccinati_pregressa_infezione, non_vaccinati_totali],
+			series: [ totale_vaccinati_seconda_dose, totale_vaccinati_terza_dose, totale_vaccinati_monodose, totale_vaccinati_pregressa_infezione, non_vaccinati_totali],
 			options: {
 				chart: {
 					//width: 380,
@@ -176,7 +209,7 @@ class Vaccini extends React.Component {
 					}
 				},
 				yaxis: { show: false },
-				labels: ['Seconda dose', 'Monodose', 'Pregressa infezione', 'Non vaccinati'],
+				labels: ['Seconda dose', 'Terza dose', 'Monodose', 'Pregressa infezione', 'Non vaccinati'],
 				legend: {
 					position: 'right',
 					offsetY: 25,
@@ -192,7 +225,7 @@ class Vaccini extends React.Component {
 					}
 				},
 				dataLabels: { enabled : false },
-				colors: ['#2563EB', '#DB2777', '#059669', '#FBBF24'],
+				colors: ['#2563EB', '#bfdbfe', '#DB2777', '#059669', '#FBBF24'],
 				responsive: [
 					{
 						breakpoint: 1024,
@@ -220,11 +253,11 @@ class Vaccini extends React.Component {
 					<meta name="description" content="Monitora l'andamento della campagna vaccinale." />
 				</Head>
 			
-				<PullToRefresh pullDownThreshold={100} maxPullDownDistance={30} pullingContent="" onRefresh={this.handleRefresh}>
+				<PullToRefresh pullDownThreshold={100} maxPullDownDistance={200} pullingContent="" onRefresh={this.handleRefresh}>
 					<div className="container max-w-screen-xl px-4 mx-auto">
 
 						<div className="relative my-4">
-							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 md:mt-8 font-bold">Andamento nazionale</h1>
+							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 mt-20 md:mt-24 font-bold">Andamento nazionale</h1>
 							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
 						</div>
 
@@ -252,10 +285,22 @@ class Vaccini extends React.Component {
 												<td className="p-1 text-right font-black text-xl">{totale_vaccinati_pregressa_infezione.toLocaleString('it')}</td>
 												<td className="p-1 px-3"><p className="text-base">pregressa infezione</p></td>
 											</tr>
+											<tr>
+												<td className="p-1 text-right font-black text-xl">{totale_vaccinati_terza_dose.toLocaleString('it')}</td>
+												<td className="p-1 px-3"><p className="text-base">terza dose</p></td>
+											</tr>
+											<tr>
+												<td className="p-1 text-right font-black text-xl">{totale_vaccinati_terza_dose_aggiuntiva.toLocaleString('it')}</td>
+												<td className="p-1 px-3"><p className="text-base">terza dose (aggiuntiva)</p></td>
+											</tr>
+											<tr>
+												<td className="p-1 text-right font-black text-xl">{totale_vaccinati_terza_dose_booster.toLocaleString('it')}</td>
+												<td className="p-1 px-3"><p className="text-base">terza dose (booster)</p></td>
+											</tr>
 										</tbody>
 									</table>
 								</div>
-								<div className="bg-blue-600 p-3 mt-3 rounded-md">
+								{/* <div className="bg-blue-600 p-3 mt-3 rounded-md">
 									<table className="table-auto w-full text-white">
 										<tbody>
 											<tr>
@@ -268,7 +313,7 @@ class Vaccini extends React.Component {
 											</tr>
 										</tbody>
 									</table>
-								</div>
+								</div> */}
 							</div>
 
 							<div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-7 xl:col-span-8 relative bg-white rounded-md overflow-hidden">
@@ -290,7 +335,7 @@ class Vaccini extends React.Component {
 								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">ANDAMENTO CAMPAGNA VACCINALE</span>
 								<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ totale_vaccinati_24h.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati il {format(new Date(ultimo_giorno_series), 'd MMMM', {locale:it})}</span></h3>		
 								<h3 className="text-xl lg:text-3xl mb-2 font-black text-blue-600">{ Math.round(totale_vaccinati_7gg / 7).toLocaleString('it') } <span className="text-base font-semibold text-black">media giornaliera 7gg</span></h3>				
-								<p className="mt-6 text-base text-black">con la media attuale sono necessari circa <strong>{Math.round(stima_dosi_future / (totale_vaccinati_7gg / 7))}</strong> giorni per vaccinare il 90% degli over 12</p>
+								<p className="mt-6 text-base text-black">con la media attuale sono necessari circa <strong>{Math.round(stima_dosi_future / (totale_vaccinati_7gg_senza_terza_dose / 7))}</strong> giorni per vaccinare il 90% degli over 12</p>
 							</div>
 							<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
 								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">PLATEA CAMPAGNA VACCINALE</span>
@@ -300,6 +345,41 @@ class Vaccini extends React.Component {
 							</div>
 						</div>
 
+						<div className="relative my-4 mt-12">
+							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Report ISS</h1>
+							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Ultimo Report: <strong>{format(new Date(ultimo_aggiornamento_iss), 'd MMMM yyyy', {locale:it})}</strong></span>
+						</div>
+
+						<div className="grid grid-cols-12 gap-3 mt-3">
+							<div className="col-span-12 sm:col-span-12 md:col-span-3 bg-white p-6 rounded-md relative">
+								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">CASI</span>
+								<h3 className="text-xl lg:text-2xl mt-6 mb-2 font-black text-blue-600">{ iss_casi_vaccinati.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati</span></h3>		
+								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_casi_vaccinati_1_dose.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati 1° dose</span></h3>
+								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_casi_booster.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati con booster</span></h3>
+								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_casi_non_vaccinati.toLocaleString('it') } <span className="text-base font-semibold text-black">non vaccinati</span></h3>
+							</div>
+							<div className="col-span-12 sm:col-span-12 md:col-span-3 bg-white p-6 rounded-md relative">
+								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">OSPEDALIZZAZIONI</span>
+								<h3 className="text-xl lg:text-2xl mt-6 mb-2 font-black text-blue-600">{ iss_ospedalizzati_vaccinati.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati</span></h3>	
+								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_ospedalizzati_vaccinati_1_dose.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati 1° dose</span></h3>
+								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_ospedalizzati_booster.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati con booster</span></h3>
+								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_ospedalizzati_non_vaccinati.toLocaleString('it') } <span className="text-base font-semibold text-black">non vaccinati</span></h3>
+							</div>
+							<div className="col-span-12 sm:col-span-12 md:col-span-3 bg-white p-6 rounded-md relative">
+								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">TERAPIE INTENSIVE</span>
+								<h3 className="text-xl lg:text-2xl mt-6 mb-2 font-black text-blue-600">{ iss_terapia_intensiva_vaccinati.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati</span></h3>	
+								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_terapia_intensiva_vaccinati_1_dose.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati 1° dose</span></h3>
+								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_terapia_intensiva_booster.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati con booster</span></h3>
+								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_terapia_intensiva_non_vaccinati.toLocaleString('it') } <span className="text-base font-semibold text-black">non vaccinati</span></h3>
+							</div>
+							<div className="col-span-12 sm:col-span-12 md:col-span-3 bg-white p-6 rounded-md relative">
+								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">DECESSI</span>
+								<h3 className="text-xl lg:text-2xl mt-6 mb-2 font-black text-blue-600">{ iss_decessi_vaccinati.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati</span></h3>	
+								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_decessi_vaccinati_1_dose.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati 1° dose</span></h3>
+								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_decessi_booster.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati con booster</span></h3>
+								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_decessi_non_vaccinati.toLocaleString('it') } <span className="text-base font-semibold text-black">non vaccinati</span></h3>
+							</div>
+						</div>
 
 						<div className="relative my-4 mt-12">
 							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento regionale</h1>
@@ -342,9 +422,10 @@ class Vaccini extends React.Component {
 						</div>
 
 					</div>
-				</PullToRefresh>
 
-				<SiteFooter />
+					<SiteFooter />
+
+				</PullToRefresh>
 		
 			</div>
 		)

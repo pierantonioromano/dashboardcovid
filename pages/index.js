@@ -241,11 +241,11 @@ class Home extends React.Component {
 					<meta name="description" content="Scopri l'andamento della pandemia in Italia: nuovi contagi, carichi ospedalieri, andamento della campagna vaccinale, news." />
 				</Head>
 			
-				<PullToRefresh pullDownThreshold={100} maxPullDownDistance={30} pullingContent="" onRefresh={this.handleRefresh}>
+				<PullToRefresh isPullable={true} pullDownThreshold={100} maxPullDownDistance={150} pullingContent="" onRefresh={this.handleRefresh}>
 					<div className="container max-w-screen-xl px-4 mx-auto">
 
 						<div className="relative my-4">
-							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 md:mt-8 font-bold">Andamento nazionale</h1>
+							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 mt-20 md:mt-24 font-bold">Andamento nazionale</h1>
 							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
 						</div>
 
@@ -372,8 +372,8 @@ class Home extends React.Component {
 										<th className="w-1/12 sticky top-14 left-0 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Nuovi casi</th>
 										<th className="w-1/12 sticky top-14 left-0 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Ricoverati</th>
 										<th className="w-1/12 sticky top-14 left-0 rounded-r-md px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Intensive</th>						
-										<th className="w-2/12 sticky top-14 left-0 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Carico Rep.</th>
-										<th className="w-2/12 sticky top-14 left-0 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Carico T.I.</th>
+										<th className="w-2/12 z-10 sticky top-14 left-0 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Carico Rep.</th>
+										<th className="w-2/12 z-10 sticky top-14 left-0 px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 border-t-0 whitespace-nowrap font-semibold text-center bg-gray-50 text-gray-500 border-gray-100 tracking-widest">Carico T.I.</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -406,9 +406,10 @@ class Home extends React.Component {
 						</div>
 
 					</div>
-				</PullToRefresh>
 
-				<SiteFooter />
+					<SiteFooter />
+
+				</PullToRefresh>
 		
 			</div>
 		)

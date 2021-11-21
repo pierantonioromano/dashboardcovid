@@ -135,9 +135,10 @@
 /* 
 	PTR fixes 
 */
+.ptr__children { height: 100vh !important; overflow: auto !important;  -webkit-overflow-scrolling: touch; position: fixed !important; top: 0 ; left: 0; }
 .ptr__pull-down > div {
     position: fixed;
-    top: 10px;
+    top: 60px;
     left: 0;
     z-index: 2;
     width: 100%;
