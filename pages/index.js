@@ -31,9 +31,9 @@ class Home extends React.Component {
 		const todayIndex = Array.isArray(this.props.cleanedDailyData) ? (this.props.cleanedDailyData.length - 1) : 2;
 		const yesterdayIndex = Array.isArray(this.props.cleanedDailyData) ? (this.props.cleanedDailyData.length - 2) : 1;
 		const twoDaysAgoIndex = Array.isArray(this.props.cleanedDailyData) ? (this.props.cleanedDailyData.length - 3) : 0;
-		const oneWeekAgoIndex = Array.isArray(this.props.cleanedDailyData) ? (this.props.cleanedDailyData.length - 7) : 0;
-		const oneWeekPlusOneAgoIndex = Array.isArray(this.props.cleanedDailyData) ? (this.props.cleanedDailyData.length - 8) : 0;
-		const oneWeekPlusTwoAgoIndex = Array.isArray(this.props.cleanedDailyData) ? (this.props.cleanedDailyData.length - 9) : 0;
+		const oneWeekAgoIndex = Array.isArray(this.props.cleanedDailyData) ? (this.props.cleanedDailyData.length - 8) : 0;
+		const oneWeekPlusOneAgoIndex = Array.isArray(this.props.cleanedDailyData) ? (this.props.cleanedDailyData.length - 9) : 0;
+		const oneWeekPlusTwoAgoIndex = Array.isArray(this.props.cleanedDailyData) ? (this.props.cleanedDailyData.length - 10) : 0;
 
 		const popolazione_italiana = 59258384; // updated Jan 2021
 
