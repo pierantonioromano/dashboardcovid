@@ -22,13 +22,17 @@ export default function SiteHeader() {
 						<div className="flex-shrink-0 hidden md:block">
 							<div className="mt-1">
 								<a href="/">
-									<Image
-										src="/mask.png"
-										alt="Bollettino Covid-19"
-										width={36}
-										height={36}
-									/>
+									<span className="inline-block align-middle">
+										<Image
+											src="/mask.png"
+											alt="Bollettino Covid-19"
+											width={36}
+											height={36}
+										/>
+									</span>
+									<h1 className="md:inline-block align-middle ml-3 text-3xl -mt-1 font-black text-blue-600">Bollettino Covid</h1>
 								</a>
+								
 							</div>
 						</div>
 						<div className="flex-grow">
@@ -36,11 +40,11 @@ export default function SiteHeader() {
 								{navigation.map((item) =>
 									router.pathname == item.link ? (
 										//<Link passHref href={item.link} prefetch={false}>
-											<a href="javascript:void(0)" onClick={() => router.push(item.link)} className="text-center md:text-left text-blue-600 px-3 py-3 md:py-3.5 text-base font-normal md:border-b-2 md:border-blue-600">{item.icon} {item.label}</a>
-										//</Link>
+											<a href="javascript:void(0)" onClick={() => router.push(item.link)} className="text-center md:text-left text-blue-600 px-3 py-3 md:py-3.5 text-base font-normal ">{item.icon} {item.label}</a>
+										//</Link> md:border-b-2 md:border-blue-600
 									) : (
 										//<Link passHref href={item.link} prefetch={false}>
-											<a href="javascript:void(0)" onClick={() => router.push(item.link)} className="opacity-80  md:opacity-100 text-center md:text-left md:text-black hover:text-blue-600 px-3 py-4 md:py-3.5 text-base font-normal">{item.icon} {item.label}</a>
+											<a href="javascript:void(0)" onClick={() => router.push(item.link)} className="opacity-80 md:opacity-100 text-center md:text-left md:text-black hover:text-blue-600 px-3 py-4 md:py-3.5 text-base font-normal">{item.icon} {item.label}</a>
 										//</Link>
 									)
 								)}

@@ -239,6 +239,10 @@ class Home extends React.Component {
 				<Head>
 					<title>Bollettino Covid-19</title>
 					<meta name="description" content="Scopri l'andamento della pandemia in Italia: nuovi contagi, carichi ospedalieri, andamento della campagna vaccinale, news." />
+					<meta property="og:title" content="Bollettino Covid-19" />
+					<meta property="og:description" content="Scopri l'andamento della pandemia in Italia: nuovi contagi, carichi ospedalieri, andamento della campagna vaccinale, news." />
+					<meta property="og:type" content="website" />
+					<meta property="og:image" content="public/share_img.png" />
 				</Head>
 			
 				<PullToRefresh isPullable={true} pullDownThreshold={100} maxPullDownDistance={150} pullingContent="" onRefresh={this.handleRefresh}>

@@ -25,7 +25,8 @@ class Vaccini extends React.Component {
 		
 	render() {
 		
-		const popolazione_italiana = 59258384; // updated Jan 2021
+		const popolazione_italiana = 59257566; //Updated June 2021
+		//59258384; updated Jan 2021 
 
 		//Graph data series
 		const graph_trending_series = [
@@ -139,8 +140,7 @@ class Vaccini extends React.Component {
 		let totale_vaccinati_prima_dose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_prima_dose_senza_janssen : 0;
 		let totale_vaccinati_seconda_dose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_seconda_dose : 0;
 		let totale_vaccinati_terza_dose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_terza_dose : 0;
-		let totale_vaccinati_terza_dose_aggiuntiva = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_dose_aggiuntiva : 0;
-		let totale_vaccinati_terza_dose_booster = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_dose_booster : 0;
+		//let totale_vaccinati_terza_dose_booster = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_dose_addizionale_booster : 0;
 		let totale_vaccinati_monodose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_monodose : 0;
 		let totale_vaccinati_pregressa_infezione = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_pregressa_infezione : 0;
 		let obiettivo_vaccinabili = totale_platea * 90 / 100;
@@ -251,6 +251,10 @@ class Vaccini extends React.Component {
 				<Head>
 					<title>Bollettino Covid-19 - Vaccini</title>
 					<meta name="description" content="Monitora l'andamento della campagna vaccinale italiana. Prime, seconde, terze dosi, bollettino ISS e andamento regionale." />
+					<meta property="og:title" content="Bollettino Covid-19 - Vaccini" />
+					<meta property="og:description" content="Monitora l'andamento della campagna vaccinale italiana. Prime, seconde, terze dosi, bollettino ISS e andamento regionale." />
+					<meta property="og:type" content="website" />
+					<meta property="og:image" content="public/share_img.png" />
 				</Head>
 			
 				<PullToRefresh pullDownThreshold={100} maxPullDownDistance={200} pullingContent="" onRefresh={this.handleRefresh}>
@@ -290,12 +294,12 @@ class Vaccini extends React.Component {
 												<td className="p-1 px-3"><p className="text-base">terza dose</p></td>
 											</tr>
 											<tr>
-												<td className="p-1 text-right font-black text-xl">{totale_vaccinati_terza_dose_aggiuntiva.toLocaleString('it')}</td>
-												<td className="p-1 px-3"><p className="text-base">terza dose (aggiuntiva)</p></td>
+												<td className="p-1 text-right font-black text-xl">{ totale_dosi_somministrate.toLocaleString('it') }</td>
+												<td className="p-1 px-3"><p className="md:text-base">dosi somministrate</p></td>
 											</tr>
 											<tr>
-												<td className="p-1 text-right font-black text-xl">{totale_vaccinati_terza_dose_booster.toLocaleString('it')}</td>
-												<td className="p-1 px-3"><p className="text-base">terza dose (booster)</p></td>
+												<td className="p-1 text-right font-black text-xl">{ totale_dosi_consegnate.toLocaleString('it') }</td>
+												<td className="p-1 px-3"><p className="md:text-base">dosi consegnate</p></td>
 											</tr>
 										</tbody>
 									</table>
