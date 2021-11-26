@@ -67,8 +67,8 @@ class News extends React.Component {
 					<SiteHeader />
 
 					<Head>
-						<title>Covid-19 Dashboard - News</title>
-						<meta name="description" content="News sul Covid-19 e sulle misure di contenimento italiane." />
+						<title>Bollettino Covid-19 - News</title>
+						<meta name="description" content="News sul Covid-19 e sulle misure di contenimento attualmente previste in Italia." />
 					</Head>
 
 					<PullToRefresh pullDownThreshold={100} maxPullDownDistance={150} pullingContent="" onRefresh={this.handleRefresh}>

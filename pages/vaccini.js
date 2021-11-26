@@ -249,8 +249,8 @@ class Vaccini extends React.Component {
 				<SiteHeader />
 
 				<Head>
-					<title>Covid-19 Dashboard - Vaccini</title>
-					<meta name="description" content="Monitora l'andamento della campagna vaccinale." />
+					<title>Bollettino Covid-19 - Vaccini</title>
+					<meta name="description" content="Monitora l'andamento della campagna vaccinale italiana. Prime, seconde, terze dosi, bollettino ISS e andamento regionale." />
 				</Head>
 			
 				<PullToRefresh pullDownThreshold={100} maxPullDownDistance={200} pullingContent="" onRefresh={this.handleRefresh}>

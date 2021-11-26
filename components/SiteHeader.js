@@ -24,7 +24,7 @@ export default function SiteHeader() {
 								<a href="/">
 									<Image
 										src="/mask.png"
-										alt="Covid-19 Dashboard"
+										alt="Bollettino Covid-19"
 										width={36}
 										height={36}
 									/>
