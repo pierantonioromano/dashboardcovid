@@ -72,7 +72,7 @@ class News extends React.Component {
 						<meta property="og:title" content="Bollettino Covid-19 - News" />
 						<meta property="og:description" content="News sul Covid-19 e sulle misure di contenimento attualmente previste in Italia." />
 						<meta property="og:type" content="website" />
-						<meta property="og:image" content="public/share_img.png" />
+						<meta property="og:image" content="/share_img.png" />
 					</Head>
 
 					<PullToRefresh pullDownThreshold={100} maxPullDownDistance={150} pullingContent="" onRefresh={this.handleRefresh}>

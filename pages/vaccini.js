@@ -254,7 +254,7 @@ class Vaccini extends React.Component {
 					<meta property="og:title" content="Bollettino Covid-19 - Vaccini" />
 					<meta property="og:description" content="Monitora l'andamento della campagna vaccinale italiana. Prime, seconde, terze dosi, bollettino ISS e andamento regionale." />
 					<meta property="og:type" content="website" />
-					<meta property="og:image" content="public/share_img.png" />
+					<meta property="og:image" content="/share_img.png" />
 				</Head>
 			
 				<PullToRefresh pullDownThreshold={100} maxPullDownDistance={200} pullingContent="" onRefresh={this.handleRefresh}>
