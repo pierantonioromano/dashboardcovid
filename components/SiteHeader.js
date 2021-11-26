@@ -16,9 +16,9 @@ export default function SiteHeader() {
 
 	return (
 		<>
-			<nav className="w-full h-14 sticky top-0 left-0 z-10 bg-white border-b border-indigo-50">
+			<nav className="w-full h-16 sticky top-0 left-0 z-10 bg-white border-b border-indigo-50">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="flex items-center justify-items-center h-14">
+					<div className="flex items-center justify-items-center h-16">
 						<div className="flex-shrink-0 hidden md:block">
 							<div className="mt-1">
 								<a href="/">
@@ -30,13 +30,13 @@ export default function SiteHeader() {
 											height={36}
 										/>
 									</span>
-									<h1 className="md:inline-block align-middle ml-3 text-3xl -mt-1 font-black text-blue-600">Bollettino Covid</h1>
+									<h1 className="md:inline-block align-middle ml-3 text-3xl -mt-1.5 font-bold text-blue-600">Bollettino Covid</h1>
 								</a>
 								
 							</div>
 						</div>
 						<div className="flex-grow">
-							<div className="mt-0 md:mt-0 ml-0 md:ml-10 flex items-baseline space-x-4 justify-center md:justify-start">
+							<div className="mt-0 md:mt-0 ml-0 md:ml-12 flex items-baseline space-x-4 justify-center md:justify-start">
 								{navigation.map((item) =>
 									router.pathname == item.link ? (
 										//<Link passHref href={item.link} prefetch={false}>
