@@ -18,7 +18,7 @@ export default function ShareModal() {
 	{
 		//try to fetch image from opengraph property
 		if(!sharedImage || sharedImage == "")
-			sharedImage = window.location.protocol + "/" + window.location.hostname + "/" + document.querySelector("meta[property='og:image']").content;
+			sharedImage = window.location.protocol + "/" + window.location.hostname + document.querySelector("meta[property='og:image']").content;
 
 		//build share url
 		switch(socialType)
