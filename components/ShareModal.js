@@ -65,9 +65,7 @@ export default function ShareModal() {
 
 				{ showModal ? (
 				<>
-					<div
-					className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-					>
+					<div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
 						<div className="relative w-full my-6 mx-auto max-w-3xl">
 							{/*content*/}
 							<div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -114,12 +112,12 @@ export default function ShareModal() {
 														{ copiedUrl ? 
 															<ClipboardCheckIcon className="w-6 copied-url-done"/> 
 														:
-															<ClipboardIcon className="w-6" />
+															<ClipboardIcon className="w-6 copied-url-icon" />
 														}
 													</div> 
 													<input type="text" class="bg-indigo-50 h-14 w-full pl-12 pr-30 rounded-lg z-0 focus:shadow focus:outline-none" value={shareUrl} />
 													<div className="absolute top-2 right-2"> 
-														<button class="h-10 w-20 text-white rounded-lg bg-blue-500 hover:bg-blue-600" onClick={() => { setCopiedUrl(true); navigator.clipboard.writeText(shareUrl); }}>{ copiedUrl ? 'Copiato!' : 'Copia' }</button> 
+														<button className={ copiedUrl ? 'h-10 w-20 text-white rounded-lg  bg-green-500 hover:bg-green-600' : 'h-10 w-20 text-white rounded-lg  bg-blue-500 hover:bg-blue-600' } onClick={() => { setCopiedUrl(true); navigator.clipboard.writeText(shareUrl); }}>{ copiedUrl ? 'Copiato!' : 'Copia' }</button> 
 													</div>
 												</div>
 											</div>
@@ -148,7 +146,7 @@ export default function ShareModal() {
 							</div>
 						</div>
 					</div>
-					<div className="modalOverlay opacity-25 fixed top-0 left-0 inset-0 z-40 bg-blue-800"></div>
+					<div className="modalOverlay opacity-75 fixed top-0 left-0 inset-0 z-40 bg-black"></div>
 				</>
 				) : null}
 			</>

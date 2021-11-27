@@ -4,7 +4,8 @@
 .shares-twitter { fill: #1da1f2; }
 .shares-whatsapp { fill: #25d366; }
 .shares-telegram { fill: #0088cc; }
-.copied-url-done { stroke: #090; }
+.copied-url-icon { stroke: #3b82f6; }
+.copied-url-done { stroke: #10b981; }
 
 /* Generic Styles */
 @media only screen and (max-width: 1023px) {
