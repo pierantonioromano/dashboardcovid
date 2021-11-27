@@ -14,7 +14,14 @@ class News extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			loadImages: false
+		};
+	}
+
+	componentDidMount(){
+		
+		this.setState({ loadImages: true });
 	}
 
 	handleRefresh = () => {
@@ -22,8 +29,6 @@ class News extends React.Component {
 	}
 
 	renderNewsItem = (item,i) => {
-
-		const placeholderImage = 'mask.png';
 		
 		let newsImageUrl = (item.i) ? { uri: this.props.cleanedCovidNewsData.sources[item.s].imgPath + item.i} : NoPostImageIcon;
 		let newsTitle = item.t;
@@ -32,12 +37,13 @@ class News extends React.Component {
 		return (
 					<Fragment key={i}>
 						<div className="bg-white hover:bg-gray-50 col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 rounded-md relative p-4 pb-12">
-							<div className="h-16 w-16 float-right my-2 mx-2 overflow-hidden w-full rounded-md relative"
-								 style={{  
-										backgroundColor: '#999',
-										backgroundImage: "url(" + newsImageUrl.uri + ")",
+							<div className="newsImageLazyLoad h-16 w-16 float-right my-2 mx-2 overflow-hidden w-full rounded-md relative"
+								data-img-url={newsImageUrl.uri}
+								style={{  
+										backgroundColor: '#d7e7f7',
+										backgroundImage: "url(" + (this.state.loadImages ? newsImageUrl.uri : 'mask.png') + ")",
 										backgroundPosition: 'center',
-										backgroundSize: 'cover',
+										backgroundSize: (this.state.loadImages ? 'cover' : '80%'),
 										backgroundRepeat: 'no-repeat'
 									}}
 								>
