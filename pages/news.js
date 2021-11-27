@@ -21,7 +21,7 @@ class News extends React.Component {
 		return Promise.resolve(Router.reload(window.location.pathname));
 	}
 
-	renderNewsItem = (item) => {
+	renderNewsItem = (item,i) => {
 
 		const placeholderImage = 'mask.png';
 		
@@ -30,7 +30,7 @@ class News extends React.Component {
 		let newsSource = (this.props.cleanedCovidNewsData.sources[item.s].label) ? this.props.cleanedCovidNewsData.sources[item.s].label : "";
 
 		return (
-					<>
+					<Fragment key={i}>
 						<div className="bg-white hover:bg-gray-50 col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 rounded-md relative p-4 pb-12">
 							<div className="h-16 w-16 float-right my-2 mx-2 overflow-hidden w-full rounded-md relative"
 								 style={{  
@@ -51,7 +51,7 @@ class News extends React.Component {
 								</span>
 
 						</div>
-					</>
+					</Fragment>
 				)
 	}
 		
@@ -68,9 +68,9 @@ class News extends React.Component {
 
 					<Head>
 						<title>Bollettino Covid-19 - News</title>
-						<meta name="description" content="News sul Covid-19 e sulle misure di contenimento attualmente previste in Italia." />
+						<meta name="description" content="Aggiornamenti sul Covid-19 e sulle misure di contenimento attualmente previste in Italia." />
 						<meta property="og:title" content="Bollettino Covid-19 - News" />
-						<meta property="og:description" content="News sul Covid-19 e sulle misure di contenimento attualmente previste in Italia." />
+						<meta property="og:description" content="Aggiornamenti sul Covid-19 e sulle misure di contenimento attualmente previste in Italia." />
 						<meta property="og:type" content="website" />
 						<meta property="og:image" content="/share_img.png" />
 					</Head>
@@ -84,7 +84,7 @@ class News extends React.Component {
 							</div>
 
 							<div className="grid grid-cols-12 gap-4">
-								{ this.props.cleanedCovidNewsData.items.map((item) => this.renderNewsItem(item) ) }
+								{ this.props.cleanedCovidNewsData.items.map((item,i) => this.renderNewsItem(item,i) ) }
 							</div>
 
 						</div>

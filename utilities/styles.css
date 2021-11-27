@@ -1,3 +1,12 @@
+/* Modal Styling */
+.modalOverlay { margin: 0 !important; }
+.shares-facebook { fill: #1877f2;  }
+.shares-twitter { fill: #1da1f2; }
+.shares-whatsapp { fill: #25d366; }
+.shares-telegram { fill: #0088cc; }
+.copied-url-done { stroke: #090; }
+
+/* Generic Styles */
 @media only screen and (max-width: 1023px) {
   
 	#chart-timeline .apexcharts-legend { right: auto !important; top: 30px !important; }

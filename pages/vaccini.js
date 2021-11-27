@@ -403,8 +403,8 @@ class Vaccini extends React.Component {
 								<tbody>
 
 									{this.props.cleanedDailyVaxData.data_vax_summary_regions
-										.map((item) => 
-										<Fragment key={item.codice_regione}>
+										.map((item,i) => 
+										<Fragment key={i}>
 											<tr id={'regionRow-' + item.codice_regione}>
 												<td className="py-2 px-4 border-b border-gray-100">
 													{item.nome_area}
