@@ -345,7 +345,7 @@ class Vaccini extends React.Component {
 								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">PLATEA CAMPAGNA VACCINALE</span>
 								<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ totale_platea.toLocaleString('it') } <span className="text-base font-semibold text-black"> italiani vaccinabili</span></h3>		
 								<h3 className="text-xl lg:text-3xl mb-2 font-black text-blue-600">{ non_vaccinati_totali.toLocaleString('it') } <span className="text-base font-semibold text-black">con nessuna dose</span></h3>				
-								<p className="mt-6 text-base text-black">la campagna vaccinale italiana è iniziata il 27 dicembre 2020 e sarà conclusa entro l'anno</p>
+								<p className="mt-6 text-base text-black">la campagna vaccinale italiana è iniziata il 27 dicembre 2020 e prosegue ora con la 3° dose</p>
 							</div>
 						</div>
 
