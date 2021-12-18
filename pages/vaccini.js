@@ -271,7 +271,7 @@ class Vaccini extends React.Component {
 								<div className="bg-blue-200 p-6 rounded-md">
 									<h2 className="text-5xl mb-2 font-black text-blue-600">{totale_vaccinati.toLocaleString('it')}</h2>
 									<p className="text-base md:text-base text-black">
-										persone hanno completato il ciclo vaccinale, pari al <strong className="text-blue-600"> {Number(totale_vaccinati / totale_platea * 100).toLocaleString('it', { maximumFractionDigits: 1 })}%</strong> della popolazione italiana over 12
+										persone hanno completato il ciclo vaccinale, pari al <strong className="text-blue-600"> {Number(totale_vaccinati / totale_platea * 100).toLocaleString('it', { maximumFractionDigits: 1 })}%</strong> della popolazione italiana over 5
 									</p>
 								</div>
 								<div className="bg-pink-500 p-3 mt-3 rounded-md">
@@ -339,7 +339,7 @@ class Vaccini extends React.Component {
 								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">ANDAMENTO CAMPAGNA VACCINALE</span>
 								<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ totale_vaccinati_24h.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati il {format(new Date(ultimo_giorno_series), 'd MMMM', {locale:it})}</span></h3>		
 								<h3 className="text-xl lg:text-3xl mb-2 font-black text-blue-600">{ Math.round(totale_vaccinati_7gg / 7).toLocaleString('it') } <span className="text-base font-semibold text-black">media giornaliera 7gg</span></h3>				
-								<p className="mt-6 text-base text-black">con la media attuale sono necessari circa <strong>{Math.round(stima_dosi_future / (totale_vaccinati_7gg_senza_terza_dose / 7))}</strong> giorni per vaccinare il 90% degli over 12</p>
+								<p className="mt-6 text-base text-black">con la media attuale sono necessari circa <strong>{Math.round(stima_dosi_future / (totale_vaccinati_7gg_senza_terza_dose / 7))}</strong> giorni per vaccinare il 90% degli over 5</p>
 							</div>
 							<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
 								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">PLATEA CAMPAGNA VACCINALE</span>
