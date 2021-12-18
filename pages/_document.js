@@ -21,7 +21,7 @@ class MyDocument extends Document {
 					<meta name="theme-color" content="#ffffff" />
 					{/* <!-- Fonts --> */}
 					<link rel="preconnect" href="https://fonts.googleapis.com" />
-					<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+					<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
 					<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
 					{/* <!-- PWA Tags --> */}
 					<meta name="apple-mobile-web-app-status-bar-style" content="white" />
