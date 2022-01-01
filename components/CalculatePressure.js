@@ -11,7 +11,7 @@ class CalculatePressure extends React.Component {
 		//Calculate Pressure
 		let barStyle = '';
 		let barStyleInner = 'bg-gray-100';
-		let pressure_percentage = Math.round(this.props.actual_value * 100 / this.props.total_value);
+		let pressure_percentage = Number(this.props.actual_value * 100 / this.props.total_value).toFixed(1);
 
 		if(!isFinite(pressure_percentage))
 			pressure_percentage = 0;
@@ -19,44 +19,55 @@ class CalculatePressure extends React.Component {
 		if(this.props.pressure_type == 'ti')
 		{
 			//Terapie intensive
-			if(pressure_percentage < 10)
+			if(pressure_percentage < 10) // zona bianca
 			{
-				barStyle = "bg-yellow-200";
-				barStyleInner = "bg-yellow-100";
+				barStyle = "bg-gray-300";
+				barStyleInner = "bg-gray-100";
 			}
-			else if(pressure_percentage >= 10 && pressure_percentage < 30)
+			else if(pressure_percentage >= 10 && pressure_percentage < 20) // zona gialla
+			{
+				barStyle = "bg-yellow-300";
+				barStyleInner = "bg-gray-100";
+			}
+			else if(pressure_percentage >= 20 && pressure_percentage < 30) // zona arancione
 			{
 				barStyle = "bg-yellow-500";
-				barStyleInner = "bg-yellow-100";
+				barStyleInner = "bg-gray-100";
 			}
-			else
+			else if(pressure_percentage >= 30) // zona rossa
 			{
-				barStyle = "bg-red-300";
-				barStyleInner = "bg-red-100";
+				barStyle = "bg-red-600";
+				barStyleInner = "bg-gray-100";
 			}
 		}
 		else if(this.props.pressure_type == 'anc')
 		{
 			//Ricoveri
-			if(pressure_percentage < 15)
+			if(pressure_percentage < 15) // zona bianca
 			{
-				barStyle = "bg-yellow-200";
-				barStyleInner = "bg-yellow-100";
+				barStyle = "bg-gray-200";
+				barStyleInner = "bg-gray-100";
 			}
-			else if(pressure_percentage >= 15 && pressure_percentage < 40)
+			else if(pressure_percentage >= 15 && pressure_percentage < 30) // zona gialla
+			{
+				barStyle = "bg-yellow-300";
+				barStyleInner = "bg-gray-100";
+			}
+			else if(pressure_percentage >= 30 && pressure_percentage < 40) // zona arancione
 			{
 				barStyle = "bg-yellow-500";
-				barStyleInner = "bg-yellow-100";
-			}
-			else
+				barStyleInner = "bg-gray-100";
+			}	
+			else if(pressure_percentage >= 40) // zona rossa
 			{
 				barStyle = "bg-red-500";
-				barStyleInner = "bg-red-100";
-			}	
+				barStyleInner = "bg-gray-100";
+			}
+
 		}
 		else if(this.props.pressure_type == 'vax')
 		{
-			//Ricoveri
+			//Vaccini
 			if(pressure_percentage < 50)
 			{
 				barStyle = "bg-red-200";
