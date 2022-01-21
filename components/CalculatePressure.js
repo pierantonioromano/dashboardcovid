@@ -45,7 +45,7 @@ class CalculatePressure extends React.Component {
 			//Ricoveri
 			if(pressure_percentage < 15) // zona bianca
 			{
-				barStyle = "bg-gray-200";
+				barStyle = "bg-gray-300";
 				barStyleInner = "bg-gray-100";
 			}
 			else if(pressure_percentage >= 15 && pressure_percentage < 30) // zona gialla
