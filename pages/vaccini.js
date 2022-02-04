@@ -349,7 +349,7 @@ class Vaccini extends React.Component {
 							</div>
 						</div>
 
-						<div className="relative my-4 mt-12">
+						{/*<div className="relative my-4 mt-12">
 							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Report ISS</h1>
 							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Ultimo Report: <strong>{format(new Date(ultimo_aggiornamento_iss), 'd MMMM yyyy', {locale:it})}</strong></span>
 						</div>
@@ -383,7 +383,7 @@ class Vaccini extends React.Component {
 								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_decessi_booster.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati con booster</span></h3>
 								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_decessi_non_vaccinati.toLocaleString('it') } <span className="text-base font-semibold text-black">non vaccinati</span></h3>
 							</div>
-						</div>
+						</div>*/}
 
 						<div className="relative my-4 mt-12">
 							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento regionale</h1>
