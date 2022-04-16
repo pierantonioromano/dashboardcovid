@@ -300,12 +300,12 @@ class Vaccini extends React.Component {
 												<td className="p-1 px-3"><p className="text-base">terza dose</p></td>
 											</tr>
 											<tr>
-												<td className="p-1 text-right font-black text-xl">{ totale_dosi_somministrate.toLocaleString('it') }</td>
-												<td className="p-1 px-3"><p className="md:text-base">dosi somministrate</p></td>
+												<td className="p-1 text-right font-black text-xl">{ totale_vaccinati_quarta_dose.toLocaleString('it') }</td>
+												<td className="p-1 px-3"><p className="md:text-base">quarta dose</p></td>
 											</tr>
 											<tr>
-												<td className="p-1 text-right font-black text-xl">{ totale_dosi_consegnate.toLocaleString('it') }</td>
-												<td className="p-1 px-3"><p className="md:text-base">dosi consegnate</p></td>
+												<td className="p-1 text-right font-black text-xl">{ totale_dosi_somministrate.toLocaleString('it') }</td>
+												<td className="p-1 px-3"><p className="md:text-base">dosi somministrate</p></td>
 											</tr>
 										</tbody>
 									</table>
