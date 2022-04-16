@@ -51,6 +51,11 @@ class Vaccini extends React.Component {
 				data: Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series.map((item) => [item.date, item.terza_dose] ) : null 
 			},
 			{ 
+				name: '4° dose', 
+				type: 'line',
+				data: Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series.map((item) => [item.date, item.quarta_dose] ) : null 
+			},
+			{ 
 				name: 'Monodose', 
 				type: 'line',
 				data: Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series.map((item) => [item.date, item.monodose] ) : null 
@@ -141,6 +146,7 @@ class Vaccini extends React.Component {
 		let totale_vaccinati_seconda_dose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_seconda_dose : 0;
 		let totale_vaccinati_terza_dose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_terza_dose : 0;
 		//let totale_vaccinati_terza_dose_booster = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_dose_addizionale_booster : 0;
+		let totale_vaccinati_quarta_dose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_d2_booster + this.props.cleanedDailyVaxData.data_vax_totals[0].lab_booster_immuno : 0;
 		let totale_vaccinati_monodose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_monodose : 0;
 		let totale_vaccinati_pregressa_infezione = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_pregressa_infezione : 0;
 		let obiettivo_vaccinabili = totale_platea * 90 / 100;
@@ -196,7 +202,7 @@ class Vaccini extends React.Component {
 		//Graph settings - Cycle
 		const graph_covid_vax_cycle_settings = {
 	
-			series: [ totale_vaccinati_seconda_dose, totale_vaccinati_terza_dose, totale_vaccinati_monodose, totale_vaccinati_pregressa_infezione, non_vaccinati_totali],
+			series: [ totale_vaccinati_seconda_dose, totale_vaccinati_terza_dose, totale_vaccinati_quarta_dose,  totale_vaccinati_monodose, totale_vaccinati_pregressa_infezione, non_vaccinati_totali],
 			options: {
 				chart: {
 					//width: 380,
@@ -209,7 +215,7 @@ class Vaccini extends React.Component {
 					}
 				},
 				yaxis: { show: false },
-				labels: ['Seconda dose', 'Terza dose', 'Monodose', 'Pregressa infezione', 'Non vaccinati'],
+				labels: ['Seconda dose', 'Terza dose', 'Quarta dose', 'Monodose', 'Pregressa infezione', 'Non vaccinati'],
 				legend: {
 					position: 'right',
 					offsetY: 25,
@@ -225,7 +231,7 @@ class Vaccini extends React.Component {
 					}
 				},
 				dataLabels: { enabled : false },
-				colors: ['#2563EB', '#bfdbfe', '#DB2777', '#059669', '#FBBF24'],
+				colors: ['#2563EB', '#bfdbfe', '#6667AB', '#DB2777', '#059669', '#FBBF24'],
 				responsive: [
 					{
 						breakpoint: 1024,
@@ -345,7 +351,7 @@ class Vaccini extends React.Component {
 								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">PLATEA CAMPAGNA VACCINALE</span>
 								<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ totale_platea.toLocaleString('it') } <span className="text-base font-semibold text-black"> italiani vaccinabili</span></h3>		
 								<h3 className="text-xl lg:text-3xl mb-2 font-black text-blue-600">{ non_vaccinati_totali.toLocaleString('it') } <span className="text-base font-semibold text-black">con nessuna dose</span></h3>				
-								<p className="mt-6 text-base text-black">la campagna vaccinale italiana è iniziata il 27 dicembre 2020 e prosegue ora con la 3° dose</p>
+								<p className="mt-6 text-base text-black">la campagna vaccinale italiana è iniziata il 27 dicembre 2020 e prosegue ora con la 4° dose</p>
 							</div>
 						</div>
 
