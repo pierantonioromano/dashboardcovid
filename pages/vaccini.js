@@ -413,7 +413,7 @@ class Vaccini extends React.Component {
 										<Fragment key={i}>
 											<tr id={'regionRow-' + item.codice_regione}>
 												<td className="py-2 px-4 border-b border-gray-100">
-													{item.nome_area}
+													{item.reg}
 												</td>
 												<td className="py-2 px-4 border-b border-gray-100 text-center">
 													{Number(item.dosi_consegnate).toLocaleString('it')}
