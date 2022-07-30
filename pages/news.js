@@ -2,10 +2,9 @@ import Head from 'next/head'
 import React, { Fragment } from 'react'
 import SiteHeader from '../components/SiteHeader.js'
 import SiteFooter from '../components/SiteFooter.js'
-import format from 'date-fns/format';
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import { toDate } from 'date-fns';
-import { it } from 'date-fns/locale'
+import dayjs from 'dayjs'
+import 'dayjs/locale/it'
+import relativeTime from 'dayjs/plugin/relativeTime'
 import PullToRefresh from 'react-simple-pull-to-refresh';
 import Router from 'next/router'
 import fetch from 'node-fetch'
@@ -53,7 +52,7 @@ class News extends React.Component {
 								<a target="_blank" rel="noopener" className="block" href={item.l}>
 									<h3 className="text-base font-bold text-black pb-2">{newsTitle}</h3>
 								</a>
-								<span className="absolute bottom-0 left-0 w-full text-xs text-gray-400 px-4 pb-4 pt-0">{newsSource} { item.d? ' - ' + formatDistanceToNow(toDate(item.d*1000), { locale: it, addSuffix: true, includeSeconds: true}) : ''}
+								<span className="absolute bottom-0 left-0 w-full text-xs text-gray-400 px-4 pb-4 pt-0">{newsSource} { item.d ? ' - ' + dayjs.unix(item.d).locale('it').fromNow().replace("' ", "'") : ''}
 								</span>
 
 						</div>
@@ -65,6 +64,7 @@ class News extends React.Component {
 
 		//Screen values
 		let ultimo_aggiornamento = this.props.cleanedCovidNewsData ? this.props.cleanedCovidNewsData.last_build : '-';
+		dayjs.extend(relativeTime)
 
 		return (
 
@@ -86,7 +86,7 @@ class News extends React.Component {
 
 							<div className="relative my-4">
 								<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 mt-20 md:mt-24 font-bold">News</h1>
-								<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
+								<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{dayjs(ultimo_aggiornamento).locale('it').format('DD MMMM HH:mm')}</strong></span>
 							</div>
 
 							<div className="grid grid-cols-12 gap-4">

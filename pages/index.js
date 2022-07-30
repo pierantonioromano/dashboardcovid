@@ -4,9 +4,8 @@ import SiteHeader from '../components/SiteHeader.js'
 import SiteFooter from '../components/SiteFooter.js'
 import CalculateIncrements from '../components/CalculateIncrements.js'
 import CalculatePressure from '../components/CalculatePressure.js'
-import { format } from 'date-fns'
-import { getTime } from 'date-fns'
-import { it } from 'date-fns/locale'
+import dayjs from 'dayjs'
+import 'dayjs/locale/it'
 import dynamic from 'next/dynamic';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 import PullToRefresh from 'react-simple-pull-to-refresh';
@@ -109,17 +108,17 @@ class Home extends React.Component {
 			{ 
 				name: 'Nuovi casi', 
 				type: 'area',
-				data: Array.isArray(this.props.cleanedDailyData) ? this.props.cleanedDailyData.map((item) => [getTime(new Date(item.data)), item.nuovi_positivi] ) : null 
+				data: Array.isArray(this.props.cleanedDailyData) ? this.props.cleanedDailyData.map((item) => [new Date(item.data).getTime(), item.nuovi_positivi] ) : null 
 			},
 			{ 
 				name: 'T.I. totali', 
 				type: 'area',
-				data: Array.isArray(this.props.cleanedDailyData) ? this.props.cleanedDailyData.map((item) => [getTime(new Date(item.data)), item.terapia_intensiva] ) : null 
+				data: Array.isArray(this.props.cleanedDailyData) ? this.props.cleanedDailyData.map((item) => [new Date(item.data).getTime(), item.terapia_intensiva] ) : null 
 			},
 			{ 
 				name: 'Ricoveri totali', 
 				type: 'area',
-				data: Array.isArray(this.props.cleanedDailyData) ? this.props.cleanedDailyData.map((item) => [getTime(new Date(item.data)), item.totale_ospedalizzati] ) : null 
+				data: Array.isArray(this.props.cleanedDailyData) ? this.props.cleanedDailyData.map((item) => [new Date(item.data).getTime(), item.totale_ospedalizzati] ) : null 
 			},
 			
 
@@ -163,7 +162,7 @@ class Home extends React.Component {
 			  labels: {
 				formatter: function(val) {
 					if(val)
-						return format(new Date(val), 'd MMM - EEEE', {locale:it})
+						return dayjs(val).locale('it').format('DD MMM - dddd')
 					else
 						return "";
 				}
@@ -250,7 +249,7 @@ class Home extends React.Component {
 
 						<div className="relative my-4">
 							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 mt-20 md:mt-24 font-bold">Andamento nazionale</h1>
-							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
+							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{dayjs(ultimo_aggiornamento).locale('it').format('DD MMMM HH:mm')}</strong></span>
 						</div>
 
 						<div className="grid grid-cols-12 gap-3">
@@ -365,7 +364,7 @@ class Home extends React.Component {
 
 						<div className="relative my-4 mt-12">
 							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento regionale</h1>
-							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento_regioni), 'd MMMM kk:mm', {locale:it})}</strong></span>
+							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{dayjs(ultimo_aggiornamento_regioni).locale('it').format('DD MMMM HH:mm')}</strong></span>
 						</div>
 
 						<div className="bg-white rounded-md p-0">

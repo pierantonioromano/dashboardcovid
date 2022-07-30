@@ -2,8 +2,8 @@ import Head from 'next/head'
 import React, { Fragment } from 'react'
 import SiteHeader from '../components/SiteHeader.js'
 import SiteFooter from '../components/SiteFooter.js'
-import { format } from 'date-fns'
-import { it } from 'date-fns/locale'
+import dayjs from 'dayjs'
+import 'dayjs/locale/it'
 import dynamic from 'next/dynamic';
 import CalculatePressure from '../components/CalculatePressure.js'
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
@@ -106,7 +106,7 @@ class Vaccini extends React.Component {
 			  labels: {
 				formatter: function(val) {
 					if(val)
-						return format(new Date(val), 'd MMM - EEEE', {locale:it})
+						return dayjs(val).locale('it').format('DD MMM - dddd')
 					else
 						return "";
 				}
@@ -268,7 +268,7 @@ class Vaccini extends React.Component {
 
 						<div className="relative my-4">
 							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 mt-20 md:mt-24 font-bold">Andamento nazionale</h1>
-							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
+							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{dayjs(ultimo_aggiornamento).locale('it').format('DD MMMM HH:mm')}</strong></span>
 						</div>
 
 						<div className="grid grid-cols-12 gap-3">
@@ -343,7 +343,7 @@ class Vaccini extends React.Component {
 							</div>
 							<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
 								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">ANDAMENTO CAMPAGNA VACCINALE</span>
-								<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ totale_vaccinati_24h.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati il {format(new Date(ultimo_giorno_series), 'd MMMM', {locale:it})}</span></h3>		
+								<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ totale_vaccinati_24h.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati il {dayjs(ultimo_giorno_series).locale('it').format('DD MMMM')}</span></h3>		
 								<h3 className="text-xl lg:text-3xl mb-2 font-black text-blue-600">{ Math.round(totale_vaccinati_7gg / 7).toLocaleString('it') } <span className="text-base font-semibold text-black">media giornaliera 7gg</span></h3>				
 								<p className="mt-6 text-base text-black">con la media attuale sono necessari circa <strong>{Math.round(stima_dosi_future / (totale_vaccinati_7gg_senza_terza_dose / 7))}</strong> giorni per vaccinare il 90% degli over 5</p>
 							</div>
@@ -393,7 +393,7 @@ class Vaccini extends React.Component {
 
 						<div className="relative my-4 mt-12">
 							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Andamento regionale</h1>
-							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{format(new Date(ultimo_aggiornamento), 'd MMMM kk:mm', {locale:it})}</strong></span>
+							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Aggiornamento: <strong>{dayjs(ultimo_aggiornamento).locale('it').format('DD MMMM HH:mm')}</strong></span>
 						</div>
 
 						<div className="bg-white rounded-md p-0">
