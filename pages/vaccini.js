@@ -337,7 +337,7 @@ class Vaccini extends React.Component {
 						<div className="grid grid-cols-12 gap-3 mt-3">
 							<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
 								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">DETTAGLIO DOSI</span>
-								<div id="chart" className="absolute bottom-0 left-4 w-full">
+								<div id="chart">
 									<ReactApexChart options={graph_covid_vax_cycle_settings.options} series={graph_covid_vax_cycle_settings.series} type="donut" />
 								</div>
 							</div>
