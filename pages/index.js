@@ -336,8 +336,8 @@ class Home extends React.Component {
 						
 							<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
 								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">CARICHI OSPEDALIERI</span>
-								<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ Math.round(totale_intensive_attuali * 100 / totale_posti_ti) }% <span className="text-base font-semibold text-black">occupazione T.I. <span className="text-pink-500">({totale_intensive_attuali.toLocaleString('it')})</span></span></h3>
-								<h3 className="text-xl lg:text-3xl mt-2 mb-2 font-black text-blue-600">{ Math.round(totale_ricoverati_attuali * 100 / totale_posti_anc) }% <span className="text-base font-semibold text-black">occupazione reparti <span className="text-pink-500">({totale_ricoverati_attuali.toLocaleString('it')})</span></span></h3>
+								<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ Number(totale_intensive_attuali * 100 / totale_posti_ti).toFixed(1) }% <span className="text-base font-semibold text-black">occupazione T.I. <span className="text-pink-500">({totale_intensive_attuali.toLocaleString('it')})</span></span></h3>
+								<h3 className="text-xl lg:text-3xl mt-2 mb-2 font-black text-blue-600">{ Number(totale_ricoverati_attuali * 100 / totale_posti_anc).toFixed(1) }% <span className="text-base font-semibold text-black">occupazione reparti <span className="text-pink-500">({totale_ricoverati_attuali.toLocaleString('it')})</span></span></h3>
 								<p className="mt-6 text-base text-black"><strong>{totale_posti_ti.toLocaleString('it')}</strong> tot. posti in T.I. + <strong>{totale_posti_ti_extra.toLocaleString('it')}</strong> attivabili<br/><strong>{totale_posti_anc.toLocaleString('it')}</strong> tot. posti in area non critica</p>
 							</div>
 
