@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ClipboardCheckIcon, ShareIcon, XIcon, ClipboardIcon } from '@heroicons/react/outline';
+import { ClipboardDocumentCheckIcon, ShareIcon, XMarkIcon, ClipboardIcon } from '@heroicons/react/24/outline';
 import Facebook from 'react-share-icons/lib/Facebook'
 import Twitter from 'react-share-icons/lib/Twitter'
 import Whatsapp from 'react-share-icons/lib/Whatsapp'
@@ -79,7 +79,7 @@ export default function ShareModal() {
 									className="p-1 ml-auto bg-transparent border-0 text-black opacity-60 hover:opacity-100 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
 									onClick={() => setShowModal(false)}
 									>
-										<XIcon className="w-6" />
+										<XMarkIcon className="w-6" />
 									</button>
 								</div>
 
@@ -110,7 +110,7 @@ export default function ShareModal() {
 												<div className="relative w-full">
 													<div className="absolute top-4 left-3"> 
 														{ copiedUrl ? 
-															<ClipboardCheckIcon className="w-6 copied-url-done"/> 
+															<ClipboardDocumentCheckIcon className="w-6 copied-url-done"/> 
 														:
 															<ClipboardIcon className="w-6 copied-url-icon" />
 														}

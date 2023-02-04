@@ -1,11 +1,11 @@
 import Image from 'next/image'
-import { CollectionIcon, BeakerIcon, NewspaperIcon, PaperAirplaneIcon, GiftIcon, SupportIcon, ShareIcon } from '@heroicons/react/outline'
+import { RectangleStackIcon, BeakerIcon, NewspaperIcon, PaperAirplaneIcon, GiftIcon, LifebuoyIcon, ShareIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/router'
 import Link from 'next/link';
 import ShareModal from './ShareModal';
 
 const navigation = [
-	{ id:1 , label: 'Settimana', link: '/', icon: <CollectionIcon className="md:mr-1 h-6 w-6 md:h-4 md:w-4 inline align-middle md:-mt-1" aria-hidden="true" /> },
+	{ id:1 , label: 'Settimana', link: '/', icon: <RectangleStackIcon className="md:mr-1 h-6 w-6 md:h-4 md:w-4 inline align-middle md:-mt-1" aria-hidden="true" /> },
 	{ id:2 , label: 'Vaccini', link: '/vaccini', icon: <BeakerIcon className="md:mr-1 h-6 w-6 md:h-4 md:w-4 inline align-middle md:-mt-1" aria-hidden="true" /> },
 	//{ id:3 , label: 'Mondo', link: '/mondo', icon: <GlobeIcon className="md:mr-1 h-6 w-6 md:h-4 md:w-4 inline align-middle md:-mt-1" aria-hidden="true" /> },
 	{ id:4 , label: 'News', link: '/news', icon: <NewspaperIcon className="md:mr-1 h-6 w-6 md:h-4 md:w-4 inline align-middle md:-mt-1" aria-hidden="true" /> }
@@ -52,7 +52,7 @@ export default function SiteHeader() {
 							<div className="mt-0 md:mt-0 ml-0 flex items-baseline space-x-2 justify-end">
 								<ShareModal />
 								<a href="https://www.paypal.com/donate/?hosted_button_id=8QWX9XSU854MA" target="_blank" className="rounded-full bg-purple-50 hover:bg-purple-100 py-2 px-4 inline-block ease-linear transition-all duration-150">
-									<SupportIcon className="md:mr-1 h-6 w-6 md:h-4 md:w-4 inline align-middle md:-mt-1" /> Supporta
+									<LifebuoyIcon className="md:mr-1 h-6 w-6 md:h-4 md:w-4 inline align-middle md:-mt-1" /> Supporta
 								</a>
 							</div>
 						</div>

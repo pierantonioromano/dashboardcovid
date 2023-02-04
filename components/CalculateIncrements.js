@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrendingUpIcon, TrendingDownIcon } from '@heroicons/react/outline'
+import { ArrowTrendingUpIcon, ArrowTrendingDownIcon } from '@heroicons/react/24/outline'
 
 class CalculateIncrements extends React.Component {
 
@@ -49,9 +49,9 @@ class CalculateIncrements extends React.Component {
 		if(this.props.show_trending_icon)
 		{
 			if(valuesDifference <= 0)
-				trendingIcon = <TrendingDownIcon className={trendingIconStyles[incrementType]} />
+				trendingIcon = <ArrowTrendingDownIcon className={trendingIconStyles[incrementType]} />
 			else
-				trendingIcon = <TrendingUpIcon className={trendingIconStyles[incrementType]} />
+				trendingIcon = <ArrowTrendingUpIcon className={trendingIconStyles[incrementType]} />
 		}
 
 		if(!this.props.hide_text)
