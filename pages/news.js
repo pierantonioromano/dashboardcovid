@@ -36,7 +36,7 @@ class News extends React.Component {
 		return (
 					<Fragment key={i}>
 						<div className="bg-white hover:bg-gray-50 col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 rounded-md relative p-4 pb-12">
-							<div className="newsImageLazyLoad h-16 w-16 float-right my-2 mx-2 overflow-hidden w-full rounded-md relative"
+							<div className="newsImageLazyLoad h-16 w-16 float-right my-2 mx-2 overflow-hidden rounded-md relative"
 								data-img-url={newsImageUrl.uri}
 								style={{  
 										backgroundColor: '#d7e7f7',
