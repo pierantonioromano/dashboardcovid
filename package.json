@@ -8,10 +8,10 @@
   "dependencies": {
     "@heroicons/react": "^2.0.16",
     "@prefresh/next": "^1.6.1",
-    "apexcharts": "^3.37.1",
+    "apexcharts": "^3.37.2",
     "dayjs": "^1.11.7",
-    "next": "^13.2.1",
-    "node-fetch": "^3.3.0",
+    "next": "^13.2.4",
+    "node-fetch": "^3.3.1",
     "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
@@ -21,9 +21,9 @@
     "react-ssr-prepass": "npm:preact-ssr-prepass@^1.2.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.13",
+    "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.7",
-    "webpack": "^5.75.0"
+    "tailwindcss": "^3.3.0",
+    "webpack": "^5.77.0"
   }
 }
