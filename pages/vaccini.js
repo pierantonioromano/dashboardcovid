@@ -150,18 +150,12 @@ class Vaccini extends React.Component {
 		let totale_vaccinati_monodose = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_monodose : 0;
 		let totale_vaccinati_pregressa_infezione = Array.isArray(this.props.cleanedDailyVaxData.data_vax_totals) ? this.props.cleanedDailyVaxData.data_vax_totals[0].lab_pregressa_infezione : 0;
 		let obiettivo_vaccinabili = totale_platea * 90 / 100;
-		//console.log("obiettivo vaccinabili: " + obiettivo_vaccinabili);
 		let non_vaccinati_totali = totale_platea - totale_vaccinati_prima_dose - totale_vaccinati_pregressa_infezione - totale_vaccinati_monodose;
-		//console.log("non vaccinati totali: " + non_vaccinati_totali);
 		let non_vaccinati_obiettivo = obiettivo_vaccinabili - totale_vaccinati_prima_dose - totale_vaccinati_pregressa_infezione - totale_vaccinati_monodose;
-		//console.log("non vaccinati obiettivo: " + non_vaccinati_obiettivo);
 		let proporzione_monodose = (totale_vaccinati_monodose + totale_vaccinati_pregressa_infezione) * 100 / totale_vaccinati_prima_dose;
-		//console.log("proporzione monodose: " + proporzione_monodose);
 
 		let proporzione_monodosi_future = proporzione_monodose * non_vaccinati_obiettivo / totale_vaccinati_prima_dose;
-		//console.log("proporzione_monodosi_future: " + proporzione_monodosi_future);
 		let stima_dosi_future = (non_vaccinati_obiettivo * 2) - (non_vaccinati_obiettivo * proporzione_monodosi_future / 100);
-		//console.log("stima dosi future: " + stima_dosi_future);
 
 		let seriesLastDayIndex = Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series.length - 1 : 12; 
 		let totale_vaccinati_24h = Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) ? this.props.cleanedDailyVaxData.data_vax_series[seriesLastDayIndex].daily : 0;
@@ -345,13 +339,14 @@ class Vaccini extends React.Component {
 								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">ANDAMENTO CAMPAGNA VACCINALE</span>
 								<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ totale_vaccinati_24h.toLocaleString('it') } <span className="text-base font-semibold text-black">vaccinati il {dayjs(ultimo_giorno_series).locale('it').format('DD MMMM')}</span></h3>		
 								<h3 className="text-xl lg:text-3xl mb-2 font-black text-blue-600">{ Math.round(totale_vaccinati_7gg / 7).toLocaleString('it') } <span className="text-base font-semibold text-black">media giornaliera 7gg</span></h3>				
-								<p className="mt-6 text-base text-black">con la media attuale sono necessari circa <strong>{Math.round(stima_dosi_future / (totale_vaccinati_7gg_senza_terza_dose / 7))}</strong> giorni per vaccinare il 90% degli over 5</p>
+								{/* <p className="mt-6 text-base text-black">con la media attuale sono necessari circa <strong>{Math.round(stima_dosi_future / (totale_vaccinati_7gg_senza_terza_dose / 7))}</strong> giorni per vaccinare il 90% degli over 5</p> */}
+								<p className="mt-6 text-base text-black">l'obiettivo iniziale della campagna di vaccinazione era circa il 90% della popolazione over 5</p>
 							</div>
 							<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
 								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">PLATEA CAMPAGNA VACCINALE</span>
 								<h3 className="text-xl lg:text-3xl mt-6 mb-2 font-black text-blue-600">{ totale_platea.toLocaleString('it') } <span className="text-base font-semibold text-black"> italiani vaccinabili</span></h3>		
 								<h3 className="text-xl lg:text-3xl mb-2 font-black text-blue-600">{ non_vaccinati_totali.toLocaleString('it') } <span className="text-base font-semibold text-black">con nessuna dose</span></h3>				
-								<p className="mt-6 text-base text-black">la campagna vaccinale italiana è iniziata il 27 dicembre 2020 e prosegue ora con la 4° dose</p>
+								<p className="mt-6 text-base text-black">la campagna vaccinale italiana è iniziata il 27 dicembre 2020 e prosegue ora con le dosi booster</p>
 							</div>
 						</div>
 
