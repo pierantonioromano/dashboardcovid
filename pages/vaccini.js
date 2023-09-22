@@ -10,6 +10,7 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false })
 import PullToRefresh from "react-simple-pull-to-refresh"
 import Router from "next/router"
 import fetch from "node-fetch"
+import { ShieldExclamationIcon } from "@heroicons/react/24/outline"
 
 class Vaccini extends React.Component {
 	constructor(props) {
@@ -290,10 +291,10 @@ class Vaccini extends React.Component {
 		) {
 			//console.log(this.props.cleanedDailyVaxData.data_vax_series[i].date + " - " + this.props.cleanedDailyVaxData.data_vax_series[i].daily)
 			totale_vaccinati_7gg +=
-				this.props.cleanedDailyVaxData.data_vax_series[i].daily
+				this.props.cleanedDailyVaxData.data_vax_series[i]?.daily
 			totale_vaccinati_7gg_senza_terza_dose +=
-				this.props.cleanedDailyVaxData.data_vax_series[i].daily -
-				this.props.cleanedDailyVaxData.data_vax_series[i].terza_dose
+				this.props.cleanedDailyVaxData.data_vax_series[i]?.daily -
+				this.props.cleanedDailyVaxData.data_vax_series[i]?.terza_dose
 		}
 
 		//Report ISS
@@ -509,6 +510,16 @@ class Vaccini extends React.Component {
 							</span>
 						</div>
 
+						<div className="grid grid-cols-12">
+							<div className="col-span-12 p-4 bg-purple-900 rounded-md mb-3">
+								<p className="text-lg font-bold text-white">
+									<ShieldExclamationIcon className="w-6 mr-2 -mt-2 inline-block" />
+									Gli aggiornamenti della sezione Vaccini sono
+									temporaneamente sospesi
+								</p>
+							</div>
+						</div>
+
 						<div className="grid grid-cols-12 gap-3">
 							<div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-5 xl:col-span-4">
 								<div className="bg-blue-200 p-6 rounded-md">
@@ -675,9 +686,11 @@ class Vaccini extends React.Component {
 									</span>
 								</h3>
 								<h3 className="text-xl lg:text-3xl mb-2 font-black text-blue-600">
-									{Math.round(
-										totale_vaccinati_7gg / 7
-									).toLocaleString("it")}{" "}
+									{isNaN(totale_vaccinati_7gg) === false
+										? Math.round(
+												totale_vaccinati_7gg / 7
+										  ).toLocaleString("it")
+										: "n/a"}{" "}
 									<span className="text-base font-semibold text-black">
 										media giornaliera 7gg
 									</span>
