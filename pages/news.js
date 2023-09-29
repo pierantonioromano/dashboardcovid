@@ -9,6 +9,8 @@ import PullToRefresh from "react-simple-pull-to-refresh"
 import Router from "next/router"
 import fetch from "node-fetch"
 
+const NO_POST_IMAGE_ICON = "/mask.png"
+
 class News extends React.Component {
 	constructor(props) {
 		super(props)
@@ -26,13 +28,13 @@ class News extends React.Component {
 	}
 
 	renderNewsItem = (item, i) => {
-		let newsImageUrl = item.i
-			? {
-					uri:
-						this.props.cleanedCovidNewsData.sources[item.s]
-							.imgPath + item.i,
-			  }
-			: NoPostImageIcon
+		let newsImageUrl = {
+			uri:
+				item.i != null
+					? this.props.cleanedCovidNewsData.sources[item.s].imgPath +
+					  item.i
+					: NO_POST_IMAGE_ICON,
+		}
 		let newsTitle = item.t
 		let newsSource = this.props.cleanedCovidNewsData.sources[item.s].label
 			? this.props.cleanedCovidNewsData.sources[item.s].label
@@ -50,7 +52,7 @@ class News extends React.Component {
 								"url(" +
 								(this.state.loadImages
 									? newsImageUrl.uri
-									: "mask.png") +
+									: NO_POST_IMAGE_ICON) +
 								")",
 							backgroundPosition: "center",
 							backgroundSize: this.state.loadImages

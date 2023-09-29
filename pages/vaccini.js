@@ -467,6 +467,12 @@ class Vaccini extends React.Component {
 			},
 		}
 
+		//Date difference
+		const actualDate = dayjs("2023-09-16").format("YYYY-MM-DD")
+		const lastUpdate = dayjs(ultimo_aggiornamento).format("YYYY-MM-DD")
+		const dateDiff = dayjs(actualDate).diff(dayjs(lastUpdate), "day")
+		const lastUpdateThreshold = -20
+
 		return (
 			<div className="min-h-screen pb-0 bg-indigo-50">
 				<SiteHeader />
@@ -510,16 +516,20 @@ class Vaccini extends React.Component {
 							</span>
 						</div>
 
-						<div className="grid grid-cols-12">
-							<div className="col-span-12 p-4 bg-purple-900 rounded-md mb-3">
-								<p className="text-lg font-bold text-white">
-									<ShieldExclamationIcon className="w-6 mr-2 -mt-2 inline-block" />
-									Gli aggiornamenti della sezione Vaccini sono
-									temporaneamente sospesi
-								</p>
-							</div>
-						</div>
+						{/* ---{" "}
+						{`actualDate: ${actualDate}, lastUpdate: ${lastUpdate}, diff: ${dateDiff}`} */}
 
+						{dateDiff < lastUpdateThreshold && (
+							<div className="grid grid-cols-12">
+								<div className="col-span-12 p-4 bg-purple-900 rounded-md mb-3">
+									<p className="text-lg font-bold text-white">
+										<ShieldExclamationIcon className="w-6 mr-2 -mt-2 inline-block" />
+										Gli aggiornamenti della sezione Vaccini
+										sono temporaneamente sospesi
+									</p>
+								</div>
+							</div>
+						)}
 						<div className="grid grid-cols-12 gap-3">
 							<div className="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-5 xl:col-span-4">
 								<div className="bg-blue-200 p-6 rounded-md">
@@ -654,7 +664,6 @@ class Vaccini extends React.Component {
 								</div>
 							</div>
 						</div>
-
 						<div className="grid grid-cols-12 gap-3 mt-3">
 							<div className="col-span-12 sm:col-span-12 md:col-span-4 bg-white p-6 rounded-md relative">
 								<span className="absolute top-4 left-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">
@@ -726,7 +735,6 @@ class Vaccini extends React.Component {
 								</p>
 							</div>
 						</div>
-
 						{/*<div className="relative my-4 mt-12">
 							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">Report ISS</h1>
 							<span className="relative md:absolute md:right-0 md:top-2 bg-indigo-100 rounded-md p-2 text-xs text-gray-700 uppercase tracking-wide">Ultimo Report: <strong>{format(new Date(ultimo_aggiornamento_iss), 'd MMMM yyyy', {locale:it})}</strong></span>
@@ -762,7 +770,6 @@ class Vaccini extends React.Component {
 								<h3 className="text-xl lg:text-2xl mb-2 font-black text-blue-600">{ iss_decessi_non_vaccinati.toLocaleString('it') } <span className="text-base font-semibold text-black">non vaccinati</span></h3>
 							</div>
 						</div>*/}
-
 						<div className="relative my-4 mt-12">
 							<h1 className="text-2xl md:text-3xl mb-2 md:mb-0 font-bold">
 								Andamento regionale
@@ -776,7 +783,6 @@ class Vaccini extends React.Component {
 								</strong>
 							</span>
 						</div>
-
 						<div className="bg-white rounded-md p-0">
 							<table className="w-full relative responsive-table covid-regions-vax-table">
 								<thead>
