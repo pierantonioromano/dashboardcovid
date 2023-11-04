@@ -468,7 +468,7 @@ class Vaccini extends React.Component {
 		}
 
 		//Date difference
-		const actualDate = dayjs("2023-09-16").format("YYYY-MM-DD")
+		const actualDate = dayjs().format("YYYY-MM-DD")
 		const lastUpdate = dayjs(ultimo_aggiornamento).format("YYYY-MM-DD")
 		const dateDiff = dayjs(actualDate).diff(dayjs(lastUpdate), "day")
 		const lastUpdateThreshold = -20
