@@ -269,14 +269,18 @@ class Vaccini extends React.Component {
 		)
 			? this.props.cleanedDailyVaxData.data_vax_series.length - 1
 			: 12
-		let totale_vaccinati_24h = Array.isArray(
-			this.props.cleanedDailyVaxData.data_vax_series
-		)
-			? this.props.cleanedDailyVaxData.data_vax_series[seriesLastDayIndex]
-					.daily
-			: 0
+		let totale_vaccinati_24h =
+			Array.isArray(this.props.cleanedDailyVaxData.data_vax_series) &&
+			this.props.cleanedDailyVaxData.data_vax_series[seriesLastDayIndex]
+				? this.props.cleanedDailyVaxData.data_vax_series[
+						seriesLastDayIndex
+				  ].daily
+				: 0
 		let ultimo_giorno_series = Array.isArray(
-			this.props.cleanedDailyVaxData.data_vax_series
+			this.props.cleanedDailyVaxData.data_vax_series &&
+				this.props.cleanedDailyVaxData.data_vax_series[
+					seriesLastDayIndex
+				]
 		)
 			? this.props.cleanedDailyVaxData.data_vax_series[seriesLastDayIndex]
 					.date
