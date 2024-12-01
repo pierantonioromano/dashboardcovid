@@ -1,9 +1,9 @@
 import Head from "next/head"
 import React, { Fragment } from "react"
-import SiteHeader from "../components/SiteHeader.js"
-import SiteFooter from "../components/SiteFooter.js"
-import CalculateIncrements from "../components/CalculateIncrements.js"
-import CalculatePressure from "../components/CalculatePressure.js"
+import SiteHeader from "../src/components/SiteHeader.js"
+import SiteFooter from "../src/components/SiteFooter.js"
+import CalculateIncrements from "../src/components/CalculateIncrements.js"
+import CalculatePressure from "../src/components/CalculatePressure.js"
 import dayjs from "dayjs"
 import "dayjs/locale/it"
 import dynamic from "next/dynamic"
@@ -320,15 +320,15 @@ class Home extends React.Component {
 				type: "datetime",
 				tickAmount: "dataPoints",
 				tickPlacement: "on",
-				labels: {
-					formatter: function (val) {
-						if (val)
-							return dayjs(val)
-								.locale("it")
-								.format("DD MMM - dddd")
-						else return ""
-					},
-				},
+				// labels: {
+				// 	formatter: function (val) {
+				// 		if (val)
+				// 			return dayjs(val)
+				// 				.locale("it")
+				// 				.format("DD MMM - dddd")
+				// 		else return ""
+				// 	},
+				// },
 			},
 			tooltip: {
 				x: {

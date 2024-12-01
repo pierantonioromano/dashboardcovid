@@ -4,13 +4,27 @@
 .shares-twitter { fill: #1da1f2; }
 .shares-whatsapp { fill: #25d366; }
 .shares-telegram { fill: #0088cc; }
-.copied-url-icon { stroke: #3b82f6; }
+.copied-url-icon { stroke: #5d56d5; }
 .copied-url-done { stroke: #10b981; }
+
+.covid-regions-trend-table th:nth-of-type(1) { border-top-left-radius: 1rem; border-bottom-left-radius: 1rem; }
+.covid-regions-trend-table th:nth-of-type(6) { border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; }
+.covid-regions-trend-table tr:last-child td { border:none !important; }
+.covid-regions-trend-table tr:last-child td:first-child { border-bottom-left-radius: 1rem; }
+.covid-regions-trend-table tr:last-child td:last-child { border-bottom-right-radius: 1rem; }
+
+/* Carousel */
+.owl-dots { margin-top: 20px !important; }
+.owl-dots li { width: auto; margin: 0 2px !important; display: inline-block; }
+.owl-dots li span:before { content: "."; text-indent: -9999px; transition: all 0.3s; display: block; width: 6px; height: 6px; margin: 5px 2px; background-color: #fff; opacity: .5; border-radius: 100%; }
+.owl-dots li:first-child span { margin-left: 0; }
+.owl-dots li.slick-active span:before { transition: all 0.3s; display: block; width: 15px; border-radius: 10px; opacity: 1; }
+
 
 /* Generic Styles */
 @media only screen and (max-width: 1023px) {
   
-	#chart-timeline .apexcharts-legend { right: auto !important; top: 30px !important; }
+	#chart-timeline .apexcharts-legend { right: auto !important; top: 65px !important; margin-left: 5px; }
 	
 }
 
@@ -51,6 +65,7 @@
 	
 	}
 	
+
 	.covid-regions-trend-table td:nth-of-type(1):before { content: "Regione"; }
 	.covid-regions-trend-table td:nth-of-type(2):before { content: "Nuovi casi"; }
 	.covid-regions-trend-table td:nth-of-type(3):before { content: "Ricoveri"; }

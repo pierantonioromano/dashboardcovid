@@ -8,7 +8,6 @@ import {
 	LifebuoyIcon,
 	ShareIcon,
 } from "@heroicons/react/24/outline"
-import { useRouter } from "next/router"
 import Link from "next/link"
 import ShareModal from "./ShareModal"
 
@@ -40,17 +39,15 @@ const navigation = [
 ]
 
 export default function SiteHeader() {
-	const router = useRouter()
-
 	return (
 		<>
-			<nav className="w-full h-16 sticky top-0 left-0 z-10 bg-white border-b border-indigo-50">
-				<div className="container max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-4">
+			<nav className="w-full py-4 ">
+				<div className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-24">
 					<div className="flex items-center justify-items-center h-16">
-						<div className="flex-shrink-0 hidden md:block">
+						<div className="flex-shrink-0 md:block">
 							<div className="mt-1">
 								<a href="/">
-									<span className="inline-block align-middle">
+									<span className="inline-block align-middle bg-white rounded-full p-2">
 										<Image
 											src="/mask.png"
 											alt="Bollettino Covid-19"
@@ -58,7 +55,7 @@ export default function SiteHeader() {
 											height={36}
 										/>
 									</span>
-									<h1 className="md:inline-block align-middle ml-3 text-3xl -mt-1.5 font-bold text-blue-600">
+									<h1 className="inline-block align-middle ml-3 text-2xl lg:text-3xl -mt-1.5 font-bold text-white">
 										Bollettino Covid
 									</h1>
 								</a>
@@ -66,7 +63,7 @@ export default function SiteHeader() {
 						</div>
 						<div className="flex-grow">
 							<div className="mt-0 md:mt-0 ml-0 md:ml-12 flex items-baseline space-x-4 justify-center md:justify-start">
-								{navigation.map((item) =>
+								{/* {navigation.map((item) =>
 									router.pathname == item.link ? (
 										<a
 											key={item.id}
@@ -92,7 +89,7 @@ export default function SiteHeader() {
 											{item.icon} {item.label}
 										</a>
 									)
-								)}
+								)} */}
 							</div>
 						</div>
 
@@ -102,7 +99,7 @@ export default function SiteHeader() {
 								<a
 									href="https://www.paypal.com/donate/?hosted_button_id=8QWX9XSU854MA"
 									target="_blank"
-									className="rounded-full bg-purple-50 hover:bg-purple-100 py-2 px-4 inline-block ease-linear transition-all duration-150"
+									className="rounded-full border border-white bg-white hover:bg-governor-bay-700 hover:text-white py-2 px-4 inline-block ease-linear transition-all duration-150"
 								>
 									<LifebuoyIcon className="md:mr-1 h-6 w-6 md:h-4 md:w-4 inline align-middle md:-mt-1" />{" "}
 									Supporta
