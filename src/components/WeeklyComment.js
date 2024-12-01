@@ -34,7 +34,8 @@ async function WeeklyComment({
 		next: { revalidate: 3600 },
 	}
 	const serviceResponse = await fetch(
-		process.env.NEXT_PUBLIC_SITE_URL + "/api/fetch-comment",
+		//process.env.NEXT_PUBLIC_SITE_URL + "/api/fetch-comment",
+		"https://raw.githubusercontent.com/pierantonioromano/bollettinocovid_data/main/test_fetch_comment.json",
 		serviceCallOptions,
 		serviceParams
 	).then((res) => res.json())

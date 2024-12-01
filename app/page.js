@@ -359,7 +359,8 @@ export default async function Page({ props, searchParams }) {
 
 async function fetchHomeData() {
 	const data = await fetch(
-		process.env.NEXT_PUBLIC_SITE_URL + "/api/fetch-covid-data",
+		//process.env.NEXT_PUBLIC_SITE_URL + "/api/fetch-covid-data",
+		"https://raw.githubusercontent.com/pierantonioromano/bollettinocovid_data/main/test_latest_covid_data.json",
 		{
 			//cache: "no-store",
 			next: { revalidate: 10 },
@@ -368,16 +369,17 @@ async function fetchHomeData() {
 
 	return {
 		props: {
-			cleanedDailyData: data.results?.cleanedDailyData || null,
-			cleanedDailyNotes: data.results?.cleanedDailyNotes || null,
-			cleanedDailyRegions: data.results?.cleanedDailyRegions || null,
+			cleanedDailyData: data?.results?.cleanedDailyData || null,
+			cleanedDailyNotes: data?.results?.cleanedDailyNotes || null,
+			cleanedDailyRegions: data?.results?.cleanedDailyRegions || null,
 		},
 	}
 }
 
 async function fetchNews() {
 	const data = await fetch(
-		process.env.NEXT_PUBLIC_SITE_URL + "/api/fetch-covid-news",
+		//process.env.NEXT_PUBLIC_SITE_URL + "/api/fetch-covid-news",
+		"https://raw.githubusercontent.com/pierantonioromano/bollettinocovid_data/main/test_latest_covid_news.json",
 		{
 			cache: "no-store",
 			//next: { revalidate: 10 },
@@ -386,7 +388,7 @@ async function fetchNews() {
 
 	return {
 		props: {
-			allNews: data.results?.allNews || null,
+			allNews: data?.results?.allNews || null,
 		},
 	}
 }
