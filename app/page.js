@@ -359,8 +359,8 @@ export default async function Page({ props, searchParams }) {
 
 async function fetchHomeData() {
 	const data = await fetch(
-		//process.env.NEXT_PUBLIC_SITE_URL + "/api/fetch-covid-data",
-		"https://raw.githubusercontent.com/pierantonioromano/bollettinocovid_data/main/test_latest_covid_data.json",
+		process.env.NEXT_PUBLIC_SITE_URL + "/api/fetch-covid-data",
+		//"https://raw.githubusercontent.com/pierantonioromano/bollettinocovid_data/main/test_latest_covid_data.json",
 		{
 			//cache: "no-store",
 			next: { revalidate: 10 },
@@ -378,8 +378,8 @@ async function fetchHomeData() {
 
 async function fetchNews() {
 	const data = await fetch(
-		//process.env.NEXT_PUBLIC_SITE_URL + "/api/fetch-covid-news",
-		"https://raw.githubusercontent.com/pierantonioromano/bollettinocovid_data/main/test_latest_covid_news.json",
+		process.env.NEXT_PUBLIC_SITE_URL + "/api/fetch-covid-news",
+		//"https://raw.githubusercontent.com/pierantonioromano/bollettinocovid_data/main/test_latest_covid_news.json",
 		{
 			cache: "no-store",
 			//next: { revalidate: 10 },
