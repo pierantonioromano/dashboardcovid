@@ -189,6 +189,9 @@ export default async function Page({ props, searchParams }) {
 								</p>
 							</div>
 						</div>
+						<p className="mt-8 text-xs text-governor-bay-100">
+							Carichi calcolati su dati Agenas
+						</p>
 					</div>
 					<div className="col-span-12 lg:col-span-6 xl:col-span-5 bg-governor-bay-800 rounded-2xl p-6">
 						<h2 className="text-3xl text-white font-bold">
@@ -234,15 +237,6 @@ export default async function Page({ props, searchParams }) {
 							<BeakerIcon className="w-4 inline mr-1" /> Commento
 							generato dall'Intelligenza Artificiale
 						</p>
-						{/* {cleanedDailyNotes ? (
-							<p className="text-white mt-6 text-sm">
-								{
-									cleanedDailyNotes[
-										cleanedDailyNotes.length - 1
-									].note
-								}
-							</p>
-						) : null} */}
 					</div>
 				</div>
 
@@ -274,6 +268,20 @@ export default async function Page({ props, searchParams }) {
 						</div>
 					</div>
 				</div>
+
+				{/* Notes */}
+				{/* {cleanedDailyNotes && cleanedDailyNotes[0].note ? (
+					<>
+						<div className="bg-governor-bay-700 mt-3 rounded-2xl p-6">
+							<h2 className="text-3xl text-white font-bold">
+								Note
+							</h2>
+							<p className="text-white text-base mt-3">
+								{cleanedDailyNotes[0].note}
+							</p>
+						</div>
+					</>
+				) : null} */}
 
 				{/* News and Regions */}
 				<div className="grid grid-cols-12 gap-4 mt-4">
@@ -342,13 +350,35 @@ export default async function Page({ props, searchParams }) {
 
 						<RegionsMap cleanedDailyRegions={cleanedDailyRegions} />
 						<p className="text-slate-600 text-sm">
-							I dati nella mappa sono riferiti alla giornata del{" "}
+							Le regioni con il maggior numero di nuovi casi sono:{" "}
+							{cleanedDailyRegions
+								.sort(
+									(a, b) =>
+										b.nuovi_positivi - a.nuovi_positivi
+								)
+								.slice(0, 3)
+								.map(
+									(item, index) =>
+										item.denominazione_regione +
+										" (" +
+										item.nuovi_positivi +
+										")" +
+										(index <
+										cleanedDailyRegions.slice(0, 3).length -
+											1
+											? ", "
+											: ".")
+								)}
+							<br />
+							<br />I dati nella mappa sono riferiti alla giornata
+							del{" "}
 							<strong>
 								{dayjs(ultimo_aggiornamento)
 									.locale("it")
 									.format("DD MMMM YYYY")}
 							</strong>
-							. Non sono disponibili i dati settimanali.
+							. Per le regioni non è stato possibile elaborare i
+							dati settimanali.
 						</p>
 					</div>
 				</div>

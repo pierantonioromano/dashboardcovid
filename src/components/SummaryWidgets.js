@@ -16,6 +16,14 @@ const SummaryWidgets = ({
 	popolazione_italiana,
 }) => {
 	const sliderSettings = {
+		onInit: function () {
+			if (typeof document !== undefined) {
+				const carouselItems = document.querySelectorAll(".carouselItem")
+				carouselItems.forEach((item) => {
+					item.classList.remove("hidden")
+				})
+			}
+		},
 		customPaging: function (i) {
 			return <span></span>
 		},
@@ -30,7 +38,7 @@ const SummaryWidgets = ({
 				breakpoint: 1280,
 				settings: {
 					slidesToShow: 3,
-					slidesToScroll: 1,
+					slidesToScroll: 3,
 					dots: true,
 				},
 			},
@@ -38,7 +46,7 @@ const SummaryWidgets = ({
 				breakpoint: 800,
 				settings: {
 					slidesToShow: 2,
-					slidesToScroll: 1,
+					slidesToScroll: 2,
 					dots: true,
 				},
 			},
@@ -58,7 +66,7 @@ const SummaryWidgets = ({
 			<Slider {...sliderSettings}>
 				<div
 					key={"widget-1"}
-					className="text-center text-governor-bay-200"
+					className="text-center text-governor-bay-200 hidden carouselItem"
 				>
 					<span className="block mb-3 text-7xl font-bold text-white">
 						{lastWeekData?.nuovi_positivi.toLocaleString("it")}
@@ -84,7 +92,7 @@ const SummaryWidgets = ({
 				</div>
 				<div
 					key={"widget-2"}
-					className="text-center text-governor-bay-200"
+					className="text-center text-governor-bay-200 hidden carouselItem"
 				>
 					<span className="block mb-3 text-7xl font-bold text-white">
 						{lastWeekData?.deceduti}
@@ -109,7 +117,7 @@ const SummaryWidgets = ({
 				</div>
 				<div
 					key={"widget-3"}
-					className="text-center text-governor-bay-200"
+					className="text-center text-governor-bay-200 hidden carouselItem"
 				>
 					<span className="block mb-3 text-7xl font-bold text-white">
 						{lastWeekData.ricoverati_con_sintomi}
@@ -141,7 +149,7 @@ const SummaryWidgets = ({
 				</div>
 				<div
 					key={"widget-4"}
-					className="text-center text-governor-bay-200"
+					className="text-center text-governor-bay-200 hidden carouselItem"
 				>
 					<span className="block mb-3 text-7xl font-bold text-white">
 						{lastWeekData.terapia_intensiva}
@@ -173,7 +181,7 @@ const SummaryWidgets = ({
 				</div>
 				<div
 					key={"widget-5"}
-					className="text-center text-governor-bay-200"
+					className="text-center text-governor-bay-200 hidden carouselItem"
 				>
 					<span className="block mb-3 text-7xl font-bold text-white">
 						{Math.round(
