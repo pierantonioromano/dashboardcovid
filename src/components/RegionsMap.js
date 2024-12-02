@@ -8,11 +8,9 @@ const RegionsMap = ({ cleanedDailyRegions }) => {
 	cleanedDailyRegions.sort((a, b) => b.nuovi_positivi - a.nuovi_positivi)
 
 	useEffect(() => {
-		cleanedDailyRegions
-			//.sort((a, b) => b.nuovi_positivi - a.nuovi_positivi)
-			.map((item) => {
-				regionsData[item.codice_regione] = item
-			})
+		cleanedDailyRegions.map((item) => {
+			regionsData[item.codice_regione] = item
+		})
 
 		document.querySelectorAll("[data-regioncode]").forEach((item) => {
 			item.setAttribute(
@@ -52,7 +50,6 @@ const RegionsMap = ({ cleanedDailyRegions }) => {
 					x="0px"
 					y="0px"
 					viewBox="0 -21.6 761 919"
-					//style="enable-background:new 0 -21.6 761 919;"
 					xmlSpace="preserve"
 				>
 					<g id="sar">

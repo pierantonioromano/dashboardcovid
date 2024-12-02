@@ -7,10 +7,7 @@ import {
 	XMarkIcon,
 	ClipboardIcon,
 } from "@heroicons/react/24/outline"
-import Facebook from "react-share-icons/lib/Facebook"
-import Twitter from "react-share-icons/lib/Twitter"
-import Whatsapp from "react-share-icons/lib/Whatsapp"
-import Telegram from "react-share-icons/lib/Telegram"
+import { FaFacebook, FaXTwitter, FaWhatsapp, FaTelegram } from "react-icons/fa6"
 
 export default function ShareModal() {
 	const [showModal, setShowModal] = useState(false)
@@ -41,10 +38,12 @@ export default function ShareModal() {
 		/*if(!sharedImage || sharedImage == "")
 			sharedImage = window.location.protocol + "/" + window.location.hostname + document.querySelector("meta[property='og:image']").content;*/
 
+		let socialShareUrl = ""
+
 		//build share url
 		switch (socialType) {
 			case "facebook":
-				var socialShareUrl =
+				socialShareUrl =
 					"https://www.facebook.com/sharer/sharer.php?u=" +
 					sharedUrl +
 					"&title=" +
@@ -63,8 +62,7 @@ export default function ShareModal() {
 				break
 
 			case "twitter":
-				//var socialShareUrl = "http://twitter.com/share?url=" + sharedUrl + "&image=" + sharedImage + "&text=" + sharedText;
-				var socialShareUrl =
+				socialShareUrl =
 					"https://twitter.com/intent/tweet?text=" +
 					sharedText +
 					"&url=" +
@@ -77,7 +75,7 @@ export default function ShareModal() {
 				break
 
 			case "whatsapp":
-				var socialShareUrl =
+				socialShareUrl =
 					"https://api.whatsapp.com/send?text=" +
 					shareText +
 					" " +
@@ -90,7 +88,7 @@ export default function ShareModal() {
 				break
 
 			case "telegram":
-				var socialShareUrl =
+				socialShareUrl =
 					"https://t.me/share/url?url=" + shareText + " " + shareUrl
 				window.open(
 					socialShareUrl,
@@ -100,7 +98,7 @@ export default function ShareModal() {
 				break
 
 			case "pinterest":
-				var socialShareUrl =
+				socialShareUrl =
 					"https://pinterest.com/pin/create/button/?url=" +
 					sharedUrl +
 					"&media=" +
@@ -115,7 +113,7 @@ export default function ShareModal() {
 				break
 
 			case "linkedin":
-				var socialShareUrl =
+				socialShareUrl =
 					"https://www.linkedin.com/shareArticle?mini=true&url=" +
 					sharedUrl +
 					"&title=" +
@@ -151,7 +149,7 @@ export default function ShareModal() {
 			{showModal ? (
 				<>
 					<div className="justify-center flex overflow-x-hidden overflow-y-auto fixed items-center inset-0 z-50 outline-none focus:outline-none">
-						<div className="relative w-full my-6 mx-auto max-w-3xl">
+						<div className="relative w-full my-6 mx-auto max-w-4xl">
 							{/*content*/}
 							<div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
 								{/*header*/}
@@ -171,7 +169,7 @@ export default function ShareModal() {
 								<div className="relative p-6 flex-auto">
 									<div className="grid grid-cols-12 gap-3 mt-3">
 										<div className="col-span-4">
-											<span className="block w-full mb-4 text-xs uppercase font-semibold text-gray-500 tracking-widest">
+											<span className="block w-full mb-5 text-xs uppercase font-semibold text-gray-500 tracking-widest">
 												CONDIVIDI SUI SOCIAL
 											</span>
 
@@ -189,7 +187,7 @@ export default function ShareModal() {
 													)
 												}}
 											>
-												<Facebook className="shares-facebook -ml-2 w-14 inline" />
+												<FaFacebook className="shares-facebook text-5xl mr-3 inline" />
 											</a>
 											<a
 												href="#"
@@ -205,7 +203,7 @@ export default function ShareModal() {
 													)
 												}}
 											>
-												<Twitter className="shares-twitter w-14 inline" />
+												<FaXTwitter className="shares-twitter text-5xl mr-3 inline" />
 											</a>
 											<a
 												href="#"
@@ -221,7 +219,7 @@ export default function ShareModal() {
 													)
 												}}
 											>
-												<Whatsapp className="shares-whatsapp w-14 inline" />
+												<FaWhatsapp className="shares-whatsapp text-5xl mr-3 inline" />
 											</a>
 											<a
 												href="#"
@@ -237,7 +235,7 @@ export default function ShareModal() {
 													)
 												}}
 											>
-												<Telegram className="shares-telegram w-14 inline" />
+												<FaTelegram className="shares-telegram text-5xl mr-3 inline" />
 											</a>
 										</div>
 										<div className="col-span-8">

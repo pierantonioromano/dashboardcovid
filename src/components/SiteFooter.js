@@ -2,7 +2,7 @@ import { FaceSmileIcon } from "@heroicons/react/24/outline"
 
 export default function SiteFooter() {
 	return (
-		<>
+		<footer role="contentinfo">
 			<div className="w-full mt-3 mb-12">
 				<div className="container max-w-screen-2xl px-4 xl:px-8 mx-auto">
 					<div className="grid grid-cols-12 gap-1 rounded-3xl bg-black">
@@ -23,7 +23,7 @@ export default function SiteFooter() {
 								ufficiali.
 							</p>
 						</div>
-						<div className="col-span-12 md:col-span-6 pt-4 pb-0 md:py-6 px-8">
+						<div className="col-span-12 md:col-span-6 pt-4 pb-0 md:py-4 px-8">
 							<p className="text-sm text-gray-500">
 								Sito creato da{" "}
 								<a
@@ -61,48 +61,6 @@ export default function SiteFooter() {
 					</div>
 				</div>
 			</div>
-
-			{/* <div className="w-full bg-black mt-0">
-				<div className="container max-w-screen-xl px-4 mx-auto">
-					<div className="grid grid-cols-12 gap-3">
-						<div className="col-span-12 md:col-span-6 pt-6 pb-0 md:py-6">
-							<p className="text-sm text-gray-500">
-								Sito creato da{" "}
-								<a
-									className="text-gray-400 hover:text-white"
-									target="_blank"
-									rel="noopener"
-									href="https://www.pierantonioromano.com"
-								>
-									Pier Antonio Romano
-								</a>
-							</p>
-						</div>
-						<div className="col-span-12 md:col-span-6 pt-0 pb-6 md:py-6 text-left md:text-right">
-							<p className="text-sm text-gray-500">
-								powered by{" "}
-								<a
-									className="text-gray-400 hover:text-white"
-									target="_blank"
-									rel="noopener"
-									href="https://www.nextjs.org"
-								>
-									NextJS
-								</a>{" "}
-								&{" "}
-								<a
-									className="text-gray-400 hover:text-white"
-									target="_blank"
-									rel="noopener"
-									href="https://www.vercel.com"
-								>
-									Vercel
-								</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div> */}
-		</>
+		</footer>
 	)
 }

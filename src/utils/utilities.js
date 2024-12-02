@@ -144,7 +144,6 @@ export const buildMainGraphOptions = () => {
 		fill: {
 			type: "solid",
 			opacity: 0.2,
-			//colors: ['#E1E8FF', '#c00']
 		},
 		colors: ["#2664EC", "#EC4899", "#8B5CF6"],
 		legend: {

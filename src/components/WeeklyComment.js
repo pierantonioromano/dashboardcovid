@@ -31,7 +31,6 @@ async function WeeklyComment({
 	const serviceCallOptions = {
 		method: "POST",
 		body: JSON.stringify(serviceParams),
-		//next: { revalidate: 3600 },
 	}
 	const serviceResponse = await fetch(
 		process.env.NEXT_PUBLIC_SITE_URL + "/api/fetch-comment",

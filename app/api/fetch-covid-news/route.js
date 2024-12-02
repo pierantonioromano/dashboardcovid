@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server"
-import dayjs from "dayjs"
 
 export async function GET(request) {
 	try {
@@ -15,8 +14,8 @@ export async function GET(request) {
 
 		const dataSources = [
 			"https://www.ilfattoquotidiano.it/tag/coronavirus/feed/",
-			//"https://www.ilpost.it/tag/coronavirus/feed/",
 			"https://www.open.online/temi/coronavirus/feed/",
+			//"https://www.ilpost.it/tag/coronavirus/feed/",
 		]
 
 		const data = await Promise.all(

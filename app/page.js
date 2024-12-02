@@ -1,6 +1,5 @@
 import dayjs from "dayjs"
 import "dayjs/locale/it"
-import relativeTime from "dayjs/plugin/relativeTime"
 import SiteGraph from "@components/SiteGraph"
 import {
 	extractWeeklyData,
@@ -13,6 +12,7 @@ import { BeakerIcon, ChartPieIcon } from "@heroicons/react/24/outline"
 import RegionsMap from "@components/RegionsMap"
 import WeeklyComment from "@components/WeeklyComment"
 import SummaryWidgets from "@components/SummaryWidgets"
+import NewsCard from "@components/NewsCard"
 
 export default async function Page({ props, searchParams }) {
 	/*
@@ -51,7 +51,6 @@ export default async function Page({ props, searchParams }) {
 		Utilities
 	*/
 	const popolazione_italiana = process.env.NEXT_PUBLIC_ITALIAN_POPULATION // updated Jan 2021
-	dayjs.extend(relativeTime)
 
 	let ultimo_aggiornamento =
 		cleanedDailyData[cleanedDailyData?.length - 1]?.data || "n/a"
@@ -77,7 +76,7 @@ export default async function Page({ props, searchParams }) {
 	const graph_trending_options = buildMainGraphOptions()
 
 	return (
-		<>
+		<main role="main">
 			<div className="container max-w-screen-2xl px-4 xl:px-8 mx-auto">
 				{/* Summary Widgets */}
 				<div className="grid grid-cols-12 gap-4 my-8 lg:my-24">
@@ -145,20 +144,22 @@ export default async function Page({ props, searchParams }) {
 								secondary="#393679"
 							/>
 							<div className="ml-6 justify-center items-start flex flex-col">
-								<h4 className="text-base lg:text-lg font-bold text-white">
-									Occupazione Terapie intensive
-								</h4>
+								<h3 className="text-base lg:text-lg font-bold text-white">
+									Terapie intensive
+								</h3>
 								<p className="text-sm lg:text-base text-governor-bay-200">
 									<strong>
-										{totale_posti_ti.toLocaleString("it")}
-									</strong>{" "}
-									tot. posti in T.I. +{" "}
-									<strong>
-										{totale_posti_ti_extra.toLocaleString(
+										{cleanedDailyData[
+											cleanedDailyData?.length - 1
+										].terapia_intensiva.toLocaleString(
 											"it"
 										)}
 									</strong>{" "}
-									attivabili
+									su{" "}
+									<strong>
+										{totale_posti_ti.toLocaleString("it")}
+									</strong>{" "}
+									disponibili
 								</p>
 							</div>
 						</div>
@@ -178,14 +179,22 @@ export default async function Page({ props, searchParams }) {
 								secondary="#393679"
 							/>
 							<div className="ml-6 justify-center items-start flex flex-col">
-								<h4 className="text-base lg:text-lg font-bold text-white">
-									Occupazione Reparti
-								</h4>
+								<h3 className="text-base lg:text-lg font-bold text-white">
+									Reparti
+								</h3>
 								<p className="text-sm lg:text-base text-governor-bay-200">
+									<strong>
+										{cleanedDailyData[
+											cleanedDailyData?.length - 1
+										].ricoverati_con_sintomi.toLocaleString(
+											"it"
+										)}
+									</strong>{" "}
+									su{" "}
 									<strong>
 										{totale_posti_anc.toLocaleString("it")}
 									</strong>{" "}
-									tot. posti in area non critica
+									disponibili
 								</p>
 							</div>
 						</div>
@@ -287,7 +296,9 @@ export default async function Page({ props, searchParams }) {
 				{/* News and Regions */}
 				<div className="grid grid-cols-12 gap-4 mt-4">
 					<div className="col-span-12 lg:col-span-8 rounded-2xl bg-governor-bay-800 p-6">
-						<h2 className="text-3xl font-bold text-white">News</h2>
+						<h2 className="text-3xl font-bold text-white">
+							Ultime notizie
+						</h2>
 						<ul className="mt-4">
 							{allNews
 								? allNews.map((item, index) => (
@@ -295,7 +306,14 @@ export default async function Page({ props, searchParams }) {
 											className="flex mb-4 lg:mb-2"
 											key={"news-" + index}
 										>
-											<div
+											<NewsCard
+												title={item.title}
+												image={item.image}
+												link={item.link}
+												date={item.date}
+												source={item.source}
+											/>
+											{/* <div
 												className="newsImageLazyLoad h-20 w-20 min-w-20 float-right my-2 mr-4 overflow-hidden rounded-md relative"
 												//data-img-url={newsImageUrl.uri}
 												style={{
@@ -338,7 +356,7 @@ export default async function Page({ props, searchParams }) {
 															.locale("it")
 															.fromNow()}
 												</span>
-											</div>
+											</div> */}
 										</li>
 								  ))
 								: null}
@@ -384,7 +402,7 @@ export default async function Page({ props, searchParams }) {
 					</div>
 				</div>
 			</div>
-		</>
+		</main>
 	)
 }
 
@@ -392,10 +410,6 @@ async function fetchHomeData() {
 	const data = await fetch(
 		process.env.NEXT_PUBLIC_SITE_URL + "/api/fetch-covid-data"
 		//"https://raw.githubusercontent.com/pierantonioromano/bollettinocovid_data/main/test_latest_covid_data.json",
-		// {
-		// 	//cache: "no-store",
-		// 	//next: { revalidate: 10 },
-		// }
 	).then((res) => res.json())
 
 	return {
@@ -411,10 +425,6 @@ async function fetchNews() {
 	const data = await fetch(
 		process.env.NEXT_PUBLIC_SITE_URL + "/api/fetch-covid-news"
 		//"https://raw.githubusercontent.com/pierantonioromano/bollettinocovid_data/main/test_latest_covid_news.json",
-		// {
-		// 	//cache: "no-store",
-		// 	//next: { revalidate: 10 },
-		// }
 	).then((res) => res.json())
 
 	return {

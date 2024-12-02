@@ -29,7 +29,7 @@ const SummaryWidgets = ({
 		},
 		arrows: false,
 		dots: false,
-		dotsClass: "owl-dots",
+		dotsClass: "bc19-dots",
 		infinite: false,
 		speed: 500,
 		slidesToShow: 5,

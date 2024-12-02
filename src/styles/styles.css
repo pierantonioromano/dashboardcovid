@@ -1,7 +1,7 @@
 /* Modal Styling */
 .modalOverlay { margin: 0 !important; }
 .shares-facebook { fill: #1877f2;  }
-.shares-twitter { fill: #1da1f2; }
+.shares-twitter { fill: #000; }
 .shares-whatsapp { fill: #25d366; }
 .shares-telegram { fill: #0088cc; }
 .copied-url-icon { stroke: #5d56d5; }
@@ -14,11 +14,11 @@
 .covid-regions-trend-table tr:last-child td:last-child { border-bottom-right-radius: 1rem; }
 
 /* Carousel */
-.owl-dots { margin-top: 20px !important; }
-.owl-dots li { width: auto; margin: 0 2px !important; display: inline-block; }
-.owl-dots li span:before { content: "."; text-indent: -9999px; transition: all 0.3s; display: block; width: 6px; height: 6px; margin: 5px 2px; background-color: #fff; opacity: .5; border-radius: 100%; }
-.owl-dots li:first-child span { margin-left: 0; }
-.owl-dots li.slick-active span:before { transition: all 0.3s; display: block; width: 15px; border-radius: 10px; opacity: 1; }
+.bc19-dots { margin-top: 20px !important; }
+.bc19-dots li { width: auto; margin: 0 2px !important; display: inline-block; }
+.bc19-dots li span:before { content: "."; text-indent: -9999px; transition: all 0.3s; display: block; width: 6px; height: 6px; margin: 5px 2px; background-color: #fff; opacity: .5; border-radius: 100%; }
+.bc19-dots li:first-child span { margin-left: 0; }
+.bc19-dots li.slick-active span:before { transition: all 0.3s; display: block; width: 15px; border-radius: 10px; opacity: 1; }
 
 
 /* Generic Styles */
@@ -33,140 +33,8 @@
 	body {
 		/* PWA utilities */
 		-webkit-user-select: none;
+		user-select: none;
 		-webkit-tap-highlight-color: transparent;
 		-webkit-touch-callout: none;
 	}
-
-	table.responsive-table, .responsive-table thead, .responsive-table tbody, .responsive-table th, .responsive-table td, .responsive-table tr { display: block; }
-	.responsive-table thead tr { position: absolute; top: -9999px; left: -9999px; }
-	.responsive-table tr { border-bottom: 1px solid #ddd; background: #F9FAFB; }
-	.responsive-table td { border: none; border-bottom: 1px solid #eee; position: relative; /*padding-left: 200px;*/ margin-left: 150px; text-align: center; background: #fff; min-height: 41px; }
-	.responsive-table tr td:first-child { font-weight: 700; }
-	.responsive-table tr td:last-child { border: none; }
-	.responsive-table td:before {
-
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 150px;
-		padding-right: 0;
-		white-space: nowrap;
-		margin-left: -150px;
-		text-align: center;
-		color: rgba(107, 114, 128, 1);
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		font-weight: 600;
-		font-size: 0.75rem;
-		line-height: 1rem;
-		display: block;
-		height: 40px;
-		padding-top: 12px;
-	
-	}
-	
-
-	.covid-regions-trend-table td:nth-of-type(1):before { content: "Regione"; }
-	.covid-regions-trend-table td:nth-of-type(2):before { content: "Nuovi casi"; }
-	.covid-regions-trend-table td:nth-of-type(3):before { content: "Ricoveri"; }
-	.covid-regions-trend-table td:nth-of-type(4):before { content: "T.I.";}
-	.covid-regions-trend-table td:nth-of-type(5):before { content: "Carico Rep.";}
-	.covid-regions-trend-table td:nth-of-type(6):before { content: "Carico T.I.";}
-
-	.covid-regions-vax-table td:nth-of-type(1):before { content: "Regione"; }
-	.covid-regions-vax-table td:nth-of-type(2):before { content: "Consegnate"; }
-	.covid-regions-vax-table td:nth-of-type(3):before { content: "Somministrate"; }
-	.covid-regions-vax-table td:nth-of-type(4):before { content: "Avanzamento"; }
-
 }
-
-/*
-	Nprogress Styles 
-*/
-/* Make clicks pass-through */
-#nprogress {
-	pointer-events: none;
-  }
-  
-  #nprogress .bar {
-	background: #2563EB;
-  
-	position: fixed;
-	z-index: 1031;
-	top: 0;
-	left: 0;
-  
-	width: 100%;
-	height: 2px;
-  }
-  
-  /* Fancy blur effect */
-  #nprogress .peg {
-	display: block;
-	position: absolute;
-	right: 0px;
-	width: 100px;
-	height: 100%;
-	box-shadow: 0 0 10px #2563EB, 0 0 5px #2563EB;
-	opacity: 1.0;
-  
-	/*-webkit-transform: rotate(3deg) translate(0px, -4px);
-		-ms-transform: rotate(3deg) translate(0px, -4px);
-			transform: rotate(3deg) translate(0px, -4px);*/
-  }
-  
-  /* Remove these to get rid of the spinner 
-  #nprogress .spinner {
-	display: block;
-	position: fixed;
-	z-index: 1031;
-	top: 15px;
-	right: 15px;
-  }
-  
-  #nprogress .spinner-icon {
-	width: 18px;
-	height: 18px;
-	box-sizing: border-box;
-  
-	border: solid 2px transparent;
-	border-top-color: #2563EB;
-	border-left-color: #2563EB;
-	border-radius: 50%;
-  
-	-webkit-animation: nprogress-spinner 400ms linear infinite;
-			animation: nprogress-spinner 400ms linear infinite;
-  } */
-  
-  .nprogress-custom-parent {
-	overflow: hidden;
-	position: relative;
-  }
-  
-  .nprogress-custom-parent #nprogress .spinner,
-  .nprogress-custom-parent #nprogress .bar {
-	position: absolute;
-  }
-  
-  @-webkit-keyframes nprogress-spinner {
-	0%   { -webkit-transform: rotate(0deg); }
-	100% { -webkit-transform: rotate(360deg); }
-  }
-  @keyframes nprogress-spinner {
-	0%   { transform: rotate(0deg); }
-	100% { transform: rotate(360deg); }
-  }
-
-/* 
-	PTR fixes 
-*/
-.ptr__children { height: 100vh !important; overflow: auto !important;  -webkit-overflow-scrolling: touch; position: fixed !important; top: 0 ; left: 0; }
-.ptr__pull-down > div {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    z-index: 2;
-    width: 100%;
-	color: #2563EB;
-}
-.lds-ellipsis div {  background: #2563EB !important; }

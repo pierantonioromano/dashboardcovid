@@ -32,9 +32,9 @@ export async function GET(request) {
 				{
 					status: "OK",
 					results: {
-						cleanedDailyData: data[0],
-						cleanedDailyNotes: data[1],
-						cleanedDailyRegions: data[2],
+						cleanedDailyData: data[0] || null,
+						cleanedDailyNotes: data[1] || null,
+						cleanedDailyRegions: data[2] || null,
 					},
 				},
 				{ status: 200 }
