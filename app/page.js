@@ -9,7 +9,7 @@ import {
 	getAgenasData,
 } from "@utils/utilities"
 import CircularIndicator from "@components/CircularIndicator"
-import { BeakerIcon } from "@heroicons/react/24/outline"
+import { BeakerIcon, ChartPieIcon } from "@heroicons/react/24/outline"
 import RegionsMap from "@components/RegionsMap"
 import WeeklyComment from "@components/WeeklyComment"
 import SummaryWidgets from "@components/SummaryWidgets"
@@ -125,7 +125,7 @@ export default async function Page({ props, searchParams }) {
 							</div>
 						</div>
 					</div>
-					<div className="col-span-12 lg:col-span-6 xl:col-span-4 bg-governor-bay-700 rounded-2xl p-6">
+					<div className="col-span-12 lg:col-span-6 xl:col-span-4 bg-governor-bay-700 rounded-2xl p-6 flex flex-col justify-between">
 						<h2 className="text-3xl text-white font-bold">
 							Carichi ospedalieri
 						</h2>
@@ -190,10 +190,11 @@ export default async function Page({ props, searchParams }) {
 							</div>
 						</div>
 						<p className="mt-8 text-xs text-governor-bay-100">
-							Carichi calcolati su dati Agenas
+							<ChartPieIcon className="w-4 inline mr-1" /> Carichi
+							calcolati su dati Agenas
 						</p>
 					</div>
-					<div className="col-span-12 lg:col-span-6 xl:col-span-5 bg-governor-bay-800 rounded-2xl p-6">
+					<div className="col-span-12 lg:col-span-6 xl:col-span-5 bg-governor-bay-800 rounded-2xl p-6 flex flex-col justify-between">
 						<h2 className="text-3xl text-white font-bold">
 							Analisi dei dati
 						</h2>

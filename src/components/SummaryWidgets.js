@@ -66,7 +66,7 @@ const SummaryWidgets = ({
 			<Slider {...sliderSettings}>
 				<div
 					key={"widget-1"}
-					className="text-center text-governor-bay-200 hidden carouselItem"
+					className="w-full col-span-12 md:col-6 xl:col-2 text-center text-governor-bay-200 hidden carouselItem"
 				>
 					<span className="block mb-3 text-7xl font-bold text-white">
 						{lastWeekData?.nuovi_positivi.toLocaleString("it")}
@@ -92,7 +92,7 @@ const SummaryWidgets = ({
 				</div>
 				<div
 					key={"widget-2"}
-					className="text-center text-governor-bay-200 hidden carouselItem"
+					className="col-span-12 md:col-6 xl:col-2 text-center text-governor-bay-200 hidden carouselItem"
 				>
 					<span className="block mb-3 text-7xl font-bold text-white">
 						{lastWeekData?.deceduti}
@@ -117,7 +117,7 @@ const SummaryWidgets = ({
 				</div>
 				<div
 					key={"widget-3"}
-					className="text-center text-governor-bay-200 hidden carouselItem"
+					className="col-span-12 md:col-6 xl:col-2 text-center text-governor-bay-200 hidden carouselItem"
 				>
 					<span className="block mb-3 text-7xl font-bold text-white">
 						{lastWeekData.ricoverati_con_sintomi}
@@ -149,7 +149,7 @@ const SummaryWidgets = ({
 				</div>
 				<div
 					key={"widget-4"}
-					className="text-center text-governor-bay-200 hidden carouselItem"
+					className="col-span-12 md:col-6 xl:col-2 text-center text-governor-bay-200 hidden carouselItem"
 				>
 					<span className="block mb-3 text-7xl font-bold text-white">
 						{lastWeekData.terapia_intensiva}
@@ -181,7 +181,7 @@ const SummaryWidgets = ({
 				</div>
 				<div
 					key={"widget-5"}
-					className="text-center text-governor-bay-200 hidden carouselItem"
+					className="col-span-12 md:col-6 xl:col-2 text-center text-governor-bay-200 hidden carouselItem"
 				>
 					<span className="block mb-3 text-7xl font-bold text-white">
 						{Math.round(
