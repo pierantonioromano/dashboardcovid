@@ -83,7 +83,7 @@ export default async function Page({ props, searchParams }) {
 				<div className="grid grid-cols-12 gap-4 my-8 lg:my-24">
 					<div className="col-span-12 text-center mb-12">
 						<span className="relative border border-governor-bay-100 rounded-2xl p-2 text-xs text-governor-bay-100 uppercase tracking-wide">
-							Aggiornamento:{" "}
+							Aggiornato al:{" "}
 							<strong>
 								{dayjs(ultimo_aggiornamento)
 									.locale("it")
@@ -243,13 +243,13 @@ export default async function Page({ props, searchParams }) {
 
 				{/* Graph and Metrics */}
 				<div className="grid grid-cols-12 gap-4 mt-4">
-					<div className="col-span-12 lg:col-span-9 rounded-2xl bg-white min-h-96 relative">
+					<div className="col-span-12 lg:col-span-9 rounded-2xl bg-governor-bay-100 min-h-96 relative overflow-hidden">
 						<span className="absolute top-6 left-6">
 							<h2 className="text-3xl font-bold text-black">
-								Dati ultimo mese
+								Ultimi 30 giorni
 							</h2>
 						</span>
-						<div id="chart-timeline" className="w-full">
+						<div id="chart-timeline" className="w-full -mb-[2px]">
 							<SiteGraph
 								options={graph_trending_options}
 								series={graph_trending_series}
