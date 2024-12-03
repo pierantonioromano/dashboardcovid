@@ -28,6 +28,19 @@
 	
 }
 
+@media only screen and (max-width: 700px) {
+	.slick-slide > div { min-width: 100vw}
+	.slick-slider .slick-slide:not(:first-child) { display: none; }
+}
+@media only screen and (min-width: 701px) and (max-width: 800px) {
+	.slick-slide > div { min-width: 50vw}
+	.slick-slider .slick-slide:not(:first-child) { display: none; }
+}
+@media only screen and (min-width: 801px) and (max-width: 1280px) {
+	.slick-slide > div { min-width: 33vw}
+	.slick-slider .slick-slide:not(:first-child) { display: none; }
+}
+
 @media only screen and (max-width: 640px) {
 
 	body {
