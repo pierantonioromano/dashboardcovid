@@ -1,5 +1,3 @@
-import { Suspense } from "react"
-
 async function WeeklyComment({
 	lastWeekPositives,
 	pastWeekPositives,
@@ -39,13 +37,7 @@ async function WeeklyComment({
 		serviceParams
 	).then((res) => res.json())
 
-	return (
-		<>
-			<Suspense fallback={<p>Loading feed...</p>}>
-				{serviceResponse.results.comment || null}
-			</Suspense>
-		</>
-	)
+	return <>{serviceResponse?.results?.comment || null}</>
 }
 
 export default WeeklyComment
