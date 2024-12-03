@@ -16,6 +16,7 @@ const SummaryWidgets = ({ lastWeekArray, lastWeekData, pastWeekArray, pastWeekDa
 		customPaging: function (i) {
 			return <span></span>
 		},
+		touchThreshold: 2000,
 		arrows: false,
 		dots: false,
 		dotsClass: "bc19-dots",
