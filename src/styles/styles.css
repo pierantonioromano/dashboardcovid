@@ -7,41 +7,17 @@
 .copied-url-icon { stroke: #5d56d5; }
 .copied-url-done { stroke: #10b981; }
 
-.covid-regions-trend-table th:nth-of-type(1) { border-top-left-radius: 1rem; border-bottom-left-radius: 1rem; }
-.covid-regions-trend-table th:nth-of-type(6) { border-top-right-radius: 1rem; border-bottom-right-radius: 1rem; }
-.covid-regions-trend-table tr:last-child td { border:none !important; }
-.covid-regions-trend-table tr:last-child td:first-child { border-bottom-left-radius: 1rem; }
-.covid-regions-trend-table tr:last-child td:last-child { border-bottom-right-radius: 1rem; }
-
-/* Carousel */
-.slick-slider .slick-slide:not(:first-child) { display: none; }
+/* Swiper */
 .bc19-dots { margin-top: 20px !important; }
 .bc19-dots li { width: auto; margin: 0 2px !important; display: inline-block; }
-.bc19-dots li span:before { content: "."; text-indent: -9999px; transition: all 0.3s; display: block; width: 6px; height: 6px; margin: 5px 2px; background-color: #fff; opacity: .5; border-radius: 100%; }
-.bc19-dots li:first-child span { margin-left: 0; }
-.bc19-dots li.slick-active span:before { transition: all 0.3s; display: block; width: 15px; border-radius: 10px; opacity: 1; }
-
+.bc19-dots .swiper-pagination-bullet { transition: all 0.3s; display: inline-block; width: 6px; height: 6px; margin: 5px 2px; background-color: #fff; opacity: .5; border-radius: 100%; }
+.bc19-dots .swiper-pagination-bullet:first-child { margin-left: 0; }
+.bc19-dots .swiper-pagination-bullet-active { transition: all 0.3s; width: 15px; border-radius: 10px; opacity: 1; }
 
 /* Generic Styles */
 @media only screen and (max-width: 1023px) {
-  
-	#chart-timeline .apexcharts-legend { right: auto !important; top: 65px !important; margin-left: 5px; }
-	
+	#chart-timeline .apexcharts-legend { right: auto !important; top: 65px !important; margin-left: 5px; }	
 }
-
-/* @media only screen and (max-width: 700px) {
-	.slick-slide > div { min-width: 100vw}
-	.slick-slider .slick-slide:not(:first-child) { display: none; }
-}
-@media only screen and (min-width: 701px) and (max-width: 800px) {
-	.slick-slide > div { min-width: 50vw}
-	.slick-slider .slick-slide:not(:first-child) { display: none; }
-}
-@media only screen and (min-width: 801px) and (max-width: 1280px) {
-	.slick-slide > div { min-width: 33vw}
-	.slick-slider .slick-slide:not(:first-child) { display: none; }
-} */
-
 @media only screen and (max-width: 640px) {
 
 	body {
