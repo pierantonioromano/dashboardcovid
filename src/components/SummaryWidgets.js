@@ -42,10 +42,10 @@ const SummaryWidgets = ({ lastWeekArray, lastWeekData, pastWeekArray, pastWeekDa
 			>
 				<SwiperSlide>
 					<div key={"widget-1"} className="w-full text-center text-governor-bay-200 carouselItem">
-						<span className="block mb-3 text-7xl font-bold text-white">{lastWeekData?.nuovi_positivi.toLocaleString("it")}</span>
+						<span className="block mb-3 text-7xl font-bold text-white" suppressHydrationWarning>{lastWeekData?.nuovi_positivi.toLocaleString("it")}</span>
 						nuovi positivi questa settimana
 						<br />
-						su <strong className="text-white">{lastWeekData?.tamponi.toLocaleString("it")}</strong> tamponi
+						su <strong className="text-white" suppressHydrationWarning>{lastWeekData?.tamponi.toLocaleString("it")}</strong> tamponi
 						<br />
 						<CalculateIncrements
 							new_value={lastWeekData?.nuovi_positivi}
@@ -77,7 +77,7 @@ const SummaryWidgets = ({ lastWeekArray, lastWeekData, pastWeekArray, pastWeekDa
 					<div key={"widget-3"} className="text-center text-governor-bay-200 carouselItem">
 						<span className="block mb-3 text-7xl font-bold text-white">{lastWeekData.ricoverati_con_sintomi}</span>
 						ricoverati in ospedale
-						<br /> per un totale di <strong className="text-white">{cleanedDailyData[cleanedDailyData?.length - 1].ricoverati_con_sintomi.toLocaleString("it")}</strong>
+						<br /> per un totale di <strong className="text-white" suppressHydrationWarning>{cleanedDailyData[cleanedDailyData?.length - 1].ricoverati_con_sintomi.toLocaleString("it")}</strong>
 						<br />
 						<CalculateIncrements
 							new_value={lastWeekArray[lastWeekArray.length - 1]?.ricoverati_con_sintomi}
@@ -93,7 +93,7 @@ const SummaryWidgets = ({ lastWeekArray, lastWeekData, pastWeekArray, pastWeekDa
 					<div key={"widget-4"} className="text-center text-governor-bay-200 carouselItem">
 						<span className="block mb-3 text-7xl font-bold text-white">{lastWeekData.terapia_intensiva}</span>
 						in terapia intensiva
-						<br /> per un totale di <strong className="text-white">{cleanedDailyData[cleanedDailyData?.length - 1].terapia_intensiva.toLocaleString("it")}</strong>
+						<br /> per un totale di <strong className="text-white" suppressHydrationWarning>{cleanedDailyData[cleanedDailyData?.length - 1].terapia_intensiva.toLocaleString("it")}</strong>
 						<br />
 						<CalculateIncrements
 							new_value={lastWeekArray[lastWeekArray.length - 1]?.terapia_intensiva}
