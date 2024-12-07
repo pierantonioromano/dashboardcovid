@@ -63,7 +63,7 @@ export default async function Page({ props, searchParams }) {
 				<div className="grid grid-cols-12 gap-4 my-8 lg:my-24">
 					<div className="col-span-12 text-center mb-12">
 						<span className="relative border border-governor-bay-100 rounded-2xl p-2 text-xs text-governor-bay-100 uppercase tracking-wide">
-							Aggiornato al: <strong>{dayjs(ultimo_aggiornamento).locale("it").format("DD MMMM YYYY")}</strong>
+							Aggiornato al: <strong>{dayjs(ultimo_aggiornamento).locale("it").format("D MMMM YYYY")}</strong>
 						</span>
 					</div>
 
@@ -268,7 +268,7 @@ export default async function Page({ props, searchParams }) {
 								.slice(0, 3)
 								.map((item, index) => item.denominazione_regione + " (" + item.nuovi_positivi + ")" + (index < cleanedDailyRegions.slice(0, 3).length - 1 ? ", " : "."))}
 							<br />
-							<br />I dati nella mappa sono riferiti alla giornata del <strong>{dayjs(ultimo_aggiornamento).locale("it").format("DD MMMM YYYY")}</strong>. Per le regioni non è stato
+							<br />I dati nella mappa sono riferiti alla giornata del <strong>{dayjs(ultimo_aggiornamento).locale("it").format("D MMMM YYYY")}</strong>. Per le regioni non è stato
 							possibile elaborare i dati settimanali.
 						</p>
 					</div>

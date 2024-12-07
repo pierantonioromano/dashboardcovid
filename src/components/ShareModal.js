@@ -136,7 +136,12 @@ export default function ShareModal() {
 													<div className="absolute top-4 left-3">
 														{copiedUrl ? <ClipboardDocumentCheckIcon className="w-6 copied-url-done" /> : <ClipboardIcon className="w-6 copied-url-icon" />}
 													</div>
-													<input type="text" className="bg-indigo-50 h-14 w-full pl-12 pr-30 rounded-lg z-0 focus:shadow focus:outline-none" value={shareUrl} readOnly />
+													<input
+														type="text"
+														className="bg-indigo-50 h-14 w-full pl-12 pr-24 text-ellipsis rounded-lg z-0 focus:shadow focus:outline-none"
+														value={shareUrl}
+														readOnly
+													/>
 													<div className="absolute top-2 right-2">
 														<button
 															className={
