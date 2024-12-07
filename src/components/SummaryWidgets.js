@@ -10,6 +10,8 @@ import 'swiper/css/pagination';
 
 const SummaryWidgets = ({ lastWeekArray, lastWeekData, pastWeekArray, pastWeekData, cleanedDailyData, popolazione_italiana }) => {
 
+	const nfObject = new Intl.NumberFormat("it-IT")
+
 	return (
 		<>
 
@@ -42,10 +44,10 @@ const SummaryWidgets = ({ lastWeekArray, lastWeekData, pastWeekArray, pastWeekDa
 			>
 				<SwiperSlide>
 					<div key={"widget-1"} className="w-full text-center text-governor-bay-200 carouselItem">
-						<span className="block mb-3 text-7xl font-bold text-white" suppressHydrationWarning>{lastWeekData?.nuovi_positivi.toLocaleString("it")}</span>
+						<span className="block mb-3 text-7xl font-bold text-white" suppressHydrationWarning>{nfObject.format(lastWeekData?.nuovi_positivi)}</span>
 						nuovi positivi questa settimana
 						<br />
-						su <strong className="text-white" suppressHydrationWarning>{lastWeekData?.tamponi.toLocaleString("it")}</strong> tamponi
+						su <strong className="text-white" suppressHydrationWarning>{nfObject.format(lastWeekData?.tamponi)}</strong> tamponi
 						<br />
 						<CalculateIncrements
 							new_value={lastWeekData?.nuovi_positivi}
@@ -77,7 +79,7 @@ const SummaryWidgets = ({ lastWeekArray, lastWeekData, pastWeekArray, pastWeekDa
 					<div key={"widget-3"} className="text-center text-governor-bay-200 carouselItem">
 						<span className="block mb-3 text-7xl font-bold text-white">{lastWeekData.ricoverati_con_sintomi}</span>
 						ricoverati in ospedale
-						<br /> per un totale di <strong className="text-white" suppressHydrationWarning>{cleanedDailyData[cleanedDailyData?.length - 1].ricoverati_con_sintomi.toLocaleString("it")}</strong>
+						<br /> per un totale di <strong className="text-white" suppressHydrationWarning>{nfObject.format(cleanedDailyData[cleanedDailyData?.length - 1].ricoverati_con_sintomi)}</strong>
 						<br />
 						<CalculateIncrements
 							new_value={lastWeekArray[lastWeekArray.length - 1]?.ricoverati_con_sintomi}
@@ -93,7 +95,7 @@ const SummaryWidgets = ({ lastWeekArray, lastWeekData, pastWeekArray, pastWeekDa
 					<div key={"widget-4"} className="text-center text-governor-bay-200 carouselItem">
 						<span className="block mb-3 text-7xl font-bold text-white">{lastWeekData.terapia_intensiva}</span>
 						in terapia intensiva
-						<br /> per un totale di <strong className="text-white" suppressHydrationWarning>{cleanedDailyData[cleanedDailyData?.length - 1].terapia_intensiva.toLocaleString("it")}</strong>
+						<br /> per un totale di <strong className="text-white" suppressHydrationWarning>{nfObject.format(cleanedDailyData[cleanedDailyData?.length - 1].terapia_intensiva)}</strong>
 						<br />
 						<CalculateIncrements
 							new_value={lastWeekArray[lastWeekArray.length - 1]?.terapia_intensiva}

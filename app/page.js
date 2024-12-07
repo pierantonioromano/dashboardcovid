@@ -38,6 +38,7 @@ export default async function Page({ props, searchParams }) {
 		Utilities
 	*/
 	const popolazione_italiana = process.env.NEXT_PUBLIC_ITALIAN_POPULATION // updated Jan 2021
+	const nfObject = new Intl.NumberFormat("it-IT")
 
 	let ultimo_aggiornamento = cleanedDailyData[cleanedDailyData?.length - 1]?.data || "n/a"
 
@@ -113,7 +114,7 @@ export default async function Page({ props, searchParams }) {
 							<div className="ml-6 justify-center items-start flex flex-col">
 								<h3 className="text-lg font-bold text-white">Terapie intensive</h3>
 								<p className="text-sm lg:text-base text-governor-bay-200">
-									<strong>{cleanedDailyData[cleanedDailyData?.length - 1].terapia_intensiva.toLocaleString("it")}</strong> su <strong>{totale_posti_ti.toLocaleString("it")}</strong>{" "}
+									<strong>{nfObject.format(cleanedDailyData[cleanedDailyData?.length - 1].terapia_intensiva)}</strong> su <strong>{nfObject.format(totale_posti_ti)}</strong>{" "}
 									disponibili
 								</p>
 							</div>
@@ -130,8 +131,8 @@ export default async function Page({ props, searchParams }) {
 							<div className="ml-6 justify-center items-start flex flex-col">
 								<h3 className="text-lg font-bold text-white">Reparti</h3>
 								<p className="text-sm lg:text-base text-governor-bay-200">
-									<strong>{cleanedDailyData[cleanedDailyData?.length - 1].ricoverati_con_sintomi.toLocaleString("it")}</strong> su{" "}
-									<strong>{totale_posti_anc.toLocaleString("it")}</strong> disponibili
+									<strong>{nfObject.format(cleanedDailyData[cleanedDailyData?.length - 1].ricoverati_con_sintomi)}</strong> su <strong>{nfObject.format(totale_posti_anc)}</strong>{" "}
+									disponibili
 								</p>
 							</div>
 						</div>
