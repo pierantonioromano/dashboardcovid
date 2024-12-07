@@ -26,7 +26,9 @@ const NewsCard = ({ title, link, image, date, source }) => {
 				<a target="_blank" rel="noopener nofollow" className="block" href={link}>
 					<h3 className="text-base lg:text-lg font-bold text-white">{title}</h3>
 				</a>
-				<span className="w-full text-sm text-governor-bay-200 mt-1">{source + " - " + dayjs(date).locale("it").fromNow()}</span>
+				<span className="w-full text-sm text-governor-bay-200 mt-1" suppressHydrationWarning>
+					{source + " - " + dayjs(date).locale("it").fromNow()}
+				</span>
 			</div>
 		</>
 	)

@@ -208,50 +208,6 @@ export default async function Page({ props, searchParams }) {
 								? allNews.map((item, index) => (
 										<li className="flex mb-6 lg:mb-2" key={"news-" + index}>
 											<NewsCard title={item.title} image={item.image} link={item.link} date={item.date} source={item.source} />
-											{/* <div
-												className="newsImageLazyLoad h-20 w-20 min-w-20 float-right my-2 mr-4 overflow-hidden rounded-md relative"
-												//data-img-url={newsImageUrl.uri}
-												style={{
-													backgroundColor: "#d7e7f7",
-													backgroundImage:
-														"url(" +
-														item.image +
-														")",
-													backgroundPosition:
-														"center",
-													backgroundSize: "cover",
-													backgroundRepeat:
-														"no-repeat",
-												}}
-											>
-												<a
-													target="_blank"
-													rel="noopener nofollow"
-													className="block absolute top-0 left-0 w-full h-full"
-													aria-label={item.title}
-													href={item.link}
-												></a>
-											</div>
-
-											<div className="flex flex-col justify-center">
-												<a
-													target="_blank"
-													rel="noopener nofollow"
-													className="block"
-													href={item.link}
-												>
-													<h3 className="text-sm lg:text-lg font-bold text-white">
-														{item.title}
-													</h3>
-												</a>
-												<span className="w-full text-xs text-governor-bay-200 mt-1">
-													{item.source +
-														" - " +
-														dayjs(item.date)
-															.locale("it")
-															.fromNow()}
-												</span>
-											</div> */}
 										</li>
 								  ))
 								: null}
