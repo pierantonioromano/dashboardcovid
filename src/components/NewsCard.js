@@ -1,12 +1,12 @@
 "use client"
 
-import dayjs from "dayjs"
-import "dayjs/locale/it"
-import relativeTime from "dayjs/plugin/relativeTime"
+const dayjs = require("dayjs")
+const dajysLocale = require("dayjs/locale/it")
+const relativeTime = require("dayjs/plugin/relativeTime")
+dayjs.extend(relativeTime)
+dayjs.locale("it") // use locale globally
 
 const NewsCard = ({ title, link, image, date, source }) => {
-	dayjs.extend(relativeTime)
-
 	return (
 		<>
 			<div
