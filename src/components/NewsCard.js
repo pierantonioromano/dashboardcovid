@@ -2,8 +2,8 @@
 
 const dayjs = require("dayjs")
 const dajysLocale = require("dayjs/locale/it")
-const relativeTime = require("dayjs/plugin/relativeTime")
-dayjs.extend(relativeTime)
+//const relativeTime = require("dayjs/plugin/relativeTime")
+//dayjs.extend(relativeTime)
 dayjs.locale("it") // use locale globally
 
 const NewsCard = ({ title, link, image, date, source }) => {
@@ -27,7 +27,7 @@ const NewsCard = ({ title, link, image, date, source }) => {
 					<h3 className="text-base lg:text-lg font-bold text-white">{title}</h3>
 				</a>
 				<span className="w-full text-sm text-governor-bay-200 mt-1" suppressHydrationWarning>
-					{source + " - " + dayjs(date).locale("it").fromNow()}
+					{source + " - " + dayjs(date).locale("it").format("D MMMM YYYY")}
 				</span>
 			</div>
 		</>
