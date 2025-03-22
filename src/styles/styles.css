@@ -1,3 +1,22 @@
+@import 'tailwindcss';
+
+@theme {
+
+	--color-governor-bay-600: #5d56d5;
+
+	--color-governor-bay-50: #f0f3fd;
+	--color-governor-bay-100: #e3e9fc;
+	--color-governor-bay-200: #ccd5f9;
+	--color-governor-bay-300: #aebaf3;
+	--color-governor-bay-400: #8d96ec;
+	--color-governor-bay-500: #7173e3;
+	--color-governor-bay-600: #5d56d5;
+	--color-governor-bay-700: #4f46bc;
+	--color-governor-bay-800: #4741a6;
+	--color-governor-bay-900: #393679;
+	--color-governor-bay-950: #222046;
+}
+
 /* Modal Styling */
 .modalOverlay { margin: 0 !important; }
 .shares-facebook { fill: #1877f2;  }

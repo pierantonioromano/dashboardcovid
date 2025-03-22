@@ -3,7 +3,7 @@ import "dayjs/locale/it"
 import SiteGraph from "@components/SiteGraph"
 import { extractWeeklyData, buildMainGraphSeries, buildMainGraphOptions, getAgenasData } from "@utils/utilities"
 import CircularIndicator from "@components/CircularIndicator"
-import { BeakerIcon, ChartPieIcon } from "@heroicons/react/24/outline"
+import { BeakerIcon, ChartPieIcon, ExclamationTriangleIcon } from "@heroicons/react/24/outline"
 import RegionsMap from "@components/RegionsMap"
 import WeeklyComment from "@components/WeeklyComment"
 import SummaryWidgets from "@components/SummaryWidgets"
@@ -13,10 +13,10 @@ export default async function Page({ props, searchParams }) {
 	/*
 		Data fetching
 	*/
-	const {
-		props: { cleanedDailyData, cleanedDailyNotes, cleanedDailyRegions }
-	} = await fetchHomeData()
-	const cleanedDailyAgenas = getAgenasData()
+	// const {
+	// 	props: { cleanedDailyData, cleanedDailyNotes, cleanedDailyRegions }
+	// } = await fetchHomeData()
+	// const cleanedDailyAgenas = getAgenasData()
 
 	const {
 		props: { allNews }
@@ -25,49 +25,59 @@ export default async function Page({ props, searchParams }) {
 	/*
 		Get weekly series
 	*/
-	const latestAvailableDate = dayjs(cleanedDailyData[cleanedDailyData?.length - 1].data)
+	// const latestAvailableDate = dayjs(cleanedDailyData[cleanedDailyData?.length - 1].data)
 
-	const lastWeekArray = cleanedDailyData.filter((item) => dayjs(item.data).diff(latestAvailableDate, "days") > -7)
-	const lastWeekData = extractWeeklyData(lastWeekArray, cleanedDailyData, 8)
+	// const lastWeekArray = cleanedDailyData.filter((item) => dayjs(item.data).diff(latestAvailableDate, "days") > -7)
+	// const lastWeekData = extractWeeklyData(lastWeekArray, cleanedDailyData, 8)
 
-	const pastWeekArray = cleanedDailyData.filter((item) => dayjs(item.data).diff(latestAvailableDate, "days") > -14 && dayjs(item.data).diff(latestAvailableDate, "days") <= -7)
+	// const pastWeekArray = cleanedDailyData.filter((item) => dayjs(item.data).diff(latestAvailableDate, "days") > -14 && dayjs(item.data).diff(latestAvailableDate, "days") <= -7)
 
-	const pastWeekData = extractWeeklyData(pastWeekArray, cleanedDailyData, 15)
+	// const pastWeekData = extractWeeklyData(pastWeekArray, cleanedDailyData, 15)
 
 	/*
 		Utilities
 	*/
-	const popolazione_italiana = process.env.NEXT_PUBLIC_ITALIAN_POPULATION // updated Jan 2021
-	const nfObject = new Intl.NumberFormat("it-IT")
+	// const popolazione_italiana = process.env.NEXT_PUBLIC_ITALIAN_POPULATION // updated Jan 2021
+	// const nfObject = new Intl.NumberFormat("it-IT")
 
-	let ultimo_aggiornamento = cleanedDailyData[cleanedDailyData?.length - 1]?.data || "n/a"
+	// let ultimo_aggiornamento = cleanedDailyData[cleanedDailyData?.length - 1]?.data || "n/a"
 
-	let totale_posti_anc = cleanedDailyAgenas["totali"] ? cleanedDailyAgenas["totali"].totale_posti_anc : 0
-	let totale_posti_ti = cleanedDailyAgenas["totali"] ? cleanedDailyAgenas["totali"].totale_posti_ti : 0
-	let totale_posti_ti_extra = cleanedDailyAgenas["totali"] ? cleanedDailyAgenas["totali"].totale_posti_ti_extra : 0
+	// let totale_posti_anc = cleanedDailyAgenas["totali"] ? cleanedDailyAgenas["totali"].totale_posti_anc : 0
+	// let totale_posti_ti = cleanedDailyAgenas["totali"] ? cleanedDailyAgenas["totali"].totale_posti_ti : 0
+	// let totale_posti_ti_extra = cleanedDailyAgenas["totali"] ? cleanedDailyAgenas["totali"].totale_posti_ti_extra : 0
+
+	let ultimo_aggiornamento = allNews[0]?.date || "n/a"
 
 	/*
 		Graphs
 	*/
 
-	//Graph data series
-	const graph_trending_series = buildMainGraphSeries(cleanedDailyData)
+	// //Graph data series
+	// const graph_trending_series = buildMainGraphSeries(cleanedDailyData)
 
-	//Graph settings - Main
-	const graph_trending_options = buildMainGraphOptions()
+	// //Graph settings - Main
+	// const graph_trending_options = buildMainGraphOptions()
 
 	return (
 		<main role="main">
 			<div className="container max-w-screen-2xl px-4 xl:px-8 mx-auto">
 				{/* Summary Widgets */}
 				<div className="grid grid-cols-12 gap-4 my-8 lg:my-24">
-					<div className="col-span-12 text-center mb-12">
+					<div className="col-span-12 text-center mb-12 lg:mb-0">
 						<span className="relative border border-governor-bay-100 rounded-2xl p-2 text-xs text-governor-bay-100 uppercase tracking-wide">
 							Aggiornato al: <strong>{dayjs(ultimo_aggiornamento).locale("it").format("D MMMM YYYY")}</strong>
 						</span>
+
+						<div className="mt-12 text-center text-white max-w-xl mx-auto">
+							<ExclamationTriangleIcon className="w-12 mx-auto mb-4 text-yellow-200" />
+							<p>
+								A partire dal mese di gennaio 2025 è stata sospesa la pubblicazione su GitHub dei dati settimanali relativi all'evoluzione del COVID-19 in Italia. La visualizzazione
+								dei dati settimanali è quindi momentaneamente sospesa, e il sito verrà dismesso nei prossimi mesi.
+							</p>
+						</div>
 					</div>
 
-					<div className="col-span-12 text-center">
+					{/* <div className="col-span-12 text-center">
 						<SummaryWidgets
 							lastWeekArray={lastWeekArray}
 							lastWeekData={lastWeekData}
@@ -76,11 +86,11 @@ export default async function Page({ props, searchParams }) {
 							cleanedDailyData={cleanedDailyData}
 							popolazione_italiana={popolazione_italiana}
 						/>
-					</div>
+					</div> */}
 				</div>
 
 				{/* Hospital pressure */}
-				<div className="grid grid-cols-12 gap-4">
+				{/* <div className="grid grid-cols-12 gap-4">
 					<div className="col-span-12 xl:col-span-3 min-h-72 md:min-h-48 card-shadow rounded-2xl p-2 bg-cover bg-bottom relative overflow-hidden">
 						<div className="absolute inset-0 bg-governor-bay-200">
 							<div className="absolute rounded-full z-0 w-[20rem] h-[20rem] md:w-[26rem] md:h-[26rem] top-2 right-6 bg-[50%_-60%] bg-[length:90%_auto] bg-[url('/ospedale.jpg')] translate-y-[-50%] translate-x-[50%]"></div>
@@ -162,10 +172,10 @@ export default async function Page({ props, searchParams }) {
 							<BeakerIcon className="w-4 inline mr-1" /> Commento generato dall'Intelligenza Artificiale
 						</p>
 					</div>
-				</div>
+				</div> */}
 
 				{/* Graph and Metrics */}
-				<div className="grid grid-cols-12 gap-4 mt-4">
+				{/* <div className="grid grid-cols-12 gap-4 mt-4">
 					<div className="col-span-12 lg:col-span-9 rounded-2xl bg-governor-bay-100 min-h-96 relative overflow-hidden">
 						<span className="absolute top-6 left-6">
 							<h2 className="text-3xl font-bold text-black">Ultimi 30 giorni</h2>
@@ -183,7 +193,7 @@ export default async function Page({ props, searchParams }) {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 
 				{/* Notes */}
 				{/* {cleanedDailyNotes && cleanedDailyNotes[0].note ? (
@@ -201,19 +211,19 @@ export default async function Page({ props, searchParams }) {
 
 				{/* News and Regions */}
 				<div className="grid grid-cols-12 gap-4 mt-4">
-					<div className="col-span-12 lg:col-span-8 rounded-2xl bg-governor-bay-800 p-6">
+					<div className="col-span-12 rounded-2xl bg-governor-bay-800 p-6">
 						<h2 className="text-3xl font-bold text-white">Ultime notizie</h2>
-						<ul className="mt-4">
+						<ul className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
 							{allNews
 								? allNews.map((item, index) => (
-										<li className="flex mb-6 lg:mb-2" key={"news-" + index}>
+										<li className="inline-flex mb-6 lg:mb-2" key={"news-" + index}>
 											<NewsCard title={item.title} image={item.image} link={item.link} date={item.date} source={item.source} />
 										</li>
 								  ))
 								: null}
 						</ul>
 					</div>
-					<div className="col-span-12 lg:col-span-4 rounded-2xl bg-governor-bay-100 p-6">
+					{/* <div className="col-span-12 lg:col-span-4 rounded-2xl bg-governor-bay-100 p-6">
 						<h2 className="text-3xl font-bold text-black">Situazione Regionale</h2>
 
 						<RegionsMap cleanedDailyRegions={cleanedDailyRegions} />
@@ -227,7 +237,7 @@ export default async function Page({ props, searchParams }) {
 							<br />I dati nella mappa sono riferiti alla giornata del <strong>{dayjs(ultimo_aggiornamento).locale("it").format("D MMMM YYYY")}</strong>. Per le regioni non è stato
 							possibile elaborare i dati settimanali.
 						</p>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</main>
